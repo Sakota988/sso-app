@@ -14,18 +14,27 @@ import type { DeckDisplay, DeckMeta } from '../types/deck';
 const { width } = Dimensions.get('window');
 const CARD_SIZE = (width - 48) / 2;
 
-// ── Static asset map: deckId → deck cover image ──────────────────
+// ── Per-deck cover images (keyed by deckId) ───────────────────────
 const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'starter':    require('../assets/starter_pack.png'),
-  'red-flags':  require('../assets/starter_pack.png'), // replace when asset is ready
+  'starter':      require('../assets/starter.png'),
+  'budzetiranje': require('../assets/budzet.png'),
+  // 'red-flags': require('../assets/red_flags_pack.png'),  ← add when asset is ready
 };
+
+// ── Fallback images by deck type ──────────────────────────────────
+const TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
+  'mixed': require('../assets/starter.png'),
+  'budzet': require('../assets/budzet.png'),
+};
+
+const FALLBACK_IMAGE = require('../assets/starter.png');
 
 // ── Load decks from JSON ──────────────────────────────────────────
 const deckData: { decks: DeckMeta[] } = require('../data/decks.json');
 
 const DECKS: DeckDisplay[] = deckData.decks.map((d) => ({
   ...d,
-  image: DECK_IMAGES[d.deckId] ?? require('../assets/starter_pack.png'),
+  image: DECK_IMAGES[d.deckId] ?? TYPE_IMAGES[(d as any).type] ?? FALLBACK_IMAGE,
 }));
 
 // ── Components ────────────────────────────────────────────────────
@@ -35,17 +44,23 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
 
   return (
     <TouchableOpacity
-      style={styles.card}
-      activeOpacity={0.82}
-      onPress={() => openDeck(deck)}
+      style={[styles.card, !isFree && styles.cardLocked]}
+      activeOpacity={isFree ? 0.82 : 1}
+      onPress={() => { if (isFree) openDeck(deck); }}
     >
-      <Image source={deck.image} style={styles.cardImage} resizeMode="cover" />
+      <Image source={deck.image} style={styles.cardImage} resizeMode="contain" />
 
       <View style={[styles.badge, isFree ? styles.badgeFree : styles.badgePro]}>
         <Text style={[styles.badgeText, isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
           {isFree ? 'FREE' : '🔒 PRO'}
         </Text>
       </View>
+
+      {!isFree && (
+        <View style={styles.lockedOverlay}>
+          <Text style={styles.lockedIcon}>🔒</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
@@ -114,7 +129,6 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_SIZE,
     height: CARD_SIZE,
-    backgroundColor: '#FFF0E6',
     borderRadius: 18,
     overflow: 'hidden',
     shadowColor: '#C46A28',
@@ -123,10 +137,28 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 6,
   },
+  cardLocked: {
+    opacity: 0.6,
+  },
   cardImage: {
     width: '100%',
     height: '100%',
-    transform: [{ scale: 1.55 }],
+    transform: [{ scale: 1.25 }],
+  },
+  lockedOverlay: {
+    position: 'absolute',
+    inset: 0,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 4,
+  },
+  lockedIcon: { fontSize: 32 },
+  lockedText: {
+    fontSize: 13,
+    fontWeight: '900',
+    color: '#fff',
+    letterSpacing: 1.5,
   },
   badge: {
     position: 'absolute',

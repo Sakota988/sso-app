@@ -18,11 +18,14 @@ const { width } = Dimensions.get('window');
 const CARD_WIDTH  = (width - 48) / 2;
 const CARD_HEIGHT = CARD_WIDTH * 1.45;
 
-// ── Static card image map: deckId → card back image ───────────────
-const CARD_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'starter':   require('../assets/zardzi4izbaci4_card.png'),
-  'red-flags': require('../assets/zardzi4izbaci4_card.png'), // replace when ready
+// ── Card back images keyed by card type ───────────────────────────
+const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
+  'KEEP_4_DROP_4': require('../assets/zadrzi_back.png'),
+  'BLIND_5_RANK':  require('../assets/na_slepo_back.png'), // replace when asset is ready
+  'BUDGETING_4x5': require('../assets/budzet_back.png'),
 };
+
+const CARD_FALLBACK_IMAGE = require('../assets/zardzi4izbaci4_card.png');
 
 type Props = {
   deck: DeckDisplay;
@@ -32,15 +35,13 @@ type Props = {
 function CardGridItem({
   card,
   index,
-  deckId,
   onPress,
 }: {
   card: CardItem;
   index: number;
-  deckId: string;
   onPress: () => void;
 }) {
-  const img = CARD_IMAGES[deckId] ?? require('../assets/zardzi4izbaci4_card.png');
+  const img = CARD_TYPE_IMAGES[card.type] ?? CARD_FALLBACK_IMAGE;
   return (
     <TouchableOpacity style={styles.cardItem} onPress={onPress} activeOpacity={0.82}>
       <Image source={img} style={styles.cardItemImage} resizeMode="cover" />
@@ -112,18 +113,12 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
           <CardGridItem
             card={item}
             index={index}
-            deckId={deck.deckId}
             onPress={() => setSelectedCard(item)}
           />
         )}
       />
 
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.playBtn} activeOpacity={0.85}>
-          <Play size={20} color="#fff" fill="#fff" />
-          <Text style={styles.playText}>Igraj</Text>
-        </TouchableOpacity>
-      </View>
+     
     </View>
   );
 }
@@ -154,18 +149,13 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: '#FFF0E6',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
     elevation: 10,
     marginBottom: 14,
   },
   coverImage: {
     width: '100%',
     height: '100%',
-    transform: [{ scale: 1.55 }],
+    transform: [{ scale: 1.05 }],
   },
   deckTitle: {
     fontSize: 24,

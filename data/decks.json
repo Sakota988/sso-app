@@ -3,6 +3,7 @@
   "decks": [
     {
       "deckId": "starter",
+      "type": "mixed",
       "title": "Starter Pack",
       "description": "Za početak — malo svega.",
       "isFree": true,
@@ -11,7 +12,18 @@
       "contentFile": "deck-starter.json"
     },
     {
+      "deckId": "budzetiranje",
+      "type": "budzet",
+      "title": "Budzetiranje Pack",
+      "description": "Za početak — malo svega.",
+      "isFree": true,
+      "productId": null,
+      "cardCount": 10,
+      "contentFile": "deck-starter.json"
+    },
+    {
       "deckId": "red-flags",
+      "type": "mixed",
       "title": "Red Flags",
       "description": "Zašto je ovo red flag? 🙂",
       "isFree": false,
