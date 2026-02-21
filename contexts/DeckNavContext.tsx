@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
-import type { Deck } from '../screens/DecksScreen';
+import type { DeckDisplay } from '../types/deck';
 
 type DeckNavContextType = {
-  openDeck: (deck: Deck) => void;
+  openDeck: (deck: DeckDisplay) => void;
 };
 
 export const DeckNavContext = createContext<DeckNavContextType>({

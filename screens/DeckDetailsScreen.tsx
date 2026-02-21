@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import {
+  Dimensions,
+  FlatList,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -8,15 +10,64 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Play } from 'lucide-react-native';
-import type { Deck } from './DecksScreen';
+import type { DeckDisplay, CardItem } from '../types/deck';
+import { getCardFile } from '../data/cardFileRegistry';
+import CardScreen from './CardScreen';
+
+const { width } = Dimensions.get('window');
+const CARD_WIDTH  = (width - 48) / 2;
+const CARD_HEIGHT = CARD_WIDTH * 1.45;
+
+// ── Static card image map: deckId → card back image ───────────────
+const CARD_IMAGES: Record<string, ReturnType<typeof require>> = {
+  'starter':   require('../assets/zardzi4izbaci4_card.png'),
+  'red-flags': require('../assets/zardzi4izbaci4_card.png'), // replace when ready
+};
 
 type Props = {
-  deck: Deck;
+  deck: DeckDisplay;
   onBack: () => void;
 };
 
+function CardGridItem({
+  card,
+  index,
+  deckId,
+  onPress,
+}: {
+  card: CardItem;
+  index: number;
+  deckId: string;
+  onPress: () => void;
+}) {
+  const img = CARD_IMAGES[deckId] ?? require('../assets/zardzi4izbaci4_card.png');
+  return (
+    <TouchableOpacity style={styles.cardItem} onPress={onPress} activeOpacity={0.82}>
+      <Image source={img} style={styles.cardItemImage} resizeMode="cover" />
+      <View style={styles.cardNumber}>
+        <Text style={styles.cardNumberText}>{index + 1}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 export default function DeckDetailsScreen({ deck, onBack }: Props) {
-  const isFree = deck.badge === 'FREE';
+  const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
+
+  const content = getCardFile(deck.contentFile);
+  const cards: CardItem[] = content?.cards ?? [];
+
+  if (selectedCard) {
+    const idx = cards.findIndex((c) => c.cardId === selectedCard.cardId);
+    return (
+      <CardScreen
+        card={selectedCard}
+        cardNumber={idx + 1}
+        totalCards={cards.length}
+        onBack={() => setSelectedCard(null)}
+      />
+    );
+  }
 
   return (
     <View style={styles.root}>
@@ -31,31 +82,41 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
         <ArrowLeft size={22} color="#1A1A1A" strokeWidth={2.5} />
       </TouchableOpacity>
 
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.imageCard}>
-          <Image source={deck.image} style={styles.image} resizeMode="contain" />
-        </View>
+      <FlatList
+        data={cards}
+        keyExtractor={(c) => c.cardId}
+        numColumns={2}
+        columnWrapperStyle={styles.row}
+        contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <View style={styles.coverCard}>
+              <Image source={deck.image} style={styles.coverImage} resizeMode="cover" />
+            </View>
+            <Text style={styles.deckTitle}>{deck.title}</Text>
+            <Text style={styles.deckDesc}>{deck.description}</Text>
+            <Text style={styles.deckCount}>{cards.length} kartica</Text>
 
-        <View style={styles.info}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title}>{deck.title}</Text>
-            <View style={[styles.badge, isFree ? styles.badgeFree : styles.badgePro]}>
-              <Text style={[styles.badgeText, isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
-                {isFree ? 'FREE' : '🔒 PRO'}
-              </Text>
+            <View style={styles.sectionRow}>
+              <Text style={styles.sectionTitle}>Kartice</Text>
+              <View style={[styles.badge, deck.isFree ? styles.badgeFree : styles.badgePro]}>
+                <Text style={[styles.badgeText, deck.isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
+                  {deck.isFree ? 'FREE' : '🔒 PRO'}
+                </Text>
+              </View>
             </View>
           </View>
-
-          <Text style={styles.count}>{deck.count} kartica</Text>
-
-          <View style={styles.divider} />
-
-          <Text style={styles.descLabel}>O špilu</Text>
-          <Text style={styles.desc}>
-            Opis ovog špila dolazi uskoro. Ovdje će biti kratki opis tema i pitanja koja se nalaze u kartama.
-          </Text>
-        </View>
-      </ScrollView>
+        }
+        renderItem={({ item, index }) => (
+          <CardGridItem
+            card={item}
+            index={index}
+            deckId={deck.deckId}
+            onPress={() => setSelectedCard(item)}
+          />
+        )}
+      />
 
       <View style={styles.footer}>
         <TouchableOpacity style={styles.playBtn} activeOpacity={0.85}>
@@ -81,90 +142,88 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  scroll: {
-    paddingTop: 80,
-    paddingBottom: 120,
-    paddingHorizontal: 20,
-    alignItems: 'center',
+  list: {
+    paddingTop: 100,
+    paddingHorizontal: 16,
+    paddingBottom: 110,
   },
-  imageCard: {
-    width: 240,
-    height: 280,
-    backgroundColor: '#111111',
-    borderRadius: 24,
+  row: { gap: 16, marginBottom: 16 },
+  header: { alignItems: 'center', marginBottom: 24 },
+  coverCard: {
+    width: 130,
+    height: 150,
+    borderRadius: 16,
     overflow: 'hidden',
+    backgroundColor: '#FFF0E6',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 12,
-    marginBottom: 28,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 10,
+    marginBottom: 14,
   },
-  image: {
+  coverImage: {
     width: '100%',
     height: '100%',
+    transform: [{ scale: 1.55 }],
   },
-  info: {
+  deckTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  deckDesc: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  deckCount: {
+    fontSize: 13,
+    color: '#9CA3AF',
+    fontWeight: '500',
+    marginBottom: 20,
+  },
+  sectionRow: {
     width: '100%',
-    backgroundColor: 'rgba(255,255,255,0.75)',
-    borderRadius: 20,
-    padding: 20,
-  },
-  titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 4,
   },
-  title: {
-    fontSize: 26,
-    fontWeight: '800',
-    color: '#1A1A1A',
-  },
-  badge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 20,
-  },
+  sectionTitle: { fontSize: 16, fontWeight: '800', color: '#1A1A1A' },
+  badge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 20 },
   badgeFree: { backgroundColor: '#D1FAE5' },
   badgePro:  { backgroundColor: '#1A1A1A' },
-  badgeText: {
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 0.4,
-  },
+  badgeText: { fontSize: 11, fontWeight: '700', letterSpacing: 0.4 },
   badgeTextFree: { color: '#065F46' },
   badgeTextPro:  { color: '#FFFFFF' },
-  count: {
-    fontSize: 14,
-    color: '#6B7280',
-    fontWeight: '500',
-    marginBottom: 16,
+  cardItem: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    borderRadius: 14,
+    overflow: 'hidden',
+    backgroundColor: '#FFF0E6',
+    shadowColor: '#C46A28',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    elevation: 5,
   },
-  divider: {
-    height: 1,
-    backgroundColor: 'rgba(0,0,0,0.08)',
-    marginBottom: 16,
-  },
-  descLabel: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#9CA3AF',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginBottom: 8,
-  },
-  desc: {
-    fontSize: 15,
-    color: '#374151',
-    lineHeight: 22,
-  },
-  footer: {
+  cardItemImage: { width: '100%', height: '100%' },
+  cardNumber: {
     position: 'absolute',
-    bottom: 32,
-    left: 20,
-    right: 20,
+    bottom: 8,
+    right: 8,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  cardNumberText: { fontSize: 11, fontWeight: '800', color: '#fff' },
+  footer: { position: 'absolute', bottom: 32, left: 20, right: 20 },
   playBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -179,10 +238,5 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
   },
-  playText: {
-    fontSize: 17,
-    fontWeight: '800',
-    color: '#fff',
-    letterSpacing: 0.3,
-  },
+  playText: { fontSize: 17, fontWeight: '800', color: '#fff', letterSpacing: 0.3 },
 });

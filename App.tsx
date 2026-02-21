@@ -10,12 +10,12 @@ import SettingsScreen from './screens/SettingsScreen';
 import DeckDetailsScreen from './screens/DeckDetailsScreen';
 import CustomTabBar from './components/CustomTabBar';
 import { DeckNavContext } from './contexts/DeckNavContext';
-import type { Deck } from './screens/DecksScreen';
+import type { DeckDisplay } from './types/deck';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null);
+  const [selectedDeck, setSelectedDeck] = useState<DeckDisplay | null>(null);
 
   return (
     <SafeAreaProvider>

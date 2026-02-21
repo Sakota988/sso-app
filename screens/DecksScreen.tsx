@@ -9,30 +9,29 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDeckNav } from '../contexts/DeckNavContext';
+import type { DeckDisplay, DeckMeta } from '../types/deck';
 
 const { width } = Dimensions.get('window');
 const CARD_SIZE = (width - 48) / 2;
 
-export type Deck = {
-  id: string;
-  title: string;
-  count: number;
-  badge: 'FREE' | 'PRO';
-  image: ReturnType<typeof require>;
+// ── Static asset map: deckId → deck cover image ──────────────────
+const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
+  'starter':    require('../assets/starter_pack.png'),
+  'red-flags':  require('../assets/starter_pack.png'), // replace when asset is ready
 };
 
-const DECKS: Deck[] = [
-  { id: '1', title: 'Klasika',    count: 10, badge: 'FREE', image: require('../assets/starter_pack.png') },
-  { id: '2', title: 'Pikantno',   count: 15, badge: 'FREE', image: require('../assets/starter_pack.png') },
-  { id: '3', title: 'Romantično', count: 12, badge: 'FREE', image: require('../assets/starter_pack.png') },
-  { id: '4', title: 'Grupno',     count: 8,  badge: 'PRO',  image: require('../assets/starter_pack.png') },
-  { id: '5', title: 'Ekstremno',  count: 20, badge: 'PRO',  image: require('../assets/starter_pack.png') },
-  { id: '6', title: 'Tinejdžeri',count: 10, badge: 'FREE', image: require('../assets/starter_pack.png') },
-];
+// ── Load decks from JSON ──────────────────────────────────────────
+const deckData: { decks: DeckMeta[] } = require('../data/decks.json');
 
-function DeckCard({ deck }: { deck: Deck }) {
+const DECKS: DeckDisplay[] = deckData.decks.map((d) => ({
+  ...d,
+  image: DECK_IMAGES[d.deckId] ?? require('../assets/starter_pack.png'),
+}));
+
+// ── Components ────────────────────────────────────────────────────
+function DeckCard({ deck }: { deck: DeckDisplay }) {
   const { openDeck } = useDeckNav();
-  const isFree = deck.badge === 'FREE';
+  const isFree = deck.isFree;
 
   return (
     <TouchableOpacity
@@ -68,7 +67,7 @@ export default function DecksScreen() {
 
       <FlatList
         data={DECKS}
-        keyExtractor={(d) => d.id}
+        keyExtractor={(d) => d.deckId}
         numColumns={2}
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.list}
@@ -115,6 +114,7 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_SIZE,
     height: CARD_SIZE,
+    backgroundColor: '#FFF0E6',
     borderRadius: 18,
     overflow: 'hidden',
     shadowColor: '#C46A28',
