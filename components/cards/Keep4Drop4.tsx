@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useGameStore, type Keep4Drop4Result } from '../../store/gameStore';
 import {
   Animated,
   Dimensions,
@@ -33,18 +34,27 @@ type Props = {
   onBack: () => void;
   cardNumber: number;
   totalCards: number;
+  deckId: string;
 };
 
-export default function Keep4Drop4({ card, onBack }: Props) {
+export default function Keep4Drop4({ card, onBack, deckId }: Props) {
   const traits = card.traits;
   const total = traits.length;
 
-  const [index, setIndex] = useState(0);
-  const [kept, setKept] = useState<string[]>([]);
-  const [dropped, setDropped] = useState<string[]>([]);
+  const stored = useGameStore(
+    (s) => s.results[card.cardId]?.type === 'KEEP_4_DROP_4'
+      ? (s.results[card.cardId] as Keep4Drop4Result)
+      : undefined
+  );
+
+  const [index, setIndex] = useState(() => (stored ? total : 0));
+  const [kept, setKept] = useState<string[]>(() => stored?.kept ?? []);
+  const [dropped, setDropped] = useState<string[]>(() => stored?.dropped ?? []);
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const saveResult = useGameStore((s) => s.saveResult);
 
   const isDone = index >= total;
   const keepSlotsLeft = MAX_KEEP - kept.length;
@@ -66,26 +76,43 @@ export default function Keep4Drop4({ card, onBack }: Props) {
     });
   }
 
+  function finish(finalKept: string[], finalDropped: string[]) {
+    setKept(finalKept);
+    setDropped(finalDropped);
+    setIndex(total);
+    saveResult({
+      type: 'KEEP_4_DROP_4',
+      cardId: card.cardId,
+      deckId,
+      cardTitle: card.title,
+      kept: finalKept,
+      dropped: finalDropped,
+      playedAt: Date.now(),
+    });
+  }
+
   function handleKeep() {
     if (mustDrop || isDone) return;
     animateTransition(1, () => {
       const trait = traits[index];
       const newKept = [...kept, trait];
-      setKept(newKept);
 
+      // Kept the 4th — auto-drop everything remaining
       if (newKept.length >= MAX_KEEP) {
-        setDropped((d) => [...d, ...traits.slice(index + 1)]);
-        setIndex(total);
+        finish(newKept, [...dropped, ...traits.slice(index + 1)]);
+        return;
+      }
+
+      const nextIdx = index + 1;
+      const newRemaining = total - nextIdx;
+      const newSlots = MAX_KEEP - newKept.length;
+
+      // Remaining traits ≤ empty keep slots — must keep all of them
+      if (newRemaining > 0 && newRemaining <= newSlots) {
+        finish([...newKept, ...traits.slice(nextIdx)], dropped);
       } else {
-        const nextIdx = index + 1;
-        const newRemaining = total - nextIdx;
-        const newSlots = MAX_KEEP - newKept.length;
-        if (newRemaining > 0 && newRemaining <= newSlots) {
-          setKept((k) => [...k, ...traits.slice(nextIdx)]);
-          setIndex(total);
-        } else {
-          setIndex(nextIdx);
-        }
+        setKept(newKept);
+        setIndex(nextIdx);
       }
     });
   }
@@ -95,15 +122,16 @@ export default function Keep4Drop4({ card, onBack }: Props) {
     animateTransition(-1, () => {
       const trait = traits[index];
       const newDropped = [...dropped, trait];
-      setDropped(newDropped);
 
       const nextIdx = index + 1;
       const newRemaining = total - nextIdx;
       const currentSlots = MAX_KEEP - kept.length;
+
+      // Remaining traits ≤ empty keep slots — must keep all of them
       if (newRemaining > 0 && newRemaining <= currentSlots) {
-        setKept((k) => [...k, ...traits.slice(nextIdx)]);
-        setIndex(total);
+        finish([...kept, ...traits.slice(nextIdx)], newDropped);
       } else {
+        setDropped(newDropped);
         setIndex(nextIdx);
       }
     });

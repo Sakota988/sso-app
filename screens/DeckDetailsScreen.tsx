@@ -9,10 +9,11 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft, Play } from 'lucide-react-native';
+import { ArrowLeft, CheckCircle2 } from 'lucide-react-native';
 import type { DeckDisplay, CardItem } from '../types/deck';
 import { getCardFile } from '../data/cardFileRegistry';
 import CardScreen from './CardScreen';
+import { useGameStore } from '../store/gameStore';
 
 const { width } = Dimensions.get('window');
 const CARD_WIDTH  = (width - 48) / 2;
@@ -20,8 +21,8 @@ const CARD_HEIGHT = CARD_WIDTH * 1.45;
 
 // ── Card back images keyed by card type ───────────────────────────
 const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'KEEP_4_DROP_4': require('../assets/zadrzi_back.png'),
-  'BLIND_5_RANK':  require('../assets/na_slepo_back.png'), // replace when asset is ready
+  'KEEP_4_DROP_4': require('../assets/zadrzi_izbaci_back.png'),
+  'BLIND_5_RANK':  require('../assets/slepo_back.png'), // replace when asset is ready
   'BUDGETING_4x5': require('../assets/budzet_back.png'),
 };
 
@@ -42,11 +43,19 @@ function CardGridItem({
   onPress: () => void;
 }) {
   const img = CARD_TYPE_IMAGES[card.type] ?? CARD_FALLBACK_IMAGE;
+  const isPlayed = useGameStore((s) => !!s.results[card.cardId]);
+
   return (
     <TouchableOpacity style={styles.cardItem} onPress={onPress} activeOpacity={0.82}>
-      <Image source={img} style={styles.cardItemImage} resizeMode="cover" />
-      <View style={styles.cardNumber}>
-        <Text style={styles.cardNumberText}>{index + 1}</Text>
+      <Image source={img} style={[styles.cardItemImage, isPlayed && styles.cardItemImagePlayed]} resizeMode="contain" />
+
+      {isPlayed && (
+        <View style={styles.playedBadge}>
+          <CheckCircle2 size={16} color="#fff" strokeWidth={2.5} />
+        </View>
+      )}
+      <View style={styles.cardItemFooter}>
+        <Text style={styles.cardItemText} numberOfLines={1}>{card.shortTitle}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -65,6 +74,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
         card={selectedCard}
         cardNumber={idx + 1}
         totalCards={cards.length}
+        deckId={deck.deckId}
         onBack={() => setSelectedCard(null)}
       />
     );
@@ -193,7 +203,6 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 14,
     overflow: 'hidden',
-    backgroundColor: '#FFF0E6',
     shadowColor: '#C46A28',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.18,
@@ -201,18 +210,37 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   cardItemImage: { width: '100%', height: '100%' },
-  cardNumber: {
+  cardItemImagePlayed: { opacity: 0.9 },
+  cardItemFooter: {
     position: 'absolute',
-    bottom: 8,
-    right: 8,
-    backgroundColor: 'rgba(0,0,0,0.45)',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+    bottom: 30,
+    left: 0,
+    right: 0,
   },
-  cardNumberText: { fontSize: 11, fontWeight: '800', color: '#fff' },
+  cardItemText: {
+    fontSize: 18,
+    fontWeight: '800',
+    paddingHorizontal: 16,
+    textAlign: 'center',
+    color: '#fff',
+    letterSpacing: 0.3,
+  },
+  playedBadge: {
+    position: 'absolute',
+    top: 20,
+    left: 8,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#10B981',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
   footer: { position: 'absolute', bottom: 32, left: 20, right: 20 },
   playBtn: {
     flexDirection: 'row',

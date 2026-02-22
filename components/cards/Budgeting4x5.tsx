@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useGameStore, type Budgeting4x5Result } from '../../store/gameStore';
 import {
   Animated,
   Dimensions,
@@ -25,19 +26,30 @@ type Props = {
   onBack: () => void;
   cardNumber: number;
   totalCards: number;
+  deckId: string;
 };
 
 type Selection = { label: string; cost: number; auto?: boolean };
 
-export default function Budgeting4x5({ card, onBack }: Props) {
+export default function Budgeting4x5({ card, onBack, deckId }: Props) {
   const { categories, budgetTotal } = card;
   const total = categories.length;
 
-  const [index, setIndex] = useState(0);
-  const [selections, setSelections] = useState<Record<string, Selection>>({});
+  const stored = useGameStore(
+    (s) => s.results[card.cardId]?.type === 'BUDGETING_4x5'
+      ? (s.results[card.cardId] as Budgeting4x5Result)
+      : undefined
+  );
+
+  const [index, setIndex] = useState(() => (stored ? total : 0));
+  const [selections, setSelections] = useState<Record<string, Selection>>(
+    () => (stored?.selections as Record<string, Selection>) ?? {}
+  );
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const saveResult = useGameStore((s) => s.saveResult);
 
   const isDone = index >= total;
   const spent = Object.values(selections).reduce((sum, s) => sum + s.cost, 0);
@@ -59,6 +71,25 @@ export default function Budgeting4x5({ card, onBack }: Props) {
     });
   }
 
+  function finishGame(finalSelections: Record<string, Selection>) {
+    const finalSpent = Object.values(finalSelections).reduce(
+      (sum, s) => sum + s.cost,
+      0
+    );
+    setSelections(finalSelections);
+    setIndex(total);
+    saveResult({
+      type: 'BUDGETING_4x5',
+      cardId: card.cardId,
+      deckId,
+      cardTitle: card.title,
+      selections: finalSelections,
+      spent: finalSpent,
+      budgetTotal,
+      playedAt: Date.now(),
+    });
+  }
+
   function handleSelect(opt: Selection) {
     if (spent + opt.cost > budgetTotal) return;
     animateTransition(() => {
@@ -74,8 +105,10 @@ export default function Budgeting4x5({ card, onBack }: Props) {
         for (let i = nextIndex; i < total; i++) {
           newSelections[categories[i].categoryId] = { label: '✕', cost: 0, auto: true };
         }
-        setSelections(newSelections);
-        setIndex(total);
+        finishGame(newSelections);
+      } else if (nextIndex >= total) {
+        // Normal last-category completion
+        finishGame(newSelections);
       } else {
         setSelections(newSelections);
         setIndex(nextIndex);

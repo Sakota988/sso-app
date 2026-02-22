@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useGameStore, type Blind5RankResult } from '../../store/gameStore';
 import {
   Animated,
   Dimensions,
@@ -26,17 +27,26 @@ type Props = {
   onBack: () => void;
   cardNumber: number;
   totalCards: number;
+  deckId: string;
 };
 
-export default function Blind5Rank({ card, onBack }: Props) {
+export default function Blind5Rank({ card, onBack, deckId }: Props) {
   const { items, labels } = card;
   const total = items.length;
 
-  const [index, setIndex] = useState(0);
-  const [ranks, setRanks] = useState<Record<string, number>>({});
+  const stored = useGameStore(
+    (s) => s.results[card.cardId]?.type === 'BLIND_5_RANK'
+      ? (s.results[card.cardId] as Blind5RankResult)
+      : undefined
+  );
+
+  const [index, setIndex] = useState(() => (stored ? total : 0));
+  const [ranks, setRanks] = useState<Record<string, number>>(() => stored?.ranks ?? {});
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const saveResult = useGameStore((s) => s.saveResult);
 
   const isDone = index >= total;
   const usedRanks = new Set(Object.values(ranks));
@@ -58,8 +68,22 @@ export default function Blind5Rank({ card, onBack }: Props) {
   function handleRank(rank: number) {
     if (usedRanks.has(rank)) return;
     animateTransition(() => {
-      setRanks((prev) => ({ ...prev, [items[index]]: rank }));
-      setIndex((i) => i + 1);
+      const newRanks = { ...ranks, [items[index]]: rank };
+      const nextIndex = index + 1;
+      setRanks(newRanks);
+      setIndex(nextIndex);
+
+      if (nextIndex >= total) {
+        saveResult({
+          type: 'BLIND_5_RANK',
+          cardId: card.cardId,
+          deckId,
+          cardTitle: card.title,
+          ranks: newRanks,
+          labels,
+          playedAt: Date.now(),
+        });
+      }
     });
   }
 

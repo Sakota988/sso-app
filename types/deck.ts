@@ -19,6 +19,7 @@ export type Keep4Drop4Card = {
   cardId: string;
   type: 'KEEP_4_DROP_4';
   title: string;
+  shortTitle: string;
   description: string;
   traits: string[];
 };
@@ -27,6 +28,7 @@ export type Blind5RankCard = {
   cardId: string;
   type: 'BLIND_5_RANK';
   title: string;
+  shortTitle: string;
   description: string;
   items: string[];
   labels: { rank1: string; rank5: string };
@@ -42,6 +44,7 @@ export type Budgeting4x5Card = {
   cardId: string;
   type: 'BUDGETING_4x5';
   title: string;
+  shortTitle: string;
   description: string;
   budgetTotal: number;
   categories: BudgetCategory[];

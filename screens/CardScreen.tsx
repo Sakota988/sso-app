@@ -7,12 +7,12 @@ type Props = {
   card: CardItem;
   cardNumber: number;
   totalCards: number;
+  deckId: string;
   onBack: () => void;
 };
 
 // ── Main screen ───────────────────────────────────────────────────
-export default function CardScreen({ card, cardNumber, totalCards, onBack }: Props) {
-  // These card types own the full screen (their own chrome + layout)
+export default function CardScreen({ card, cardNumber, totalCards, deckId, onBack }: Props) {
   if (card.type === 'KEEP_4_DROP_4') {
     return (
       <Keep4Drop4
@@ -20,6 +20,7 @@ export default function CardScreen({ card, cardNumber, totalCards, onBack }: Pro
         onBack={onBack}
         cardNumber={cardNumber}
         totalCards={totalCards}
+        deckId={deckId}
       />
     );
   }
@@ -31,6 +32,7 @@ export default function CardScreen({ card, cardNumber, totalCards, onBack }: Pro
         onBack={onBack}
         cardNumber={cardNumber}
         totalCards={totalCards}
+        deckId={deckId}
       />
     );
   }
@@ -42,6 +44,7 @@ export default function CardScreen({ card, cardNumber, totalCards, onBack }: Pro
         onBack={onBack}
         cardNumber={cardNumber}
         totalCards={totalCards}
+        deckId={deckId}
       />
     );
   }
