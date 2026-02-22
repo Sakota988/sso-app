@@ -5,6 +5,7 @@
       "cardId": "starter-k4-01",
       "type": "KEEP_4_DROP_4",
       "title": "Osobine partnera",
+      "shortTitle": "Osobine",
       "description": "Nema varanja. Jedna po jedna.",
       "traits": ["Duhovit", "Pažljiv", "Romantičan", "Ambiciozan", "Stabilan", "Avanturista", "Emotivno zreo", "Fizički privlačan"]
     },
@@ -12,6 +13,7 @@
       "cardId": "starter-b5-01",
       "type": "BLIND_5_RANK",
       "title": "5 na slepo",
+      "shortTitle": "5 na slepo",
       "description": "Rangiraj od 1 do 5 (1 = najgore).",
       "items": ["Ghosting", "Gaslighting", "Nisam spreman/a za vezu", "Ljubomora", "Manipulacija"],
       "labels": { "rank1": "Najgore", "rank5": "Najmanje loše" }
@@ -20,8 +22,9 @@
       "cardId": "starter-bud-01",
       "type": "BUDGETING_4x5",
       "title": "Raspodeli budžet",
-      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "shortTitle": "Raspodeli budžet",
+      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "transport",
@@ -73,6 +76,7 @@
       "cardId": "starter-k4-02",
       "type": "KEEP_4_DROP_4",
       "title": "Idealnog partnera biraju...",
+      "shortTitle": "Idealnog partnera biraju...",
       "description": "Zadrži 4 osobine koje su ti obavezne.",
       "traits": ["Poštenje", "Humor", "Strpljenje", "Lojalnost", "Inteligencija", "Spontanost", "Empatija", "Samopouzdanje"]
     },
@@ -80,6 +84,7 @@
       "cardId": "starter-b5-02",
       "type": "BLIND_5_RANK",
       "title": "Rangiraj situacije",
+      "shortTitle": "Rangiraj situacije",
       "description": "Od najgoreg do najmanje lošeg.",
       "items": ["Bivši/a piše u 2 ujutro", "Partner zaboravi godišnjicu", "Svekrva/punac dolazi bez najave", "Partner lajkuje slike bivše", "Ignorisanje poruka 3 dana"],
       "labels": { "rank1": "Najgore", "rank5": "Preživim" }
@@ -88,6 +93,7 @@
       "cardId": "starter-bud-02",
       "type": "BUDGETING_4x5",
       "title": "Vikend odmor — 50€",
+      "shortTitle": "Vikend odmor — 50€",
       "description": "Planiraj vikend sa 50€.",
       "budgetTotal": 50,
       "categories": [
@@ -141,6 +147,7 @@
       "cardId": "starter-k4-03",
       "type": "KEEP_4_DROP_4",
       "title": "Životni stil",
+      "shortTitle": "Životni stil",
       "description": "Koje su ti obavezne životne vrijednosti?",
       "traits": ["Sloboda", "Sigurnost", "Pustolovine", "Porodica", "Karijera", "Zdravlje", "Kreativnost", "Novac"]
     },
@@ -148,6 +155,7 @@
       "cardId": "starter-b5-03",
       "type": "BLIND_5_RANK",
       "title": "Najveći red flagovi",
+      "shortTitle": "Najveći red flagovi",
       "description": "Rangiraj od najgoreg.",
       "items": ["Ne voli životinje", "Ne čita knjige nikad", "Pije ali kaže da ne pije", "Roditeljima nije omiljeni", "Nikad ne plaća"],
       "labels": { "rank1": "Odmah bježim", "rank5": "Mogu podnijeti" }
@@ -156,6 +164,7 @@
       "cardId": "starter-bud-03",
       "type": "BUDGETING_4x5",
       "title": "Idealan datum — 30€",
+      "shortTitle": "Idealan datum — 30€",
       "description": "Osmisli savršen spoj za 30€.",
       "budgetTotal": 30,
       "categories": [
@@ -209,6 +218,7 @@
       "cardId": "starter-k4-04",
       "type": "KEEP_4_DROP_4",
       "title": "Osobine prijatelja",
+      "shortTitle": "Osobine prijatelja",
       "description": "Koje 4 osobine moraš imati u prijatelju?",
       "traits": ["Uvijek dostupan", "Čuva tajne", "Iskren i kad boli", "Zabavan", "Podrška u krizi", "Dijeli interese", "Ne sudi", "Motiviše te"]
     }
