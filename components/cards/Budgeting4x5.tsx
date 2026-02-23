@@ -13,6 +13,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft } from 'lucide-react-native';
 import type { Budgeting4x5Card } from '../../types/deck';
+import ShareResultCard from '../ShareResultCard';
+import ShareButton from '../ShareButton';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -48,8 +50,19 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const shareCardRef = useRef<View | null>(null);
 
   const saveResult = useGameStore((s) => s.saveResult);
+
+  const shareCategories = categories.map((cat) => {
+    const sel = selections[cat.categoryId];
+    return {
+      title: cat.title,
+      choice: sel?.label ?? '—',
+      cost: sel?.cost ?? 0,
+      auto: sel?.auto,
+    };
+  });
 
   const isDone = index >= total;
   const spent = Object.values(selections).reduce((sum, s) => sum + s.cost, 0);
@@ -125,6 +138,14 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
 
   return (
     <View style={styles.root}>
+      <ShareResultCard
+        ref={shareCardRef}
+        type="budgeting4x5"
+        cardTitle={card.title}
+        categories={shareCategories}
+        spent={spent}
+        budgetTotal={budgetTotal}
+      />
       <LinearGradient
         colors={['#FF9A5C', '#FFCB96', '#FFF3E6']}
         style={StyleSheet.absoluteFillObject}
@@ -225,6 +246,8 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
               >
                 <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
               </TouchableOpacity>
+
+              <ShareButton viewRef={shareCardRef} />
             </View>
           ) : (
             <Animated.View

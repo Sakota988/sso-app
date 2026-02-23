@@ -13,6 +13,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Check, X } from 'lucide-react-native';
 import type { Keep4Drop4Card } from '../../types/deck';
+import ShareResultCard from '../ShareResultCard';
+import ShareButton from '../ShareButton';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -53,6 +55,7 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const shareCardRef = useRef<View | null>(null);
 
   const saveResult = useGameStore((s) => s.saveResult);
 
@@ -139,6 +142,13 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
 
   return (
     <View style={styles.root}>
+      <ShareResultCard
+        ref={shareCardRef}
+        type="keep4drop4"
+        cardTitle={card.title}
+        kept={kept}
+        dropped={dropped}
+      />
       <LinearGradient
         colors={['#FF9A5C', '#FFCB96', '#FFF3E6']}
         style={StyleSheet.absoluteFillObject}
@@ -206,6 +216,8 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
               >
                 <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
               </TouchableOpacity>
+
+              <ShareButton viewRef={shareCardRef} />
             </View>
           ) : (
             <View style={styles.cardStack}>

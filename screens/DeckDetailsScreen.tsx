@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
+  Animated,
   Dimensions,
   FlatList,
   Image,
+  InteractionManager,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -28,27 +31,69 @@ const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
 
 const CARD_FALLBACK_IMAGE = require('../assets/zardzi4izbaci4_card.png');
 
+// ── Skeleton card ─────────────────────────────────────────────────
+function SkeletonCard() {
+  const pulse = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulse, { toValue: 1, duration: 750, useNativeDriver: true }),
+        Animated.timing(pulse, { toValue: 0, duration: 750, useNativeDriver: true }),
+      ])
+    );
+    anim.start();
+    return () => anim.stop();
+  }, [pulse]);
+
+  const opacity = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.35, 0.7] });
+
+  return (
+    <Animated.View style={[styles.cardItem, styles.skeletonCard, { opacity }]}>
+      {/* Top shimmer block */}
+      <View style={styles.skeletonTop} />
+      {/* Bottom text line */}
+      <View style={styles.skeletonLine} />
+    </Animated.View>
+  );
+}
+
+// ── Skeleton row (two cards side-by-side, matching the FlatList grid) ──
+function SkeletonRow() {
+  return (
+    <View style={styles.row}>
+      <SkeletonCard />
+      <SkeletonCard />
+    </View>
+  );
+}
+
 type Props = {
   deck: DeckDisplay;
   onBack: () => void;
 };
 
-function CardGridItem({
+const CardGridItem = memo(function CardGridItem({
   card,
-  index,
   onPress,
 }: {
   card: CardItem;
-  index: number;
-  onPress: () => void;
+  onPress: (card: CardItem) => void;
 }) {
   const img = CARD_TYPE_IMAGES[card.type] ?? CARD_FALLBACK_IMAGE;
   const isPlayed = useGameStore((s) => !!s.results[card.cardId]);
 
   return (
-    <TouchableOpacity style={styles.cardItem} onPress={onPress} activeOpacity={0.82}>
-      <Image source={img} style={[styles.cardItemImage, isPlayed && styles.cardItemImagePlayed]} resizeMode="contain" />
-
+    <TouchableOpacity
+      style={styles.cardItem}
+      onPress={() => onPress(card)}
+      activeOpacity={0.82}
+    >
+      <Image
+        source={img}
+        style={[styles.cardItemImage, isPlayed && styles.cardItemImagePlayed]}
+        resizeMode="contain"
+      />
       {isPlayed && (
         <View style={styles.playedBadge}>
           <CheckCircle2 size={16} color="#fff" strokeWidth={2.5} />
@@ -59,13 +104,49 @@ function CardGridItem({
       </View>
     </TouchableOpacity>
   );
-}
+});
 
 export default function DeckDetailsScreen({ deck, onBack }: Props) {
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const listOpacity = useRef(new Animated.Value(0)).current;
 
   const content = getCardFile(deck.contentFile);
   const cards: CardItem[] = content?.cards ?? [];
+
+  // Show skeletons for at least 500ms, then fade the real list in
+  useEffect(() => {
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      if (cancelled) return;
+      setIsReady(true);
+      Animated.timing(listOpacity, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }, 500);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [listOpacity]);
+
+  // Defer mounting the heavy card component until after the press animation
+  const handleCardPress = useCallback((card: CardItem) => {
+    setIsTransitioning(true);
+    InteractionManager.runAfterInteractions(() => {
+      setSelectedCard(card);
+      setIsTransitioning(false);
+    });
+  }, []);
+
+  const renderItem = useCallback(({ item }: { item: CardItem }) => (
+    <CardGridItem card={item} onPress={handleCardPress} />
+  ), [handleCardPress]);
+
+  const keyExtractor = useCallback((c: CardItem) => c.cardId, []);
 
   if (selectedCard) {
     const idx = cards.findIndex((c) => c.cardId === selectedCard.cardId);
@@ -93,42 +174,61 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
         <ArrowLeft size={22} color="#1A1A1A" strokeWidth={2.5} />
       </TouchableOpacity>
 
-      <FlatList
-        data={cards}
-        keyExtractor={(c) => c.cardId}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <View style={styles.header}>
-            <View style={styles.coverCard}>
-              <Image source={deck.image} style={styles.coverImage} resizeMode="cover" />
-            </View>
-            <Text style={styles.deckTitle}>{deck.title}</Text>
-            <Text style={styles.deckDesc}>{deck.description}</Text>
-            <Text style={styles.deckCount}>{cards.length} kartica</Text>
+      {/* Skeleton grid — visible while list hasn't settled yet */}
+      {!isReady && (
+        <View style={styles.skeletonContainer}>
+          <View style={styles.skeletonHeader}>
+            <View style={styles.skeletonCover} />
+            <View style={styles.skeletonTitleLine} />
+            <View style={styles.skeletonSubLine} />
+          </View>
+          {Array.from({ length: Math.ceil(Math.min(cards.length, 6) / 2) }).map((_, i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
+      )}
 
-            <View style={styles.sectionRow}>
-              <Text style={styles.sectionTitle}>Kartice</Text>
-              <View style={[styles.badge, deck.isFree ? styles.badgeFree : styles.badgePro]}>
-                <Text style={[styles.badgeText, deck.isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
-                  {deck.isFree ? 'FREE' : '🔒 PRO'}
-                </Text>
+      {/* Real list — fades in once ready */}
+      <Animated.View style={[styles.listWrapper, { opacity: listOpacity }]}>
+        <FlatList
+          data={cards}
+          keyExtractor={keyExtractor}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+          initialNumToRender={6}
+          maxToRenderPerBatch={6}
+          windowSize={5}
+          removeClippedSubviews
+          ListHeaderComponent={
+            <View style={styles.header}>
+              <View style={styles.coverCard}>
+                <Image source={deck.image} style={styles.coverImage} resizeMode="cover" />
+              </View>
+              <Text style={styles.deckTitle}>{deck.title}</Text>
+              <Text style={styles.deckDesc}>{deck.description}</Text>
+              <Text style={styles.deckCount}>{cards.length} kartica</Text>
+
+              <View style={styles.sectionRow}>
+                <Text style={styles.sectionTitle}>Kartice</Text>
+                <View style={[styles.badge, deck.isFree ? styles.badgeFree : styles.badgePro]}>
+                  <Text style={[styles.badgeText, deck.isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
+                    {deck.isFree ? 'FREE' : '🔒 PRO'}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        }
-        renderItem={({ item, index }) => (
-          <CardGridItem
-            card={item}
-            index={index}
-            onPress={() => setSelectedCard(item)}
-          />
-        )}
-      />
+          }
+          renderItem={renderItem}
+        />
+      </Animated.View>
 
-     
+      {isTransitioning && (
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="large" color="#FF6B1A" />
+        </View>
+      )}
     </View>
   );
 }
@@ -152,7 +252,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 110,
   },
-  row: { gap: 16, marginBottom: 16 },
+  row: { flexDirection: 'row', gap: 16, marginBottom: 16 },
   header: { alignItems: 'center', marginBottom: 24 },
   coverCard: {
     width: 130,
@@ -240,6 +340,65 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 4,
+  },
+  listWrapper: {
+    ...StyleSheet.absoluteFillObject,
+  },
+
+  // ── Skeleton styles ──────────────────────────────────────────────
+  skeletonContainer: {
+    paddingTop: 100,
+    paddingHorizontal: 16,
+  },
+  skeletonHeader: {
+    alignItems: 'center',
+    marginBottom: 24,
+    gap: 10,
+  },
+  skeletonCover: {
+    width: 130,
+    height: 150,
+    borderRadius: 16,
+    backgroundColor: 'rgba(0,0,0,0.08)',
+    marginBottom: 4,
+  },
+  skeletonTitleLine: {
+    width: 140,
+    height: 18,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0,0,0,0.08)',
+  },
+  skeletonSubLine: {
+    width: 100,
+    height: 13,
+    borderRadius: 6,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+  },
+  skeletonCard: {
+    backgroundColor: 'rgba(0,0,0,0.07)',
+    justifyContent: 'flex-end',
+    padding: 14,
+  },
+  skeletonTop: {
+    position: 'absolute',
+    top: 16,
+    left: 14,
+    right: 14,
+    height: 10,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  skeletonLine: {
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0.25)',
+  },
+
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255,240,230,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: { position: 'absolute', bottom: 32, left: 20, right: 20 },
   playBtn: {
