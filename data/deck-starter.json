@@ -12,8 +12,8 @@
     {
       "cardId": "starter-b5-01",
       "type": "BLIND_5_RANK",
-      "title": "5 na slepo",
-      "shortTitle": "5 na slepo",
+      "title": "Najgore osobine prijatelja",
+      "shortTitle": "osobine prijatelja",
       "description": "Rangiraj od 1 do 5 (1 = najgore).",
       "items": ["Ghosting", "Gaslighting", "Nisam spreman/a za vezu", "Ljubomora", "Manipulacija"],
       "labels": { "rank1": "Najgore", "rank5": "Najmanje loše" }

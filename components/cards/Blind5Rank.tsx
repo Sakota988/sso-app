@@ -15,11 +15,12 @@ import { ArrowLeft } from 'lucide-react-native';
 import type { Blind5RankCard } from '../../types/deck';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
+import CardTitle from './CardTitle';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
 
-const CARD_W = width - 48;
+const CARD_W     = width - 48;
 const HEADER_TOP = isSmall ? 44 : 64;
 const PANEL_H = isSmall ? 120 : 155;
 const RANK_BTN_SIZE = Math.floor((CARD_W - 48 - 40) / 5);
@@ -149,7 +150,7 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
         </View>
 
         {/* Legend bar */}
-        <View style={styles.legendSection}>
+        {/* <View style={styles.legendSection}>
           <Text style={styles.legendBound}>1 = {labels.rank1}</Text>
           <View style={styles.legendTrack}>
             {[1, 2, 3, 4, 5].map((n) => (
@@ -160,7 +161,9 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
             ))}
           </View>
           <Text style={styles.legendBound}>5 = {labels.rank5}</Text>
-        </View>
+        </View> */}
+
+        <CardTitle title={card.title} />
 
         {/* Card area */}
         <View style={styles.cardArea}>

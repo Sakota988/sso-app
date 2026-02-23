@@ -13,6 +13,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Check, X } from 'lucide-react-native';
 import type { Keep4Drop4Card } from '../../types/deck';
+import CardTitle from './CardTitle';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
 
@@ -22,7 +23,6 @@ const isSmall = height < 700;
 const CARD_W    = width - 48;
 const PANEL_H   = isSmall ? 140 : 190;
 const HEADER_TOP = isSmall ? 44 : 64;
-const TITLE_FONT = isSmall ? 22 : 38;
 const TRAIT_FONT = isSmall ? 26 : 36;
 
 // Reserve space: header top padding + header content + title block + panel + cardStack offset + breathing room
@@ -188,11 +188,7 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
           </View>
         </View>
 
-        {!!card.title && (
-          <View style={styles.titleBlock}>
-            <Text style={styles.cardTitle}>{card.title}</Text>
-          </View>
-        )}
+        <CardTitle title={card.title} />
         
         {/* ── Card area ── */}
         <View style={styles.cardArea}>
@@ -362,23 +358,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     marginTop: 2,
-  },
-  titleBlock: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: isSmall ? 6 : 16,
-  },
-  cardTitle: {
-    fontSize: TITLE_FONT,
-    fontWeight: '900',
-    color: '#FF6B1A',
-    textAlign: 'center',
-    letterSpacing: 0.3,
-    lineHeight: TITLE_FONT + 6,
-    textShadowColor: 'rgba(255,107,26,0.3)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 8,
   },
   progressPill: {
     backgroundColor: 'rgba(255,255,255,0.72)',

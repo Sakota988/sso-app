@@ -15,14 +15,14 @@ import { ArrowLeft } from 'lucide-react-native';
 import type { Budgeting4x5Card } from '../../types/deck';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
+import CardTitle from './CardTitle';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
 
-const CARD_W = width - 48;
+const CARD_W     = width - 48;
 const HEADER_TOP = isSmall ? 44 : 64;
-const PANEL_H = isSmall ? 120 : 155;
-
+const PANEL_H    = isSmall ? 120 : 155;
 type Props = {
   card: Budgeting4x5Card;
   onBack: () => void;
@@ -200,6 +200,8 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
             {remaining}
           </Text>
         </View>
+
+        <CardTitle title={card.title} />
 
         {/* Card area */}
         <View style={styles.cardArea}>
