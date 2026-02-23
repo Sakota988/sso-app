@@ -35,7 +35,17 @@ export type Budgeting4x5Result = {
   playedAt: number;
 };
 
-export type CardResult = Keep4Drop4Result | Blind5RankResult | Budgeting4x5Result;
+export type OpenQuestionResult = {
+  type: 'OPEN_QUESTION';
+  cardId: string;
+  deckId: string;
+  cardTitle: string;
+  userAnswer: string;
+  matched: boolean;
+  playedAt: number;
+};
+
+export type CardResult = Keep4Drop4Result | Blind5RankResult | Budgeting4x5Result | OpenQuestionResult;
 
 // ── Store ─────────────────────────────────────────────────────────
 

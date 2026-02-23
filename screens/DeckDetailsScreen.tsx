@@ -24,9 +24,10 @@ const CARD_HEIGHT = CARD_WIDTH * 1.45;
 
 // ── Card back images keyed by card type ───────────────────────────
 const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'KEEP_4_DROP_4': require('../assets/zadrzi_izbaci_back.png'),
-  'BLIND_5_RANK':  require('../assets/slepo_back.png'), // replace when asset is ready
-  'BUDGETING_4x5': require('../assets/budzet_back.png'),
+  'KEEP_4_DROP_4':  require('../assets/zadrzi_izbaci_back.png'),
+  'BLIND_5_RANK':   require('../assets/slepo_back.png'),
+  'BUDGETING_4x5':  require('../assets/budzet_back.png'),
+  'OPEN_QUESTION':  require('../assets/zardzi4izbaci4_card.png'),
 };
 
 const CARD_FALLBACK_IMAGE = require('../assets/zardzi4izbaci4_card.png');

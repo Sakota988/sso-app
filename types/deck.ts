@@ -50,7 +50,24 @@ export type Budgeting4x5Card = {
   categories: BudgetCategory[];
 };
 
-export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card;
+export type OpenQuestionAnswer = {
+  title: string;
+  description: string;
+  sourceUrl?: string;
+};
+
+export type OpenQuestionCard = {
+  cardId: string;
+  type: 'OPEN_QUESTION';
+  title: string;
+  shortTitle: string;
+  description: string;
+  question: string;
+  acceptedAnswers: string[];
+  answer: OpenQuestionAnswer;
+};
+
+export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card | OpenQuestionCard;
 
 export type DeckContent = {
   deckId: string;

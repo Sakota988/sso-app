@@ -2,6 +2,7 @@ import type { CardItem } from '../types/deck';
 import Keep4Drop4 from '../components/cards/Keep4Drop4';
 import Blind5Rank from '../components/cards/Blind5Rank';
 import Budgeting4x5 from '../components/cards/Budgeting4x5';
+import OpenQuestion from '../components/cards/OpenQuestion';
 
 type Props = {
   card: CardItem;
@@ -40,6 +41,18 @@ export default function CardScreen({ card, cardNumber, totalCards, deckId, onBac
   if (card.type === 'BLIND_5_RANK') {
     return (
       <Blind5Rank
+        card={card}
+        onBack={onBack}
+        cardNumber={cardNumber}
+        totalCards={totalCards}
+        deckId={deckId}
+      />
+    );
+  }
+
+  if (card.type === 'OPEN_QUESTION') {
+    return (
+      <OpenQuestion
         card={card}
         onBack={onBack}
         cardNumber={cardNumber}
