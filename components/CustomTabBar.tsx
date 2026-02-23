@@ -1,15 +1,15 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Home, Layers, Settings } from 'lucide-react-native';
 
-const TABS: Record<string, { label: string; Icon: typeof Home }> = {
-  HomeTab:     { label: 'Početna',     Icon: Home },
-  DecksTab:    { label: 'Špilovi',     Icon: Layers },
-  SettingsTab: { label: 'Podešavanja', Icon: Settings },
+const TABS: Record<string, { label: string; icon: ReturnType<typeof require>; iconActive: ReturnType<typeof require> }> = {
+  HomeTab:     { label: 'Početna',     icon: require('../assets/tab-icons/igre_icon.png'),   iconActive: require('../assets/tab-icons/igre_active_icon.png') },
+  DecksTab:    { label: 'Špilovi',     icon: require('../assets/tab-icons/decks_icon.png'),  iconActive: require('../assets/tab-icons/decks_active.png') },
+  SettingsTab: { label: 'Podešavanja', icon: require('../assets/tab-icons/profil_icon.png'), iconActive: require('../assets/tab-icons/profil_active_icon.png') },
 };
 
 const ACTIVE_COLOR   = '#FF9A5C';
 const INACTIVE_COLOR = 'rgba(255,255,255,0.38)';
+
 
 export default function CustomTabBar({ state, navigation }: BottomTabBarProps) {
   return (
@@ -18,7 +18,7 @@ export default function CustomTabBar({ state, navigation }: BottomTabBarProps) {
         const isActive = state.index === index;
         const tab = TABS[route.name];
         if (!tab) return null;
-        const { label, Icon } = tab;
+        const { label, icon, iconActive } = tab;
 
         return (
           <TouchableOpacity
@@ -28,10 +28,10 @@ export default function CustomTabBar({ state, navigation }: BottomTabBarProps) {
             activeOpacity={0.7}
           >
             {isActive && <View style={styles.activeIndicator} />}
-            <Icon
-              size={22}
-              color={isActive ? ACTIVE_COLOR : INACTIVE_COLOR}
-              strokeWidth={isActive ? 2.2 : 1.8}
+            <Image
+              source={isActive ? iconActive : icon}
+              style={styles.icon}
+              resizeMode="contain"
             />
             <Text style={[styles.label, isActive && styles.labelActive]}>
               {label}
@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
     position: 'relative',
+  },
+  icon: {
+    width: 32,
+    height: 32,
   },
   activeIndicator: {
     position: 'absolute',

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDeckNav } from '../contexts/DeckNavContext';
+import WelcomeModal from '../components/WelcomeModal';
 import type { DeckDisplay, DeckMeta } from '../types/deck';
 
 const { width } = Dimensions.get('window');
@@ -68,6 +69,7 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
 export default function DecksScreen() {
   return (
     <View style={styles.root}>
+      <WelcomeModal />
       <LinearGradient
         colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']}
         style={StyleSheet.absoluteFillObject}
