@@ -4,7 +4,9 @@ import {
   Animated,
   Dimensions,
   Keyboard,
+  KeyboardAvoidingView,
   Linking,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,6 +18,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, CheckCircle, ExternalLink, XCircle } from 'lucide-react-native';
 import type { OpenQuestionCard } from '../../types/deck';
 import CardTitle from './CardTitle';
+import ShareResultCard from '../ShareResultCard';
+import ShareButton from '../ShareButton';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -58,6 +62,7 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
   const [inputValue, setInputValue] = useState('');
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const shareCardRef = useRef<View | null>(null);
   const saveResult = useGameStore((s) => s.saveResult);
 
   function fadeTransition(callback: () => void) {
@@ -115,6 +120,15 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
 
   return (
     <View style={styles.root}>
+      <ShareResultCard
+        ref={shareCardRef}
+        type="openquestion"
+        cardTitle={card.title}
+        question={card.question}
+        userAnswer={inputValue.trim()}
+        matched={phase === 'correct'}
+        answerTitle={card.answer.title}
+      />
       <LinearGradient
         colors={['#FF9A5C', '#FFCB96', '#FFF3E6']}
         style={StyleSheet.absoluteFillObject}
@@ -126,7 +140,11 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
       <View style={[styles.bgCircle, { width: 180, height: 180, top: 240, left: -70 }]} />
       <View style={[styles.bgCircle, { width: 110, height: 110, bottom: 230, right: -25 }]} />
 
-      <View style={styles.safe}>
+      <KeyboardAvoidingView
+        style={styles.safe}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
+      >
         {/* ── Header ── */}
         <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
           <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
@@ -255,6 +273,8 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
                   </TouchableOpacity>
                 )}
 
+                <ShareButton viewRef={shareCardRef} />
+
                 <TouchableOpacity
                   style={styles.restartBtn}
                   onPress={handleRestart}
@@ -266,7 +286,7 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
             )}
           </Animated.View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -330,8 +350,9 @@ const styles = StyleSheet.create({
   cardArea: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingHorizontal: 24,
+    paddingTop: isSmall ? 8 : 16,
     paddingBottom: 24,
   },
 

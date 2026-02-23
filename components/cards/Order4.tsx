@@ -14,6 +14,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, CheckCircle2, ExternalLink, XCircle } from 'lucide-react-native';
 import type { Order4Card } from '../../types/deck';
 import CardTitle from './CardTitle';
+import ShareResultCard from '../ShareResultCard';
+import ShareButton from '../ShareButton';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -40,6 +42,7 @@ export default function Order4({ card, onBack, deckId }: Props) {
 
   const [userOrder, setUserOrder] = useState<string[]>(() => stored?.userOrder ?? []);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const shareCardRef = useRef<View | null>(null);
   const saveResult = useGameStore((s) => s.saveResult);
 
   const isDone = userOrder.length === 4;
@@ -99,6 +102,15 @@ export default function Order4({ card, onBack, deckId }: Props) {
 
   return (
     <View style={styles.root}>
+      <ShareResultCard
+        ref={shareCardRef}
+        type="order4"
+        cardTitle={card.title}
+        question={card.question}
+        userOrder={userOrder}
+        correctOrder={[...card.correctOrder]}
+        score={score}
+      />
       <LinearGradient
         colors={['#FF9A5C', '#FFCB96', '#FFF3E6']}
         style={StyleSheet.absoluteFillObject}
@@ -249,6 +261,8 @@ export default function Order4({ card, onBack, deckId }: Props) {
                     </TouchableOpacity>
                   )}
                 </View>
+
+                <ShareButton viewRef={shareCardRef} />
 
                 <TouchableOpacity style={styles.restartBtn} onPress={handleRestart} activeOpacity={0.8}>
                   <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>

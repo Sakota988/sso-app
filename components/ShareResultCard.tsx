@@ -31,7 +31,30 @@ export type Budgeting4x5Data = {
   budgetTotal: number;
 };
 
-export type ShareResultCardProps = Keep4Drop4Data | Blind5RankData | Budgeting4x5Data;
+export type OpenQuestionData = {
+  type: 'openquestion';
+  cardTitle: string;
+  question: string;
+  userAnswer: string;
+  matched: boolean;
+  answerTitle: string;
+};
+
+export type Order4Data = {
+  type: 'order4';
+  cardTitle: string;
+  question: string;
+  userOrder: string[];
+  correctOrder: string[];
+  score: number;
+};
+
+export type ShareResultCardProps =
+  | Keep4Drop4Data
+  | Blind5RankData
+  | Budgeting4x5Data
+  | OpenQuestionData
+  | Order4Data;
 
 // ── Game tag labels ─────────────────────────────────────────────────────────
 
@@ -39,6 +62,8 @@ const GAME_TAG: Record<ShareResultCardProps['type'], string> = {
   keep4drop4:    'ZADRŽI 4 • IZBACI 4',
   blind5rank:    'NA SLEPO • RANG',
   budgeting4x5:  'BUDŽETIRANJE • 4x5',
+  openquestion:  'OTVORENO PITANJE',
+  order4:        'POREDAJ REDOM',
 };
 
 // ── Per-type content renderers ──────────────────────────────────────────────
@@ -129,6 +154,57 @@ function Budgeting4x5Content({
   );
 }
 
+function OpenQuestionContent({
+  question, userAnswer, matched, answerTitle,
+}: Pick<OpenQuestionData, 'question' | 'userAnswer' | 'matched' | 'answerTitle'>) {
+  return (
+    <View style={styles.singleCol}>
+      <View style={styles.oqQuestionBox}>
+        <Text style={styles.oqQuestionLabel}>PITANJE</Text>
+        <Text style={styles.oqQuestionText}>{question}</Text>
+      </View>
+      <View style={[styles.oqAnswerBox, matched ? styles.oqAnswerBoxCorrect : styles.oqAnswerBoxRevealed]}>
+        <Text style={[styles.oqAnswerBadge, matched ? styles.oqBadgeCorrect : styles.oqBadgeRevealed]}>
+          {matched ? '✓ TAČNO' : 'ODGOVOR'}
+        </Text>
+        <Text style={styles.oqAnswerTitle}>{answerTitle}</Text>
+        {!!userAnswer && (
+          <Text style={styles.oqUserAnswer}>Tvoj odgovor: "{userAnswer}"</Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
+function Order4Content({
+  question, userOrder, correctOrder, score,
+}: Pick<Order4Data, 'question' | 'userOrder' | 'correctOrder' | 'score'>) {
+  return (
+    <View style={styles.singleCol}>
+      <View style={styles.oqQuestionBox}>
+        <Text style={styles.oqQuestionLabel}>PITANJE</Text>
+        <Text style={styles.oqQuestionText}>{question}</Text>
+      </View>
+      <View style={styles.ord4ScoreRow}>
+        <Text style={styles.ord4ScoreLabel}>REZULTAT</Text>
+        <Text style={styles.ord4ScoreValue}>{score} / 4</Text>
+      </View>
+      {userOrder.map((item, i) => {
+        const correct = item === correctOrder[i];
+        return (
+          <View key={item} style={[styles.ord4Row, correct ? styles.ord4RowCorrect : styles.ord4RowWrong]}>
+            <View style={[styles.ord4Badge, correct ? styles.ord4BadgeCorrect : styles.ord4BadgeWrong]}>
+              <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+            </View>
+            <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+            <Text style={styles.ord4Icon}>{correct ? '✓' : '✕'}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
 // ── Main card ───────────────────────────────────────────────────────────────
 
 const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
@@ -171,6 +247,22 @@ const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
               categories={props.categories}
               spent={props.spent}
               budgetTotal={props.budgetTotal}
+            />
+          )}
+          {props.type === 'openquestion' && (
+            <OpenQuestionContent
+              question={props.question}
+              userAnswer={props.userAnswer}
+              matched={props.matched}
+              answerTitle={props.answerTitle}
+            />
+          )}
+          {props.type === 'order4' && (
+            <Order4Content
+              question={props.question}
+              userOrder={props.userOrder}
+              correctOrder={props.correctOrder}
+              score={props.score}
             />
           )}
         </View>
@@ -421,5 +513,106 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'rgba(255,255,255,0.5)',
     letterSpacing: 0.8,
+  },
+
+  // ── OpenQuestion ─────────────────────────────────────────────────
+  oqQuestionBox: {
+    backgroundColor: '#5B21B6',
+    borderRadius: 12,
+    padding: 12,
+    gap: 4,
+  },
+  oqQuestionLabel: {
+    fontSize: 8,
+    fontWeight: '800',
+    color: 'rgba(255,255,255,0.5)',
+    letterSpacing: 1.4,
+  },
+  oqQuestionText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#fff',
+    lineHeight: 18,
+  },
+  oqAnswerBox: {
+    borderRadius: 12,
+    padding: 12,
+    gap: 4,
+  },
+  oqAnswerBoxCorrect: { backgroundColor: '#064E3B' },
+  oqAnswerBoxRevealed: { backgroundColor: '#1E1B4B' },
+  oqAnswerBadge: {
+    fontSize: 8,
+    fontWeight: '900',
+    letterSpacing: 1.4,
+  },
+  oqBadgeCorrect: { color: '#6EE7B7' },
+  oqBadgeRevealed: { color: 'rgba(255,255,255,0.5)' },
+  oqAnswerTitle: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#fff',
+    lineHeight: 22,
+  },
+  oqUserAnswer: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.55)',
+    marginTop: 2,
+  },
+
+  // ── Order4 ───────────────────────────────────────────────────────
+  ord4ScoreRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+  },
+  ord4ScoreLabel: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#0F766E',
+    letterSpacing: 1.2,
+  },
+  ord4ScoreValue: {
+    fontSize: 13,
+    fontWeight: '900',
+    color: '#0F766E',
+  },
+  ord4Row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+  },
+  ord4RowCorrect: { backgroundColor: '#D1FAE5' },
+  ord4RowWrong:   { backgroundColor: '#FEE2E2' },
+  ord4Badge: {
+    width: 22,
+    height: 22,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  ord4BadgeCorrect: { backgroundColor: '#10B981' },
+  ord4BadgeWrong:   { backgroundColor: '#EF4444' },
+  ord4BadgeText: {
+    fontSize: 11,
+    fontWeight: '900',
+    color: '#fff',
+  },
+  ord4ItemText: {
+    flex: 1,
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  ord4Icon: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#6B7280',
   },
 });

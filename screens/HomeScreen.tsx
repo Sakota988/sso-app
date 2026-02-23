@@ -7,6 +7,8 @@ import {
   type Keep4Drop4Result,
   type Blind5RankResult,
   type Budgeting4x5Result,
+  type OpenQuestionResult,
+  type Order4Result,
 } from '../store/gameStore';
 
 const { height } = Dimensions.get('window');
@@ -19,12 +21,16 @@ const TYPE_LABELS: Record<string, string> = {
   KEEP_4_DROP_4: 'Zadrži 4 Izbaci 4',
   BLIND_5_RANK:  'Na Slepo',
   BUDGETING_4x5: 'Budžetiranje',
+  OPEN_QUESTION: 'Otvoreno pitanje',
+  ORDER_4:       'Poredaj redom',
 };
 
 const TYPE_COLORS: Record<string, string> = {
   KEEP_4_DROP_4: '#3D5AF1',
   BLIND_5_RANK:  '#7C3AED',
   BUDGETING_4x5: '#FF6B1A',
+  OPEN_QUESTION: '#5B21B6',
+  ORDER_4:       '#134E4A',
 };
 
 function formatDate(ts: number): string {
@@ -103,6 +109,39 @@ function Budgeting4x5Summary({ result }: { result: Budgeting4x5Result }) {
   );
 }
 
+function OpenQuestionSummary({ result }: { result: OpenQuestionResult }) {
+  return (
+    <View style={styles.summarySection}>
+      <View style={[styles.oqRow, result.matched ? styles.oqRowCorrect : styles.oqRowRevealed]}>
+        <Text style={styles.oqBadge}>{result.matched ? '✓ Tačno' : 'Odgovor'}</Text>
+        <Text style={styles.oqUserAnswer} numberOfLines={1}>"{result.userAnswer}"</Text>
+      </View>
+    </View>
+  );
+}
+
+function Order4Summary({ result }: { result: Order4Result }) {
+  return (
+    <View style={styles.summarySection}>
+      <View style={styles.ord4ScoreRow}>
+        <Text style={styles.summaryLabel}>REZULTAT</Text>
+        <Text style={styles.ord4ScoreValue}>{result.score} / 4</Text>
+      </View>
+      {result.userOrder.map((item, i) => {
+        const correct = item === result.correctOrder[i];
+        return (
+          <View key={item} style={[styles.ord4Row, correct ? styles.ord4RowCorrect : styles.ord4RowWrong]}>
+            <View style={[styles.ord4Badge, correct ? styles.ord4BadgeCorrect : styles.ord4BadgeWrong]}>
+              <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+            </View>
+            <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
 // ── History card ──────────────────────────────────────────────────
 
 function HistoryCard({ result }: { result: CardResult }) {
@@ -120,6 +159,8 @@ function HistoryCard({ result }: { result: CardResult }) {
       {result.type === 'KEEP_4_DROP_4' && <Keep4Drop4Summary result={result} />}
       {result.type === 'BLIND_5_RANK'  && <Blind5RankSummary  result={result} />}
       {result.type === 'BUDGETING_4x5' && <Budgeting4x5Summary result={result} />}
+      {result.type === 'OPEN_QUESTION' && <OpenQuestionSummary result={result} />}
+      {result.type === 'ORDER_4'      && <Order4Summary      result={result} />}
     </View>
   );
 }
@@ -341,4 +382,50 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   budgetCostText: { fontSize: 11, fontWeight: '900', color: '#fff' },
+
+  // OpenQuestion
+  oqRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 10,
+  },
+  oqRowCorrect: { backgroundColor: '#D1FAE5' },
+  oqRowRevealed: { backgroundColor: '#E0E7FF' },
+  oqBadge: { fontSize: 10, fontWeight: '800', color: '#6B7280', letterSpacing: 0.6 },
+  oqUserAnswer: { flex: 1, fontSize: 13, fontWeight: '600', color: '#1A1A1A' },
+
+  // Order4
+  ord4ScoreRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  ord4ScoreValue: { fontSize: 13, fontWeight: '900', color: '#134E4A' },
+  ord4Row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 4,
+  },
+  ord4RowCorrect: { backgroundColor: '#D1FAE5' },
+  ord4RowWrong:   { backgroundColor: '#FEE2E2' },
+  ord4Badge: {
+    width: 22,
+    height: 22,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  ord4BadgeCorrect: { backgroundColor: '#10B981' },
+  ord4BadgeWrong:   { backgroundColor: '#EF4444' },
+  ord4BadgeText: { fontSize: 11, fontWeight: '900', color: '#fff' },
+  ord4ItemText: { flex: 1, fontSize: 12, fontWeight: '600', color: '#1A1A1A' },
 });
