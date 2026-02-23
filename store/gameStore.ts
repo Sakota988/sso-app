@@ -45,7 +45,18 @@ export type OpenQuestionResult = {
   playedAt: number;
 };
 
-export type CardResult = Keep4Drop4Result | Blind5RankResult | Budgeting4x5Result | OpenQuestionResult;
+export type Order4Result = {
+  type: 'ORDER_4';
+  cardId: string;
+  deckId: string;
+  cardTitle: string;
+  userOrder: string[];
+  correctOrder: string[];
+  score: number;
+  playedAt: number;
+};
+
+export type CardResult = Keep4Drop4Result | Blind5RankResult | Budgeting4x5Result | OpenQuestionResult | Order4Result;
 
 // ── Store ─────────────────────────────────────────────────────────
 

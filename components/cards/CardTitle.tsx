@@ -6,11 +6,21 @@ const FONT       = isSmall ? 22 : 38;
 
 type Props = {
   title: string;
+  color?: string;
 };
 
-export default function CardTitle({ title }: Props) {
+export default function CardTitle({ title, color }: Props) {
   if (!title) return null;
-  return <Text style={styles.title}>{title}</Text>;
+  return (
+    <Text
+      style={[
+        styles.title,
+        color && { color, textShadowColor: `${color}4D` },
+      ]}
+    >
+      {title}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({

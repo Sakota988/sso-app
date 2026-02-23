@@ -27,7 +27,9 @@ const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'KEEP_4_DROP_4':  require('../assets/zadrzi_izbaci_back.png'),
   'BLIND_5_RANK':   require('../assets/slepo_back.png'),
   'BUDGETING_4x5':  require('../assets/budzet_back.png'),
-  'OPEN_QUESTION':  require('../assets/zardzi4izbaci4_card.png'),
+  'OPEN_QUESTION':  require('../assets/pitalica_back.png'),
+  'ORDER_4':        require('../assets/pravi_raspored_back.png'),
+
 };
 
 const CARD_FALLBACK_IMAGE = require('../assets/zardzi4izbaci4_card.png');

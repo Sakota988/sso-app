@@ -67,7 +67,23 @@ export type OpenQuestionCard = {
   answer: OpenQuestionAnswer;
 };
 
-export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card | OpenQuestionCard;
+export type Order4Card = {
+  cardId: string;
+  type: 'ORDER_4';
+  title: string;
+  shortTitle: string;
+  description: string;
+  question: string;
+  items: [string, string, string, string];
+  correctOrder: [string, string, string, string];
+  answer: {
+    title: string;
+    description: string;
+    sourceUrl?: string;
+  };
+};
+
+export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card | OpenQuestionCard | Order4Card;
 
 export type DeckContent = {
   deckId: string;

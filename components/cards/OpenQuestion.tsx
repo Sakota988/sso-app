@@ -151,7 +151,7 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
           </View>
         </View>
 
-        <CardTitle title={card.title} />
+        {!isDone && <CardTitle title={card.title} color="#5B21B6" />}
 
         {/* ── Card area ── */}
         <View style={styles.cardArea}>

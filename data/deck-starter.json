@@ -244,7 +244,7 @@
       "description": "Pogodi koliko dugo traje faza leptirića.",
       "question": "Koliko prosječno traje početna faza zaljubljenosti (leptirići u stomaku)?",
       "acceptedAnswers": ["6 meseci", "6 mjeseci", "šest meseci", "šest mjeseci", "6", "pola godine", "od 6 do 18 meseci", "do godinu dana"],
-      "answer": {
+      "answer": { 
         "title": "6 do 18 mjeseci",
         "description": "Naučnici su utvrdili da hormonska euforija zaljubljenosti — koja uključuje povišene nivoe dopamina i norepinefrina — tipično traje između 6 i 18 mjeseci. Nakon toga mozak se 'navikne' i počinje faza privrženosti.",
         "sourceUrl": "https://www.bbc.com/future/article/20180314-the-science-of-falling-in-love"
@@ -262,6 +262,51 @@
         "title": "Oko 37–40% uspije",
         "description": "Studija Univerziteta u Queenland otkrila je da oko 37% veza na daljinu uspijeva u smislu da par na kraju živi zajedno. Ono što presudi nije distanca nego kvalitet komunikacije i jasan plan za budućnost.",
         "sourceUrl": "https://www.researchgate.net/publication/long-distance-relationships"
+      }
+    },
+    {
+      "cardId": "starter-ord-01",
+      "type": "ORDER_4",
+      "title": "Ko je osnovan prvi?",
+      "shortTitle": "Ko je stariji?",
+      "description": "Poredaj od najstarijeg do najmlađeg.",
+      "question": "Poredaj kompanije od najranije osnovane do najkasnije",
+      "items": ["Coca-Cola", "Pepsi", "Dr Pepper", "Evian"],
+      "correctOrder": ["Evian", "Dr Pepper", "Coca-Cola", "Pepsi"],
+      "answer": {
+        "title": "Evian → Dr Pepper → Coca-Cola → Pepsi",
+        "description": "Evian (1826) bio je prvi, zatim Dr Pepper (1885), pa Coca-Cola (1886) samo godinu dana kasnije, i na kraju Pepsi (1893). Zanimljivo — Coca-Cola i Dr Pepper su gotovo vršnjaci!",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Timeline_of_carbonated_soft_drinks"
+      }
+    },
+    {
+      "cardId": "starter-ord-02",
+      "type": "ORDER_4",
+      "title": "Faze veze",
+      "shortTitle": "Faze veze",
+      "description": "Poredaj faze veze redom.",
+      "question": "Poredaj faze romantične veze kako se tipično odvijaju",
+      "items": ["Privrženost", "Zaljubljenost", "Kriza i rast", "Početno upoznavanje"],
+      "correctOrder": ["Početno upoznavanje", "Zaljubljenost", "Privrženost", "Kriza i rast"],
+      "answer": {
+        "title": "Upoznavanje → Zaljubljenost → Privrženost → Kriza i rast",
+        "description": "Svaka dugotrajna veza prolazi kroz ove četiri faze. Kriza i rast dolazi kao posljednja jer partnerima treba vremena da izgrade dovoljno povjerenja da se suoče s dubokim razlikama — i iz toga izađu jači.",
+        "sourceUrl": "https://www.psychologytoday.com/us/basics/relationships"
+      }
+    },
+    {
+      "cardId": "starter-ord-03",
+      "type": "ORDER_4",
+      "title": "Društvene mreže",
+      "shortTitle": "Najstarija mreža",
+      "description": "Poredaj od najstarije do najmlađe.",
+      "question": "Poredaj društvene mreže od najranije lansiranja do najkasnije",
+      "items": ["Instagram", "TikTok", "Facebook", "Twitter"],
+      "correctOrder": ["Facebook", "Twitter", "Instagram", "TikTok"],
+      "answer": {
+        "title": "Facebook → Twitter → Instagram → TikTok",
+        "description": "Facebook je lansiran 2004., Twitter 2006., Instagram 2010., a TikTok (globalno) 2018. TikTok je za samo 5 godina dostigao više aktivnih korisnika od Twittera koji postoji 17 godina.",
+        "sourceUrl": "https://en.wikipedia.org/wiki/History_of_social_media"
       }
     }
   ]
