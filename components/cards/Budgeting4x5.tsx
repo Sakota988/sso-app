@@ -3,7 +3,6 @@ import { useGameStore, type Budgeting4x5Result } from '../../store/gameStore';
 import {
   Animated,
   Dimensions,
-  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,10 +10,10 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft } from 'lucide-react-native';
 import type { Budgeting4x5Card } from '../../types/deck';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
+import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 
 const { width, height } = Dimensions.get('window');
@@ -158,31 +157,16 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
       <View style={[styles.bgCircle, { width: 110, height: 110, bottom: 230, right: -25 }]} />
 
       <View style={styles.safe}>
-        {/* Header */}
-        <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
-          <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
-            <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
-          </TouchableOpacity>
-
-          <View style={styles.headerCenter}>
-            <Image
-              source={require('../../assets/budzet.png')}
-              style={styles.titleImage}
-              resizeMode="contain"
-            />
-            {!!card.description && (
-              <Text style={styles.gameDesc} numberOfLines={1}>
-                {card.description}
-              </Text>
-            )}
-          </View>
-
-          <View style={styles.progressPill}>
+        <CardHeader
+          imageSource={require('../../assets/titlovi/budzet_title.png')}
+          onBack={onBack}
+          description={card.description}
+          rightSlot={
             <Text style={styles.progressText}>
               {isDone ? total : index + 1} / {total}
             </Text>
-          </View>
-        </View>
+          }
+        />
 
         {/* Budget bar */}
         <View style={styles.budgetSection}>

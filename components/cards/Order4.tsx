@@ -11,8 +11,10 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft, CheckCircle2, ExternalLink, XCircle } from 'lucide-react-native';
+import { CheckCircle2, ExternalLink, XCircle } from 'lucide-react-native';
 import type { Order4Card } from '../../types/deck';
+import { shuffle } from '../../utils/shuffle';
+import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
@@ -41,6 +43,7 @@ export default function Order4({ card, onBack, deckId }: Props) {
   );
 
   const [userOrder, setUserOrder] = useState<string[]>(() => stored?.userOrder ?? []);
+  const [displayItems, setDisplayItems] = useState<string[]>(() => shuffle([...card.items]));
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const shareCardRef = useRef<View | null>(null);
   const saveResult = useGameStore((s) => s.saveResult);
@@ -88,7 +91,10 @@ export default function Order4({ card, onBack, deckId }: Props) {
   }
 
   function handleRestart() {
-    fadeTransition(() => setUserOrder([]));
+    fadeTransition(() => {
+      setUserOrder([]);
+      setDisplayItems(shuffle([...card.items]));
+    });
   }
 
   function handleOpenSource() {
@@ -123,31 +129,23 @@ export default function Order4({ card, onBack, deckId }: Props) {
       <View style={[styles.bgCircle, { width: 110, height: 110, bottom: 230, right: -25 }]} />
 
       <View style={styles.safe}>
-        {/* ── Header ── */}
-        <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
-          <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
-            <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
-          </TouchableOpacity>
-
-          <View style={styles.headerCenter}>
-            <Text style={styles.gameLabel}>POREDAJ REDOM</Text>
-            {!!card.description && (
-              <Text style={styles.gameDesc} numberOfLines={1}>
-                {card.description}
-              </Text>
-            )}
-          </View>
-
-          <View style={[styles.progressPill, isDone && (isPerfect ? styles.pillPerfect : styles.pillDone)]}>
-            {isDone ? (
+        <CardHeader
+          imageSource={require('../../assets/titlovi/raspored_title.png')}
+          onBack={onBack}
+          description={card.description}
+          rightSlot={
+            isDone ? (
               <Text style={[styles.progressText, { color: isPerfect ? '#059669' : '#B45309' }]}>
                 {score}/4
               </Text>
             ) : (
               <Text style={styles.progressText}>{userOrder.length}/4</Text>
-            )}
-          </View>
-        </View>
+            )
+          }
+          progressPillStyle={
+            isDone ? (isPerfect ? styles.pillPerfect : styles.pillDone) : undefined
+          }
+        />
 
         {!isDone && <CardTitle title={card.title} color="#134E4A" />}
 
@@ -161,7 +159,7 @@ export default function Order4({ card, onBack, deckId }: Props) {
                 <Text style={styles.questionText}>{card.question}</Text>
 
                 <View style={styles.itemsGrid}>
-                  {card.items.map((item) => {
+                  {displayItems.map((item) => {
                     const posIndex = userOrder.indexOf(item);
                     const isSelected = posIndex !== -1;
                     return (

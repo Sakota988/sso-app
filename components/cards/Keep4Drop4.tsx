@@ -11,8 +11,10 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft, Check, X } from 'lucide-react-native';
+import { Check, X } from 'lucide-react-native';
 import type { Keep4Drop4Card } from '../../types/deck';
+import { shuffle } from '../../utils/shuffle';
+import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
@@ -40,7 +42,7 @@ type Props = {
 };
 
 export default function Keep4Drop4({ card, onBack, deckId }: Props) {
-  const traits = card.traits;
+  const [traits, setTraits] = useState<string[]>(() => shuffle([...card.traits]));
   const total = traits.length;
 
   const stored = useGameStore(
@@ -163,30 +165,16 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
 
       <View style={styles.safe}>
         {/* ── Header ── */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
-            <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
-          </TouchableOpacity>
-
-          <View style={styles.headerCenter}>
-            <Image
-              source={require('../../assets/zadrzi4izbaci4TITLE.png')}
-              style={styles.titleImage}
-              resizeMode="contain"
-            />
-            {!!card.description && (
-              <Text style={styles.gameDesc} numberOfLines={1}>
-                {card.description}
-              </Text>
-            )}
-          </View>
-
-          <View style={styles.progressPill}>
+        <CardHeader
+          imageSource={require('../../assets/titlovi/zadrzi_title.png')}
+          onBack={onBack}
+          description={card.description}
+          rightSlot={
             <Text style={styles.progressText}>
               {isDone ? total : index + 1} / {total}
             </Text>
-          </View>
-        </View>
+          }
+        />
 
         <CardTitle title={card.title} />
         
@@ -205,6 +193,7 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
                   setIndex(0);
                   setKept([]);
                   setDropped([]);
+                  setTraits(shuffle([...card.traits]));
                   fadeAnim.setValue(1);
                   slideAnim.setValue(0);
                 }}
@@ -350,7 +339,7 @@ const styles = StyleSheet.create({
   headerCenter: { flex: 1, alignItems: 'center' },
   titleImage: {
     width: '100%',
-    height: 40,
+    height: 45,
   },
   gameDesc: {
     fontSize: 11,

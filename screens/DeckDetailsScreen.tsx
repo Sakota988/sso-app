@@ -116,7 +116,27 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
   const listOpacity = useRef(new Animated.Value(0)).current;
 
   const content = getCardFile(deck.contentFile);
-  const cards: CardItem[] = content?.cards ?? [];
+  const rawCards: CardItem[] = content?.cards ?? [];
+
+  const shuffleCards = useCallback((arr: CardItem[]) => {
+    if (arr.length === 0) return [];
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }, []);
+
+  const [cards, setCards] = useState<CardItem[]>(() => shuffleCards(rawCards));
+
+  const prevSelectedRef = useRef<CardItem | null>(null);
+  useEffect(() => {
+    if (prevSelectedRef.current && !selectedCard) {
+      setCards(shuffleCards(rawCards));
+    }
+    prevSelectedRef.current = selectedCard;
+  }, [selectedCard, rawCards, shuffleCards]);
 
   // Show skeletons for at least 500ms, then fade the real list in
   useEffect(() => {

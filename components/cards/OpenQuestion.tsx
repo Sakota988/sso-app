@@ -15,8 +15,9 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft, CheckCircle, ExternalLink, XCircle } from 'lucide-react-native';
+import { CheckCircle, ExternalLink, XCircle } from 'lucide-react-native';
 import type { OpenQuestionCard } from '../../types/deck';
+import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
@@ -145,29 +146,19 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={0}
       >
-        {/* ── Header ── */}
-        <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
-          <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
-            <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
-          </TouchableOpacity>
-
-          <View style={styles.headerCenter}>
-            <Text style={styles.gameLabel}>OTVORENO PITANJE</Text>
-            {!!card.description && (
-              <Text style={styles.gameDesc} numberOfLines={1}>
-                {card.description}
-              </Text>
-            )}
-          </View>
-
-          <View style={[styles.progressPill, isDone && styles.progressPillDone]}>
-            {isDone ? (
+        <CardHeader
+          imageSource={require('../../assets/titlovi/pitalica_title.png')}
+          onBack={onBack}
+          description={card.description}
+          rightSlot={
+            isDone ? (
               <CheckCircle size={16} color="#10B981" strokeWidth={2.5} />
             ) : (
               <Text style={styles.progressText}>?</Text>
-            )}
-          </View>
-        </View>
+            )
+          }
+          progressPillStyle={isDone ? styles.progressPillDone : undefined}
+        />
 
         {!isDone && <CardTitle title={card.title} color="#5B21B6" />}
 
@@ -318,6 +309,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerCenter: { flex: 1, alignItems: 'center' },
+  titleImage: { width: '100%', height: 45 },
   gameLabel: {
     fontSize: 13,
     fontWeight: '900',

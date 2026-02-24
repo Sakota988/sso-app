@@ -3,7 +3,6 @@ import { useGameStore, type Blind5RankResult } from '../../store/gameStore';
 import {
   Animated,
   Dimensions,
-  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,10 +10,11 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft } from 'lucide-react-native';
 import type { Blind5RankCard } from '../../types/deck';
+import { shuffle } from '../../utils/shuffle';
 import ShareResultCard from '../ShareResultCard';
 import ShareButton from '../ShareButton';
+import CardHeader from './CardHeader';
 import CardTitle from './CardTitle';
 
 const { width, height } = Dimensions.get('window');
@@ -34,7 +34,8 @@ type Props = {
 };
 
 export default function Blind5Rank({ card, onBack, deckId }: Props) {
-  const { items, labels } = card;
+  const { labels } = card;
+  const [items, setItems] = useState<string[]>(() => shuffle([...card.items]));
   const total = items.length;
 
   const stored = useGameStore(
@@ -94,6 +95,7 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
   function handleRestart() {
     setIndex(0);
     setRanks({});
+    setItems(shuffle([...card.items]));
     fadeAnim.setValue(1);
     slideAnim.setValue(0);
   }
@@ -123,31 +125,16 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
       <View style={[styles.bgCircle, { width: 110, height: 110, bottom: 230, right: -25 }]} />
 
       <View style={styles.safe}>
-        {/* Header */}
-        <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
-          <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
-            <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
-          </TouchableOpacity>
-
-          <View style={styles.headerCenter}>
-            <Image
-              source={require('../../assets/na_slepo_back.png')}
-              style={styles.titleImage}
-              resizeMode="contain"
-            />
-            {!!card.description && (
-              <Text style={styles.gameDesc} numberOfLines={1}>
-                {card.description}
-              </Text>
-            )}
-          </View>
-
-          <View style={styles.progressPill}>
+        <CardHeader
+          imageSource={require('../../assets/titlovi/slepo_title.png')}
+          onBack={onBack}
+          description={card.description}
+          rightSlot={
             <Text style={styles.progressText}>
               {isDone ? total : index + 1} / {total}
             </Text>
-          </View>
-        </View>
+          }
+        />
 
         {/* Legend bar */}
         {/* <View style={styles.legendSection}>
