@@ -131,18 +131,11 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
   const [cards, setCards] = useState<CardItem[]>(() => shuffleCards(rawCards));
 
   const prevSelectedRef = useRef<CardItem | null>(null);
-  useEffect(() => {
-    if (prevSelectedRef.current && !selectedCard) {
-      setCards(shuffleCards(rawCards));
-    }
-    prevSelectedRef.current = selectedCard;
-  }, [selectedCard, rawCards, shuffleCards]);
 
-  // Show skeletons for at least 500ms, then fade the real list in
-  useEffect(() => {
-    let cancelled = false;
+  const runSkeletonThenFadeIn = useCallback(() => {
+    setIsReady(false);
+    listOpacity.setValue(0);
     const timer = setTimeout(() => {
-      if (cancelled) return;
       setIsReady(true);
       Animated.timing(listOpacity, {
         toValue: 1,
@@ -150,11 +143,22 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
         useNativeDriver: true,
       }).start();
     }, 500);
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [listOpacity]);
+
+  // Initial mount: show skeleton then fade in
+  useEffect(() => {
+    return runSkeletonThenFadeIn();
+  }, [runSkeletonThenFadeIn]);
+
+  // Return from card: reshuffle and show skeleton then fade in
+  useEffect(() => {
+    if (prevSelectedRef.current && !selectedCard) {
+      setCards(shuffleCards(rawCards));
+      return runSkeletonThenFadeIn();
+    }
+    prevSelectedRef.current = selectedCard;
+  }, [selectedCard, rawCards, shuffleCards, runSkeletonThenFadeIn]);
 
   // Defer mounting the heavy card component until after the press animation
   const handleCardPress = useCallback((card: CardItem) => {

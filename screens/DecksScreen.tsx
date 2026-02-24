@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   Dimensions,
   FlatList,
   Image,
@@ -9,6 +11,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDeckNav } from '../contexts/DeckNavContext';
+import { useGameStore } from '../store/gameStore';
 import WelcomeModal from '../components/WelcomeModal';
 import type { DeckDisplay, DeckMeta } from '../types/deck';
 
@@ -29,6 +32,40 @@ const TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
 };
 
 const FALLBACK_IMAGE = require('../assets/starter.png');
+
+// ── Skeleton ─────────────────────────────────────────────────────
+function SkeletonCard() {
+  const pulse = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulse, { toValue: 1, duration: 750, useNativeDriver: true }),
+        Animated.timing(pulse, { toValue: 0, duration: 750, useNativeDriver: true }),
+      ])
+    );
+    anim.start();
+    return () => anim.stop();
+  }, [pulse]);
+
+  const opacity = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.35, 0.7] });
+
+  return (
+    <Animated.View style={[styles.card, styles.skeletonCard, { opacity }]}>
+      <View style={styles.skeletonTop} />
+      <View style={styles.skeletonLine} />
+    </Animated.View>
+  );
+}
+
+function SkeletonRow() {
+  return (
+    <View style={styles.row}>
+      <SkeletonCard />
+      <SkeletonCard />
+    </View>
+  );
+}
 
 // ── Load decks from JSON ──────────────────────────────────────────
 const deckData: { decks: DeckMeta[] } = require('../data/decks.json');
@@ -67,6 +104,23 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
 }
 
 export default function DecksScreen() {
+  const [isReady, setIsReady] = useState(false);
+  const listOpacity = useRef(new Animated.Value(0)).current;
+  const totalPlayed = useGameStore((s) => Object.keys(s.results).length);
+  const freeDecks = DECKS.filter((d) => d.isFree).length;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+      Animated.timing(listOpacity, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [listOpacity]);
+
   return (
     <View style={styles.root}>
       <WelcomeModal />
@@ -82,30 +136,127 @@ export default function DecksScreen() {
       <View style={[styles.circle, { width: 120, height: 120, top: 280, right: -30 }]} />
       <View style={[styles.circle, { width: 90,  height: 90,  top: 140, left: 16 }]} />
 
-      <FlatList
-        data={DECKS}
-        keyExtractor={(d) => d.deckId}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <View style={styles.header}>
-            <Image
-              source={require('../assets/logo.png')}
-              style={styles.logo}
-              resizeMode="contain"
-            />
+      {!isReady && (
+        <View style={styles.skeletonContainer}>
+          <View style={styles.skeletonHeader}>
+            <View style={styles.skeletonLogo} />
+            <View style={styles.skeletonTagline} />
+            <View style={styles.skeletonStatsRow}>
+              <View style={styles.skeletonStatPill} />
+              <View style={styles.skeletonStatPill} />
+            </View>
+            <View style={styles.skeletonSectionRow} />
           </View>
-        }
-        renderItem={({ item }) => <DeckCard deck={item} />}
-      />
+          {Array.from({ length: 2 }).map((_, i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </View>
+      )}
+
+      <Animated.View style={[styles.listWrapper, { opacity: listOpacity }]}>
+        <FlatList
+          data={DECKS}
+          keyExtractor={(d) => d.deckId}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <View style={styles.header}>
+              <Image
+                source={require('../assets/logo.png')}
+                style={styles.logo}
+                resizeMode="contain"
+              />
+              <Text style={styles.tagline}>Izaberi špil i zaigraj</Text>
+              <View style={styles.statsRow}>
+                <View style={styles.statPill}>
+                  <Text style={styles.statNumber}>{totalPlayed}</Text>
+                  <Text style={styles.statLabel}>odigrano</Text>
+                </View>
+                <View style={styles.statPill}>
+                  <Text style={styles.statNumber}>{freeDecks}</Text>
+                  <Text style={styles.statLabel}>špilova</Text>
+                </View>
+              </View>
+              <View style={styles.sectionRow}>
+                <Text style={styles.sectionTitle}>Špilovi</Text>
+                <Text style={styles.sectionCount}>{DECKS.length} dostupno</Text>
+              </View>
+            </View>
+          }
+          renderItem={({ item }) => <DeckCard deck={item} />}
+        />
+      </Animated.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  listWrapper: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  skeletonContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 40,
+  },
+  skeletonHeader: {
+    alignItems: 'center',
+    paddingBottom: 24,
+  },
+  skeletonLogo: {
+    width: 260,
+    height: 180,
+    borderRadius: 16,
+    backgroundColor: 'rgba(0,0,0,0.08)',
+  },
+  skeletonTagline: {
+    width: 160,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+    marginTop: 8,
+    marginBottom: 16,
+  },
+  skeletonStatsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 16,
+  },
+  skeletonStatPill: {
+    width: 80,
+    height: 52,
+    borderRadius: 16,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+  },
+  skeletonSectionRow: {
+    width: '100%',
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+    marginBottom: 12,
+  },
+  skeletonCard: {
+    backgroundColor: 'rgba(0,0,0,0.07)',
+    justifyContent: 'flex-end',
+    padding: 14,
+  },
+  skeletonTop: {
+    position: 'absolute',
+    top: 16,
+    left: 14,
+    right: 14,
+    height: 10,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  skeletonLine: {
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0.25)',
+  },
   circle: {
     position: 'absolute',
     borderRadius: 999,
@@ -116,17 +267,75 @@ const styles = StyleSheet.create({
     paddingBottom: 110,
   },
   row: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
   },
   header: {
     alignItems: 'center',
     paddingTop: 40,
-    paddingBottom: 24,
+    paddingBottom: 20,
   },
   logo: {
     width: 260,
     height: 180,
+  },
+  tagline: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#6B7280',
+    marginTop: -8,
+    marginBottom: 16,
+    letterSpacing: 0.2,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 16,
+  },
+  statPill: {
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 16,
+    minWidth: 80,
+    alignItems: 'center',
+    shadowColor: '#C46A28',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  statNumber: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#FF6B1A',
+    lineHeight: 26,
+  },
+  statLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#6B7280',
+    marginTop: 2,
+  },
+  sectionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 4,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '900',
+    color: '#1A1A1A',
+    letterSpacing: -0.2,
+  },
+  sectionCount: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#9CA3AF',
   },
   card: {
     width: CARD_SIZE,
