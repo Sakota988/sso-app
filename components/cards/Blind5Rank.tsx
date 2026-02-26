@@ -1,29 +1,19 @@
 import { useRef, useState } from 'react';
 import { useGameStore, type Blind5RankResult } from '../../store/gameStore';
-import {
-  Animated,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Animated, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Blind5RankCard } from '../../types/deck';
 import { shuffle } from '../../utils/shuffle';
 import ShareResultCard from '../ShareResultCard';
-import ShareButton from '../ShareButton';
-import CardHeader from './CardHeader';
-import CardTitle from './CardTitle';
+import CardHeader from '../common/CardHeader';
+import CardTitle from '../common/CardTitle';
+import Blind5RankCardArea from './Blind5RankCardArea';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
 
-const CARD_W     = width - 48;
-const HEADER_TOP = isSmall ? 44 : 64;
+const CARD_W = width - 48;
 const PANEL_H = isSmall ? 120 : 155;
-const RANK_BTN_SIZE = Math.floor((CARD_W - 48 - 40) / 5);
 
 type Props = {
   card: Blind5RankCard;
@@ -129,6 +119,7 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
           imageSource={require('../../assets/titlovi/slepo_title.png')}
           onBack={onBack}
           description={card.description}
+          titleImageStyle={{ height: 55 }}
           rightSlot={
             <Text style={styles.progressText}>
               {isDone ? total : index + 1} / {total}
@@ -150,78 +141,23 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
           <Text style={styles.legendBound}>5 = {labels.rank5}</Text>
         </View> */}
 
-        <CardTitle title={card.title} />
+        <CardTitle title={card.title} color="#3D5AF1" />
 
-        {/* Card area */}
-        <View style={styles.cardArea}>
-          {isDone ? (
-            <View style={[styles.doneCard, { width: CARD_W }]}>
-              <Text style={styles.doneEmoji}>🏆</Text>
-              <Text style={styles.doneTxt}>Gotovo!</Text>
-              <Text style={styles.doneSubTxt}>Tvoj ranking</Text>
-
-              <View style={styles.doneSummary}>
-                {rankedItems.map((item) => (
-                  <View key={item} style={styles.doneSummaryRow}>
-                    <View style={styles.doneRankBadge}>
-                      <Text style={styles.doneRankText}>{ranks[item]}</Text>
-                    </View>
-                    <Text style={styles.doneItemText} numberOfLines={2}>
-                      {item}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-
-              <TouchableOpacity
-                style={styles.restartBtn}
-                onPress={handleRestart}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-              </TouchableOpacity>
-
-              <ShareButton viewRef={shareCardRef} />
-            </View>
-          ) : (
-            <Animated.View
-              style={[
-                styles.itemCard,
-                { width: CARD_W },
-                { opacity: fadeAnim, transform: [{ translateX: slideAnim }] },
-              ]}
-            >
-              <Text style={styles.itemLabel}>STAVKA {index + 1} / {total}</Text>
-              <Text style={styles.itemTitle}>{items[index]}</Text>
-
-              <Text style={styles.rankPrompt}>Odaberi rang:</Text>
-
-              <View style={styles.rankBtnRow}>
-                {[1, 2, 3, 4, 5].map((n) => {
-                  const isTaken = usedRanks.has(n);
-                  return (
-                    <TouchableOpacity
-                      key={n}
-                      style={[styles.rankBtn, isTaken && styles.rankBtnTaken]}
-                      onPress={() => handleRank(n)}
-                      disabled={isTaken}
-                      activeOpacity={0.75}
-                    >
-                      <Text style={[styles.rankBtnText, isTaken && styles.rankBtnTextTaken]}>
-                        {n}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-
-              <View style={styles.rankLegendRow}>
-                <Text style={styles.rankLegendHint}>{labels.rank1}</Text>
-                <Text style={styles.rankLegendHint}>{labels.rank5}</Text>
-              </View>
-            </Animated.View>
-          )}
-        </View>
+        <Blind5RankCardArea
+          cardWidth={CARD_W}
+          isDone={isDone}
+          items={items}
+          index={index}
+          total={total}
+          labels={labels}
+          ranks={ranks}
+          rankedItems={rankedItems}
+          onRank={handleRank}
+          onRestart={handleRestart}
+          shareCardRef={shareCardRef}
+          fadeAnim={fadeAnim}
+          slideAnim={slideAnim}
+        />
 
         {/* Bottom panel — rankings so far */}
         {!isDone && (
@@ -331,148 +267,10 @@ const styles = StyleSheet.create({
   },
   legendDotUsed: { backgroundColor: '#FF6B1A' },
 
-  // ── Card area ───────────────────────────────────────────────────
-  cardArea: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
+  // ── Image Blind5Rank ────────────────────────────────────────────────
+  imageBlind5Rank: {
+    height: 55,
   },
-
-  // ── Item card ───────────────────────────────────────────────────
-  itemCard: {
-    backgroundColor: '#3D5AF1',
-    borderRadius: 24,
-    borderWidth: 2.5,
-    borderColor: '#1A1A1A',
-    padding: isSmall ? 20 : 28,
-    shadowColor: '#1A1A1A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-  },
-  itemLabel: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: 'rgba(255,255,255,0.55)',
-    letterSpacing: 1.8,
-    marginBottom: 8,
-  },
-  itemTitle: {
-    fontSize: isSmall ? 22 : 30,
-    fontWeight: '900',
-    color: '#fff',
-    marginBottom: isSmall ? 20 : 28,
-    letterSpacing: -0.3,
-    lineHeight: isSmall ? 28 : 38,
-  },
-  rankPrompt: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.6)',
-    letterSpacing: 0.8,
-    marginBottom: 12,
-    textTransform: 'uppercase',
-  },
-  rankBtnRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 10,
-  },
-  rankBtn: {
-    width: RANK_BTN_SIZE,
-    height: RANK_BTN_SIZE,
-    borderRadius: 14,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.35)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  rankBtnTaken: {
-    backgroundColor: 'rgba(0,0,0,0.15)',
-    borderColor: 'rgba(0,0,0,0.08)',
-  },
-  rankBtnText: {
-    fontSize: isSmall ? 18 : 22,
-    fontWeight: '900',
-    color: '#fff',
-  },
-  rankBtnTextTaken: { color: 'rgba(255,255,255,0.2)' },
-  rankLegendRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  rankLegendHint: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.45)',
-  },
-
-  // ── Done card ───────────────────────────────────────────────────
-  doneCard: {
-    backgroundColor: '#3D5AF1',
-    borderRadius: 24,
-    borderWidth: 2.5,
-    borderColor: '#1A1A1A',
-    padding: isSmall ? 20 : 28,
-    alignItems: 'center',
-    shadowColor: '#1A1A1A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-    gap: 6,
-  },
-  doneEmoji: { fontSize: isSmall ? 36 : 44 },
-  doneTxt: { fontSize: isSmall ? 22 : 28, fontWeight: '900', color: '#fff' },
-  doneSubTxt: {
-    fontSize: 13,
-    color: 'rgba(255,255,255,0.6)',
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  doneSummary: {
-    alignSelf: 'stretch',
-    gap: 8,
-    marginBottom: 8,
-  },
-  doneSummaryRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    gap: 12,
-  },
-  doneRankBadge: {
-    width: 32,
-    height: 32,
-    borderRadius: 10,
-    backgroundColor: '#FF6B1A',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  doneRankText: { fontSize: 15, fontWeight: '900', color: '#fff' },
-  doneItemText: {
-    flex: 1,
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#fff',
-  },
-  restartBtn: {
-    marginTop: 6,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderWidth: 2,
-    borderColor: 'rgba(255,255,255,0.5)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: { fontSize: 15, fontWeight: '800', color: '#fff', letterSpacing: 0.4 },
-
   // ── Bottom panel ────────────────────────────────────────────────
   panel: {
     backgroundColor: 'rgba(255,255,255,0.9)',

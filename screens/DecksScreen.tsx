@@ -20,18 +20,17 @@ const CARD_SIZE = (width - 48) / 2;
 
 // ── Per-deck cover images (keyed by deckId) ───────────────────────
 const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'starter':      require('../assets/starter.png'),
-  'budzetiranje': require('../assets/budzet.png'),
-  // 'red-flags': require('../assets/red_flags_pack.png'),  ← add when asset is ready
+  'starter':      require('../assets/decks_backs/deck_4_back.png'),
+  'budzetiranje': require('../assets/decks_backs/deck_5_back.png'),
 };
 
 // ── Fallback images by deck type ──────────────────────────────────
 const TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'mixed': require('../assets/starter.png'),
-  'budzet': require('../assets/budzet.png'),
+  'mixed': require('../assets/decks_backs/deck_4_back.png'),
+  'budzet': require('../assets/decks_backs/deck_5_back.png'),
 };
 
-const FALLBACK_IMAGE = require('../assets/starter.png');
+const FALLBACK_IMAGE = require('../assets/decks_backs/deck_1_back.png');
 
 // ── Skeleton ─────────────────────────────────────────────────────
 function SkeletonCard() {
@@ -87,6 +86,13 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
       onPress={() => { if (isFree) openDeck(deck); }}
     >
       <Image source={deck.image} style={styles.cardImage} resizeMode="contain" />
+      <View style={styles.cardTitleWrap}>
+        <Text style={styles.cardTitle} numberOfLines={2}>{deck.title}</Text>
+      </View>
+
+      <View style={styles.cardCountWrap}>
+        <Text style={styles.cardCount}>{deck.cardCount} kartica</Text>
+      </View>
 
       <View style={[styles.badge, isFree ? styles.badgeFree : styles.badgePro]}>
         <Text style={[styles.badgeText, isFree ? styles.badgeTextFree : styles.badgeTextPro]}>
@@ -351,10 +357,38 @@ const styles = StyleSheet.create({
   cardLocked: {
     opacity: 0.6,
   },
+  cardTitleWrap: {
+    position: 'absolute',
+    top: 35,
+    left: 4,
+    right: 0,
+  },
+  cardCountWrap: {
+    position: 'absolute',
+    bottom: 40,
+    left: 4,
+    right: 0,
+    alignItems: 'center',
+  },
+  cardCount: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+  },
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#fff',
+    letterSpacing: 0.2,
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+    textAlign: 'center',
+  },
   cardImage: {
     width: '100%',
     height: '100%',
-    transform: [{ scale: 1.25 }],
+    transform: [{ scale: 1.35 }],
   },
   lockedOverlay: {
     position: 'absolute',

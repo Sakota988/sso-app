@@ -1,4 +1,4 @@
-import type { ViewStyle } from 'react-native';
+import type { ImageStyle, ViewStyle } from 'react-native';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ArrowLeft } from 'lucide-react-native';
 
@@ -9,6 +9,8 @@ const HEADER_TOP = isSmall ? 44 : 64;
 type Props = {
   imageSource: ReturnType<typeof require>;
   onBack: () => void;
+  style?: ViewStyle;
+  titleImageStyle?: ImageStyle;
   description?: string;
   rightSlot: React.ReactNode;
   progressPillStyle?: ViewStyle;
@@ -17,18 +19,20 @@ type Props = {
 export default function CardHeader({
   imageSource,
   onBack,
+  style,
+  titleImageStyle,
   description,
   rightSlot,
   progressPillStyle,
 }: Props) {
   return (
-    <View style={[styles.header, { paddingTop: HEADER_TOP }]}>
+    <View style={[styles.header, { paddingTop: HEADER_TOP }, style]}>
       <TouchableOpacity style={styles.backBtn} onPress={onBack} activeOpacity={0.75}>
         <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
       </TouchableOpacity>
 
       <View style={styles.headerCenter}>
-        <Image source={imageSource} style={styles.titleImage} resizeMode="cover" />
+        <Image source={imageSource} style={[styles.titleImage, titleImageStyle]} resizeMode="cover" />
         {!!description && (
           <Text style={styles.gameDesc} numberOfLines={1}>
             {description}

@@ -7,23 +7,20 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { CheckCircle2, ExternalLink, XCircle } from 'lucide-react-native';
 import type { Order4Card } from '../../types/deck';
 import { shuffle } from '../../utils/shuffle';
-import CardHeader from './CardHeader';
-import CardTitle from './CardTitle';
+import CardHeader from '../common/CardHeader';
+import CardTitle from '../common/CardTitle';
 import ShareResultCard from '../ShareResultCard';
-import ShareButton from '../ShareButton';
+import Order4CardArea from './Order4CardArea';
 
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
 
 const CARD_W = width - 48;
-const HEADER_TOP = isSmall ? 44 : 64;
 const PANEL_H = isSmall ? 130 : 160;
 
 type Props = {
@@ -149,126 +146,23 @@ export default function Order4({ card, onBack, deckId }: Props) {
 
         {!isDone && <CardTitle title={card.title} color="#134E4A" />}
 
-        {/* ── Card area ── */}
-        <View style={styles.cardArea}>
-          <Animated.View style={[{ width: CARD_W }, { opacity: fadeAnim }]}>
-            {!isDone ? (
-              /* ── Input phase ── */
-              <View style={styles.card}>
-                <Text style={styles.cardLabel}>PITANJE</Text>
-                <Text style={styles.questionText}>{card.question}</Text>
-
-                <View style={styles.itemsGrid}>
-                  {displayItems.map((item) => {
-                    const posIndex = userOrder.indexOf(item);
-                    const isSelected = posIndex !== -1;
-                    return (
-                      <TouchableOpacity
-                        key={item}
-                        style={[styles.itemBtn, isSelected && styles.itemBtnSelected]}
-                        onPress={() => handleTap(item)}
-                        disabled={isSelected}
-                        activeOpacity={0.75}
-                      >
-                        {isSelected && (
-                          <View style={styles.positionBadge}>
-                            <Text style={styles.positionBadgeText}>{posIndex + 1}</Text>
-                          </View>
-                        )}
-                        <Text
-                          style={[styles.itemBtnText, isSelected && styles.itemBtnTextSelected]}
-                          numberOfLines={2}
-                        >
-                          {item}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-
-                {userOrder.length > 0 && (
-                  <TouchableOpacity style={styles.undoBtn} onPress={handleUndo} activeOpacity={0.8}>
-                    <Text style={styles.undoBtnTxt}>← Poništi zadnji</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-            ) : (
-              /* ── Result phase ── */
-              <ScrollView
-                style={styles.resultScroll}
-                contentContainerStyle={styles.resultCard}
-                showsVerticalScrollIndicator={false}
-              >
-                <Text style={styles.resultEmoji}>
-                  {isPerfect ? '🏆' : score >= 2 ? '👍' : '😅'}
-                </Text>
-                <Text style={styles.resultTitle}>
-                  {isPerfect ? 'Savršeno!' : score >= 2 ? 'Dobro!' : 'Skoro!'}
-                </Text>
-                <Text style={styles.resultScore}>{score} / 4 tačno</Text>
-
-                {/* Side-by-side comparison */}
-                <View style={styles.comparisonBlock}>
-                  <View style={styles.comparisonCol}>
-                    <Text style={styles.comparisonHead}>TVOJ REDOSLIJED</Text>
-                    {userOrder.map((item, i) => {
-                      const correct = item === card.correctOrder[i];
-                      return (
-                        <View key={item} style={[styles.compRow, correct ? styles.compRowCorrect : styles.compRowWrong]}>
-                          <View style={[styles.compBadge, correct ? styles.compBadgeCorrect : styles.compBadgeWrong]}>
-                            <Text style={styles.compBadgeText}>{i + 1}</Text>
-                          </View>
-                          <Text style={styles.compItemText} numberOfLines={1}>{item}</Text>
-                          {correct
-                            ? <CheckCircle2 size={14} color="#10B981" strokeWidth={2.5} />
-                            : <XCircle size={14} color="#EF4444" strokeWidth={2.5} />
-                          }
-                        </View>
-                      );
-                    })}
-                  </View>
-
-                  {!isPerfect && (
-                    <View style={styles.comparisonCol}>
-                      <Text style={styles.comparisonHead}>TAČAN REDOSLIJED</Text>
-                      {card.correctOrder.map((item, i) => (
-                        <View key={item} style={[styles.compRow, styles.compRowCorrectFull]}>
-                          <View style={[styles.compBadge, styles.compBadgeCorrect]}>
-                            <Text style={styles.compBadgeText}>{i + 1}</Text>
-                          </View>
-                          <Text style={styles.compItemText} numberOfLines={1}>{item}</Text>
-                        </View>
-                      ))}
-                    </View>
-                  )}
-                </View>
-
-                {/* Answer explanation */}
-                <View style={styles.answerBlock}>
-                  <Text style={styles.answerTitle}>{card.answer.title}</Text>
-                  <Text style={styles.answerDesc}>{card.answer.description}</Text>
-
-                  {!!card.answer.sourceUrl && (
-                    <TouchableOpacity
-                      style={styles.sourceBtn}
-                      onPress={handleOpenSource}
-                      activeOpacity={0.8}
-                    >
-                      <ExternalLink size={13} color="rgba(255,255,255,0.65)" strokeWidth={2} />
-                      <Text style={styles.sourceBtnTxt}>Izvor</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-
-                <ShareButton viewRef={shareCardRef} />
-
-                <TouchableOpacity style={styles.restartBtn} onPress={handleRestart} activeOpacity={0.8}>
-                  <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-                </TouchableOpacity>
-              </ScrollView>
-            )}
-          </Animated.View>
-        </View>
+        <Order4CardArea
+          cardWidth={CARD_W}
+          isDone={isDone}
+          question={card.question}
+          displayItems={displayItems}
+          userOrder={userOrder}
+          correctOrder={[...card.correctOrder]}
+          score={score}
+          isPerfect={isPerfect}
+          onTap={handleTap}
+          onUndo={handleUndo}
+          onOpenSource={handleOpenSource}
+          onRestart={handleRestart}
+          shareCardRef={shareCardRef}
+          fadeAnim={fadeAnim}
+          answer={card.answer}
+        />
 
         {/* ── Bottom panel — order being built ── */}
         {!isDone && (
@@ -363,244 +257,6 @@ const styles = StyleSheet.create({
   pillPerfect: { backgroundColor: 'rgba(209,250,229,0.95)' },
   pillDone: { backgroundColor: 'rgba(254,243,199,0.95)' },
   progressText: { fontSize: 13, fontWeight: '800', color: '#1A1A1A' },
-
-  // ── Card area ────────────────────────────────────────────────────
-  cardArea: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-    paddingBottom: 16,
-  },
-
-  // ── Input card ───────────────────────────────────────────────────
-  card: {
-    backgroundColor: '#134E4A',
-    borderRadius: 24,
-    borderWidth: 2.5,
-    borderColor: '#1A1A1A',
-    padding: isSmall ? 18 : 24,
-    shadowColor: '#1A1A1A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-    gap: isSmall ? 12 : 16,
-  },
-  cardLabel: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: 'rgba(255,255,255,0.45)',
-    letterSpacing: 1.8,
-  },
-  questionText: {
-    fontSize: isSmall ? 17 : 20,
-    fontWeight: '800',
-    color: '#fff',
-    lineHeight: isSmall ? 24 : 28,
-    letterSpacing: -0.2,
-  },
-
-  // ── Item buttons ─────────────────────────────────────────────────
-  itemsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-  },
-  itemBtn: {
-    width: '47.5%',
-    minHeight: isSmall ? 52 : 64,
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: 14,
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.3)',
-    padding: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
-  itemBtnSelected: {
-    backgroundColor: 'rgba(255,255,255,0.07)',
-    borderColor: 'rgba(255,255,255,0.12)',
-  },
-  positionBadge: {
-    position: 'absolute',
-    top: 6,
-    right: 6,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#F59E0B',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  positionBadgeText: {
-    fontSize: 11,
-    fontWeight: '900',
-    color: '#fff',
-  },
-  itemBtnText: {
-    fontSize: isSmall ? 13 : 15,
-    fontWeight: '800',
-    color: '#fff',
-    textAlign: 'center',
-    letterSpacing: -0.1,
-  },
-  itemBtnTextSelected: {
-    color: 'rgba(255,255,255,0.3)',
-  },
-
-  undoBtn: {
-    alignSelf: 'center',
-    paddingHorizontal: 18,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
-  },
-  undoBtnTxt: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.65)',
-    letterSpacing: 0.3,
-  },
-
-  // ── Result card ──────────────────────────────────────────────────
-  resultScroll: {
-    borderRadius: 24,
-    flexGrow: 0,
-    maxHeight: height * 0.75,
-  },
-  resultCard: {
-    backgroundColor: '#134E4A',
-    borderRadius: 24,
-    borderWidth: 2.5,
-    borderColor: '#1A1A1A',
-    padding: isSmall ? 18 : 24,
-    shadowColor: '#1A1A1A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-    alignItems: 'center',
-    gap: isSmall ? 10 : 14,
-  },
-  resultEmoji: { fontSize: isSmall ? 36 : 44 },
-  resultTitle: {
-    fontSize: isSmall ? 22 : 28,
-    fontWeight: '900',
-    color: '#fff',
-  },
-  resultScore: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.6)',
-    marginTop: -6,
-  },
-
-  // ── Comparison block ─────────────────────────────────────────────
-  comparisonBlock: {
-    flexDirection: 'row',
-    gap: 10,
-    alignSelf: 'stretch',
-  },
-  comparisonCol: {
-    flex: 1,
-    gap: 6,
-  },
-  comparisonHead: {
-    fontSize: 9,
-    fontWeight: '800',
-    color: 'rgba(255,255,255,0.45)',
-    letterSpacing: 1.2,
-    textTransform: 'uppercase',
-    marginBottom: 2,
-  },
-  compRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    borderRadius: 10,
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-  },
-  compRowCorrect: { backgroundColor: 'rgba(16,185,129,0.18)' },
-  compRowWrong: { backgroundColor: 'rgba(239,68,68,0.18)' },
-  compRowCorrectFull: { backgroundColor: 'rgba(255,255,255,0.1)' },
-  compBadge: {
-    width: 20,
-    height: 20,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
-  compBadgeCorrect: { backgroundColor: '#10B981' },
-  compBadgeWrong: { backgroundColor: '#EF4444' },
-  compBadgeText: { fontSize: 10, fontWeight: '900', color: '#fff' },
-  compItemText: {
-    flex: 1,
-    fontSize: isSmall ? 11 : 12,
-    fontWeight: '700',
-    color: '#fff',
-  },
-
-  // ── Answer block ─────────────────────────────────────────────────
-  answerBlock: {
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 14,
-    padding: isSmall ? 12 : 16,
-    gap: 6,
-    alignItems: 'center',
-  },
-  answerTitle: {
-    fontSize: isSmall ? 13 : 15,
-    fontWeight: '900',
-    color: '#fff',
-    textAlign: 'center',
-  },
-  answerDesc: {
-    fontSize: isSmall ? 12 : 13,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.7)',
-    lineHeight: isSmall ? 18 : 20,
-    textAlign: 'center',
-  },
-  sourceBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    marginTop: 4,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 7,
-  },
-  sourceBtnTxt: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.65)',
-    letterSpacing: 0.4,
-  },
-
-  restartBtn: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.35)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: '#fff',
-    letterSpacing: 0.4,
-  },
 
   // ── Bottom panel ─────────────────────────────────────────────────
   panel: {
