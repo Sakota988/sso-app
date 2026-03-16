@@ -11,15 +11,17 @@ type Props = {
   totalCards: number;
   deckId: string;
   onBack: () => void;
+  onNext: () => void;
 };
 
 // ── Main screen ───────────────────────────────────────────────────
-export default function CardScreen({ card, cardNumber, totalCards, deckId, onBack }: Props) {
+export default function CardScreen({ card, cardNumber, totalCards, deckId, onBack, onNext }: Props) {
   if (card.type === 'KEEP_4_DROP_4') {
     return (
       <Keep4Drop4
         card={card}
         onBack={onBack}
+        onNext={onNext}
         cardNumber={cardNumber}
         totalCards={totalCards}
         deckId={deckId}
@@ -32,6 +34,7 @@ export default function CardScreen({ card, cardNumber, totalCards, deckId, onBac
       <Budgeting4x5
         card={card}
         onBack={onBack}
+        onNext={onNext}
         cardNumber={cardNumber}
         totalCards={totalCards}
         deckId={deckId}
@@ -44,6 +47,7 @@ export default function CardScreen({ card, cardNumber, totalCards, deckId, onBac
       <Blind5Rank
         card={card}
         onBack={onBack}
+        onNext={onNext}
         cardNumber={cardNumber}
         totalCards={totalCards}
         deckId={deckId}
@@ -56,6 +60,7 @@ export default function CardScreen({ card, cardNumber, totalCards, deckId, onBac
       <OpenQuestion
         card={card}
         onBack={onBack}
+        onNext={onNext}
         cardNumber={cardNumber}
         totalCards={totalCards}
         deckId={deckId}
@@ -68,6 +73,7 @@ export default function CardScreen({ card, cardNumber, totalCards, deckId, onBac
       <Order4
         card={card}
         onBack={onBack}
+        onNext={onNext}
         cardNumber={cardNumber}
         totalCards={totalCards}
         deckId={deckId}

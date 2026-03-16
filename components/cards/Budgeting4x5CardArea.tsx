@@ -1,6 +1,7 @@
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { BudgetCategory } from '../../types/deck';
 import ShareButton from '../ShareButton';
+import DoneCardButtons from '../common/DoneCardButtons';
 
 const { height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -17,6 +18,7 @@ type Props = {
   budgetTotal: number;
   onSelect: (opt: Selection) => void;
   onRestart: () => void;
+  onNext: () => void;
   shareCardRef: React.RefObject<View | null>;
   fadeAnim: Animated.Value;
   slideAnim: Animated.Value;
@@ -32,6 +34,7 @@ export default function Budgeting4x5CardArea({
   budgetTotal,
   onSelect,
   onRestart,
+  onNext,
   shareCardRef,
   fadeAnim,
   slideAnim,
@@ -76,13 +79,7 @@ export default function Budgeting4x5CardArea({
             })}
           </View>
 
-          <TouchableOpacity
-            style={styles.restartBtn}
-            onPress={onRestart}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-          </TouchableOpacity>
+          <DoneCardButtons onNext={onNext} onRestart={onRestart} marginTop={10} />
 
           <ShareButton viewRef={shareCardRef} />
         </View>
@@ -266,14 +263,4 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 16,
   },
-  restartBtn: {
-    marginTop: 10,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderWidth: 2,
-    borderColor: 'rgba(255,255,255,0.5)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: { fontSize: 15, fontWeight: '800', color: '#fff', letterSpacing: 0.4 },
 });

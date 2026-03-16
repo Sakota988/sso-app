@@ -11,6 +11,7 @@ import {
 import { CheckCircle, ExternalLink, XCircle } from 'lucide-react-native';
 import type { OpenQuestionAnswer } from '../../types/deck';
 import ShareButton from '../ShareButton';
+import DoneCardButtons from '../common/DoneCardButtons';
 
 const { height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -29,6 +30,7 @@ type Props = {
   onRevealAnswer: () => void;
   onOpenSource: () => void;
   onRestart: () => void;
+  onNext: () => void;
   shareCardRef: React.RefObject<View | null>;
   fadeAnim: Animated.Value;
 };
@@ -45,6 +47,7 @@ export default function OpenQuestionCardArea({
   onRevealAnswer,
   onOpenSource,
   onRestart,
+  onNext,
   shareCardRef,
   fadeAnim,
 }: Props) {
@@ -147,13 +150,7 @@ export default function OpenQuestionCardArea({
 
             <ShareButton viewRef={shareCardRef} />
 
-            <TouchableOpacity
-              style={styles.restartBtn}
-              onPress={onRestart}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-            </TouchableOpacity>
+            <DoneCardButtons onNext={onNext} onRestart={onRestart} />
           </ScrollView>
         )}
       </Animated.View>
@@ -337,20 +334,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.7)',
-    letterSpacing: 0.4,
-  },
-  restartBtn: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.35)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: '#fff',
     letterSpacing: 0.4,
   },
 });

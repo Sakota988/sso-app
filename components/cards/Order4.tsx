@@ -26,12 +26,13 @@ const PANEL_H = isSmall ? 130 : 160;
 type Props = {
   card: Order4Card;
   onBack: () => void;
+  onNext: () => void;
   cardNumber: number;
   totalCards: number;
   deckId: string;
 };
 
-export default function Order4({ card, onBack, deckId }: Props) {
+export default function Order4({ card, onBack, onNext, deckId }: Props) {
   const stored = useGameStore(
     (s) =>
       s.results[card.cardId]?.type === 'ORDER_4'
@@ -159,6 +160,7 @@ export default function Order4({ card, onBack, deckId }: Props) {
           onUndo={handleUndo}
           onOpenSource={handleOpenSource}
           onRestart={handleRestart}
+          onNext={onNext}
           shareCardRef={shareCardRef}
           fadeAnim={fadeAnim}
           answer={card.answer}

@@ -17,6 +17,7 @@ const PANEL_H    = isSmall ? 100 : 130;
 type Props = {
   card: Budgeting4x5Card;
   onBack: () => void;
+  onNext: () => void;
   cardNumber: number;
   totalCards: number;
   deckId: string;
@@ -24,7 +25,7 @@ type Props = {
 
 type Selection = { label: string; cost: number; auto?: boolean };
 
-export default function Budgeting4x5({ card, onBack, deckId }: Props) {
+export default function Budgeting4x5({ card, onBack, onNext, deckId }: Props) {
   const { categories, budgetTotal } = card;
   const total = categories.length;
 
@@ -189,6 +190,7 @@ export default function Budgeting4x5({ card, onBack, deckId }: Props) {
           budgetTotal={budgetTotal}
           onSelect={handleSelect}
           onRestart={handleRestart}
+          onNext={onNext}
           shareCardRef={shareCardRef}
           fadeAnim={fadeAnim}
           slideAnim={slideAnim}

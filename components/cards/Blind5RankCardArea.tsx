@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import ShareButton from '../ShareButton';
+import DoneCardButtons from '../common/DoneCardButtons';
 
 const { height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -22,6 +23,7 @@ type Props = {
   rankedItems: string[];
   onRank: (rank: number) => void;
   onRestart: () => void;
+  onNext: () => void;
   shareCardRef: React.RefObject<View | null>;
   fadeAnim: Animated.Value;
   slideAnim: Animated.Value;
@@ -40,6 +42,7 @@ export default function Blind5RankCardArea({
   rankedItems,
   onRank,
   onRestart,
+  onNext,
   shareCardRef,
   fadeAnim,
   slideAnim,
@@ -68,9 +71,7 @@ export default function Blind5RankCardArea({
             ))}
           </View>
 
-          <TouchableOpacity style={styles.restartBtn} onPress={onRestart} activeOpacity={0.8}>
-            <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-          </TouchableOpacity>
+          <DoneCardButtons onNext={onNext} onRestart={onRestart} marginTop={6} />
 
           <ShareButton viewRef={shareCardRef} />
         </View>
@@ -239,14 +240,4 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#fff',
   },
-  restartBtn: {
-    marginTop: 6,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderWidth: 2,
-    borderColor: 'rgba(255,255,255,0.5)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: { fontSize: 15, fontWeight: '800', color: '#fff', letterSpacing: 0.4 },
 });

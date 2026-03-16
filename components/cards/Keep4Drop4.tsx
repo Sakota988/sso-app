@@ -28,12 +28,13 @@ const MAX_KEEP = 4;
 type Props = {
   card: Keep4Drop4Card;
   onBack: () => void;
+  onNext: () => void;
   cardNumber: number;
   totalCards: number;
   deckId: string;
 };
 
-export default function Keep4Drop4({ card, onBack, deckId }: Props) {
+export default function Keep4Drop4({ card, onBack, onNext, deckId }: Props) {
   const [traits, setTraits] = useState<string[]>(() => shuffle([...card.traits]));
   const total = traits.length;
 
@@ -189,6 +190,7 @@ export default function Keep4Drop4({ card, onBack, deckId }: Props) {
             fadeAnim.setValue(1);
             slideAnim.setValue(0);
           }}
+          onNext={onNext}
           shareCardRef={shareCardRef}
           fadeAnim={fadeAnim}
           slideAnim={slideAnim}

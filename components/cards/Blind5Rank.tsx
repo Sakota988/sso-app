@@ -18,12 +18,13 @@ const PANEL_H = isSmall ? 120 : 155;
 type Props = {
   card: Blind5RankCard;
   onBack: () => void;
+  onNext: () => void;
   cardNumber: number;
   totalCards: number;
   deckId: string;
 };
 
-export default function Blind5Rank({ card, onBack, deckId }: Props) {
+export default function Blind5Rank({ card, onBack, onNext, deckId }: Props) {
   const { labels } = card;
   const [items, setItems] = useState<string[]>(() => shuffle([...card.items]));
   const total = items.length;
@@ -154,6 +155,7 @@ export default function Blind5Rank({ card, onBack, deckId }: Props) {
           rankedItems={rankedItems}
           onRank={handleRank}
           onRestart={handleRestart}
+          onNext={onNext}
           shareCardRef={shareCardRef}
           fadeAnim={fadeAnim}
           slideAnim={slideAnim}

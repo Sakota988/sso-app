@@ -21,13 +21,14 @@ import OpenQuestionCardArea from './OpenQuestionCardArea';
 
 const { width } = Dimensions.get('window');
 
-const CARD_W = width - 40;
+const CARD_W = width - 48;
 
 type Phase = 'input' | 'correct' | 'wrong' | 'revealed';
 
 type Props = {
   card: OpenQuestionCard;
   onBack: () => void;
+  onNext: () => void;
   cardNumber: number;
   totalCards: number;
   deckId: string;
@@ -43,7 +44,7 @@ function isMatch(userInput: string, accepted: string[]) {
   return accepted.some((a) => normalise(a) === n);
 }
 
-export default function OpenQuestion({ card, onBack, deckId }: Props) {
+export default function OpenQuestion({ card, onBack, onNext, deckId }: Props) {
   const stored = useGameStore(
     (s) =>
       s.results[card.cardId]?.type === 'OPEN_QUESTION'
@@ -169,6 +170,7 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
           onRevealAnswer={handleRevealAnswer}
           onOpenSource={handleOpenSource}
           onRestart={handleRestart}
+          onNext={onNext}
           shareCardRef={shareCardRef}
           fadeAnim={fadeAnim}
         />

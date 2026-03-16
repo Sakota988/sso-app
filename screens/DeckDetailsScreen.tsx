@@ -117,6 +117,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
 
   const content = getCardFile(deck.contentFile);
   const cards: CardItem[] = content?.cards ?? [];
+  const results = useGameStore((s) => s.results);
 
   const runSkeletonThenFadeIn = useCallback(() => {
     setIsReady(false);
@@ -154,6 +155,15 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
 
   if (selectedCard) {
     const idx = cards.findIndex((c) => c.cardId === selectedCard.cardId);
+    const handleNext = () => {
+      for (let i = idx + 1; i < cards.length; i++) {
+        if (!results[cards[i].cardId]) {
+          setSelectedCard(cards[i]);
+          return;
+        }
+      }
+      setSelectedCard(null);
+    };
     return (
       <CardScreen
         card={selectedCard}
@@ -161,6 +171,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
         totalCards={cards.length}
         deckId={deck.deckId}
         onBack={() => setSelectedCard(null)}
+        onNext={handleNext}
       />
     );
   }

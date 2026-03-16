@@ -1,6 +1,7 @@
 import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Check, X } from 'lucide-react-native';
 import ShareButton from '../ShareButton';
+import DoneCardButtons from '../common/DoneCardButtons';
 
 const { height } = Dimensions.get('window');
 const isSmall = height < 700;
@@ -22,6 +23,7 @@ type Props = {
   onKeep: () => void;
   onDrop: () => void;
   onRestart: () => void;
+  onNext: () => void;
   shareCardRef: React.RefObject<View | null>;
   fadeAnim: Animated.Value;
   slideAnim: Animated.Value;
@@ -42,6 +44,7 @@ export default function Keep4Drop4CardArea({
   onKeep,
   onDrop,
   onRestart,
+  onNext,
   shareCardRef,
   fadeAnim,
   slideAnim,
@@ -57,13 +60,7 @@ export default function Keep4Drop4CardArea({
           <Text style={styles.doneSubTxt}>
             Zadržao/la si {keptCount} osobine
           </Text>
-          <TouchableOpacity
-            style={styles.restartBtn}
-            onPress={onRestart}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.restartBtnTxt}>↺  Ponovi pitanje</Text>
-          </TouchableOpacity>
+          <DoneCardButtons onNext={onNext} onRestart={onRestart} marginTop={20} />
 
           <ShareButton viewRef={shareCardRef} />
         </View>
@@ -231,19 +228,4 @@ const styles = StyleSheet.create({
   doneEmoji: { fontSize: isSmall ? 36 : 48 },
   doneTxt: { fontSize: isSmall ? 22 : 28, fontWeight: '900', color: '#fff' },
   doneSubTxt: { fontSize: isSmall ? 12 : 14, color: 'rgba(255,255,255,0.7)', fontWeight: '600' },
-  restartBtn: {
-    marginTop: 20,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderWidth: 2,
-    borderColor: 'rgba(255,255,255,0.5)',
-    paddingHorizontal: 28,
-    paddingVertical: 12,
-    borderRadius: 50,
-  },
-  restartBtnTxt: {
-    fontSize: 15,
-    fontWeight: '800',
-    color: '#fff',
-    letterSpacing: 0.4,
-  },
 });
