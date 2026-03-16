@@ -116,21 +116,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
   const listOpacity = useRef(new Animated.Value(0)).current;
 
   const content = getCardFile(deck.contentFile);
-  const rawCards: CardItem[] = content?.cards ?? [];
-
-  const shuffleCards = useCallback((arr: CardItem[]) => {
-    if (arr.length === 0) return [];
-    const shuffled = [...arr];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  }, []);
-
-  const [cards, setCards] = useState<CardItem[]>(() => shuffleCards(rawCards));
-
-  const prevSelectedRef = useRef<CardItem | null>(null);
+  const cards: CardItem[] = content?.cards ?? [];
 
   const runSkeletonThenFadeIn = useCallback(() => {
     setIsReady(false);
@@ -150,15 +136,6 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
   useEffect(() => {
     return runSkeletonThenFadeIn();
   }, [runSkeletonThenFadeIn]);
-
-  // Return from card: reshuffle and show skeleton then fade in
-  useEffect(() => {
-    if (prevSelectedRef.current && !selectedCard) {
-      setCards(shuffleCards(rawCards));
-      return runSkeletonThenFadeIn();
-    }
-    prevSelectedRef.current = selectedCard;
-  }, [selectedCard, rawCards, shuffleCards, runSkeletonThenFadeIn]);
 
   // Defer mounting the heavy card component until after the press animation
   const handleCardPress = useCallback((card: CardItem) => {

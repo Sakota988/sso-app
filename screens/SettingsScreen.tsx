@@ -1,15 +1,66 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Linking, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Settings } from 'lucide-react-native';
+import Constants from 'expo-constants';
+import { Settings, ExternalLink, Mail } from 'lucide-react-native';
+
+// Replace with your actual URLs before App Store submission
+const PRIVACY_POLICY_URL = 'https://example.com/privacy';
+const TERMS_URL = 'https://example.com/terms';
+const SUPPORT_EMAIL = 'mailto:support@example.com';
+
+async function openUrl(url: string) {
+  const canOpen = await Linking.canOpenURL(url);
+  if (canOpen) Linking.openURL(url);
+}
+
+function SettingsRow({
+  icon: Icon,
+  label,
+  onPress,
+}: {
+  icon: React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <Pressable style={({ pressed }) => [styles.row, pressed && styles.rowPressed]} onPress={onPress}>
+      <Icon size={20} color="#FF9A5C" strokeWidth={1.5} />
+      <Text style={styles.rowLabel}>{label}</Text>
+      <ExternalLink size={16} color="rgba(40,40,40,0.4)" strokeWidth={1.5} />
+    </Pressable>
+  );
+}
 
 export default function SettingsScreen() {
+  const appVersion = Constants.expoConfig?.version ?? '1.0.0';
+
   return (
     <LinearGradient colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']} style={styles.container}>
       <View style={styles.iconWrapper}>
         <Settings size={48} color="#FF9A5C" strokeWidth={1.5} />
       </View>
       <Text style={styles.title}>Podešavanja</Text>
-      <Text style={styles.subtitle}>Sadržaj dolazi uskoro</Text>
+
+      <View style={styles.section}>
+        <SettingsRow
+          icon={ExternalLink}
+          label="Politika privatnosti"
+          onPress={() => openUrl(PRIVACY_POLICY_URL)}
+        />
+        <SettingsRow
+          icon={ExternalLink}
+          label="Uslovi korišćenja"
+          onPress={() => openUrl(TERMS_URL)}
+        />
+        <SettingsRow
+          icon={Mail}
+          label="Kontakt / Podrška"
+          onPress={() => openUrl(SUPPORT_EMAIL)}
+        />
+      </View>
+
+      <Text style={styles.version}>Verzija {appVersion}</Text>
     </LinearGradient>
   );
 }
@@ -18,8 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
+    paddingTop: 40,
   },
   iconWrapper: {
     width: 90,
@@ -34,9 +84,35 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '800',
     color: '#1A1A1A',
+    marginBottom: 24,
   },
-  subtitle: {
-    fontSize: 14,
+  section: {
+    width: '100%',
+    maxWidth: 340,
+    backgroundColor: 'rgba(255,255,255,0.6)',
+    borderRadius: 16,
+    overflow: 'hidden',
+    paddingVertical: 4,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+  },
+  rowPressed: {
+    opacity: 0.7,
+  },
+  rowLabel: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  version: {
+    marginTop: 24,
+    fontSize: 13,
     color: 'rgba(40,40,40,0.5)',
     fontWeight: '500',
   },

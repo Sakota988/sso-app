@@ -4,32 +4,32 @@
     {
       "deckId": "starter",
       "type": "mixed",
-      "title": "Starter",
+      "title": "Starter 1",
       "description": "Za početak — malo svega.",
       "isFree": true,
       "productId": null,
-      "cardCount": 10,
-      "contentFile": "deck-starter.json"
+      "cardCount": 50,
+      "contentFile": "sva-pitanja-1.json"
     },
     {
       "deckId": "budzetiranje",
       "type": "budzet",
-      "title": "Mixeta",
+      "title": "Starter 2",
       "description": "Za početak — malo svega.",
       "isFree": true,
       "productId": null,
-      "cardCount": 10,
-      "contentFile": "deck-starter.json"
+      "cardCount": 50,
+      "contentFile": "sva-pitanja-2.json"
     },
     {
-      "deckId": "red-flags",
+      "deckId": "uskoro",
       "type": "mixed",
-      "title": "Red",
-      "description": "Zašto je ovo red flag? 🙂",
+      "title": "Uskoro",
+      "description": "Uskoro će biti ovde.",
       "isFree": false,
-      "productId": "com.tvojaapp.redflags",
-      "cardCount": 6,
-      "contentFile": "deck-red-flags.json"
+      "productId": null,
+      "cardCount": 0,
+      "contentFile": "sva-pitanja-3.json"
     }
   ]
 }
