@@ -82,7 +82,7 @@
       "title": "Napravi savršen auto",
       "shortTitle": "Auto",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "brend",
@@ -462,7 +462,7 @@
       "title": "Napravi savršenog dečka",
       "shortTitle": "Savršen dečko",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "stil",
@@ -653,7 +653,7 @@
       "title": "Napravi savršen prvi dejt",
       "shortTitle": "Prvi dejt",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "mesto",
@@ -843,7 +843,7 @@
       "title": "Napravi savršenu devojku",
       "shortTitle": "Savršena devojka",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "stil",

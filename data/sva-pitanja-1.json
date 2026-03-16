@@ -84,7 +84,7 @@
       "title": "Napravi savršeno filmsko veče",
       "shortTitle": "Filmsko veče",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "film",
@@ -273,7 +273,7 @@
       "title": "Napravi savršen vikend put",
       "shortTitle": "Vikend put",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "destinacija",
@@ -462,7 +462,7 @@
       "title": "Napravi savršeno kampovanje",
       "shortTitle": "Kampovanje",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "sator",
@@ -653,7 +653,7 @@
       "title": "Napravi savršen gaming dan",
       "shortTitle": "Gaming dan",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "igra",
@@ -842,7 +842,7 @@
       "title": "Napravi savršen cheat meal",
       "shortTitle": "Cheat meal",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "jelo",
@@ -1031,7 +1031,7 @@
       "title": "Napravi savršenu kućnu žurku",
       "shortTitle": "Kućna žurka",
       "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "muzika",

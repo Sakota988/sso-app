@@ -5,9 +5,9 @@ import ShareButton from '../ShareButton';
 const { height } = Dimensions.get('window');
 const isSmall = height < 700;
 
-const PANEL_H = isSmall ? 140 : 190;
+const PANEL_H = isSmall ? 110 : 150;
 const HEADER_TOP = isSmall ? 44 : 64;
-const TRAIT_FONT = isSmall ? 26 : 36;
+const TRAIT_FONT = isSmall ? 20 : 28;
 const RESERVED = HEADER_TOP + 55 + (isSmall ? 44 : 80) + PANEL_H + 22 + 36;
 
 type Props = {

@@ -21,7 +21,7 @@ import OpenQuestionCardArea from './OpenQuestionCardArea';
 
 const { width } = Dimensions.get('window');
 
-const CARD_W = width - 48;
+const CARD_W = width - 40;
 
 type Phase = 'input' | 'correct' | 'wrong' | 'revealed';
 
@@ -155,7 +155,7 @@ export default function OpenQuestion({ card, onBack, deckId }: Props) {
           progressPillStyle={isDone ? styles.progressPillDone : undefined}
         />
 
-        {!isDone && <CardTitle title={card.title} color="#5B21B6" />}
+        <CardTitle title={card.title} color="#5B21B6" />
 
         <OpenQuestionCardArea
           cardWidth={CARD_W}

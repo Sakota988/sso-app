@@ -11,9 +11,9 @@ import Budgeting4x5CardArea from './Budgeting4x5CardArea';
 const { width, height } = Dimensions.get('window');
 const isSmall = height < 700;
 
-const CARD_W     = width - 48;
+const CARD_W     = width - 40;
 const HEADER_TOP = isSmall ? 44 : 64;
-const PANEL_H    = isSmall ? 120 : 155;
+const PANEL_H    = isSmall ? 100 : 130;
 type Props = {
   card: Budgeting4x5Card;
   onBack: () => void;
@@ -279,12 +279,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 16,
-    marginBottom: 12,
+    marginBottom: 8,
     backgroundColor: 'rgba(255,255,255,0.72)',
-    borderRadius: 14,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    gap: 10,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    gap: 8,
   },
   budgetLabel: {
     fontSize: 10,
@@ -317,11 +317,11 @@ const styles = StyleSheet.create({
   // ── Bottom panel ────────────────────────────────────────────────
   panel: {
     backgroundColor: 'rgba(255,255,255,0.9)',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    paddingTop: isSmall ? 12 : 16,
-    paddingHorizontal: 20,
-    paddingBottom: isSmall ? 16 : 24,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingTop: isSmall ? 10 : 12,
+    paddingHorizontal: 16,
+    paddingBottom: isSmall ? 12 : 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.07,

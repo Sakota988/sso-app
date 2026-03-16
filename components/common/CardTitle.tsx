@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet, Text } from 'react-native';
 
 const { height } = Dimensions.get('window');
 const isSmall    = height < 700;
-const FONT       = isSmall ? 22 : 38;
+const FONT       = isSmall ? 22 : 30;
 
 type Props = {
   title: string;
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 8,
     paddingHorizontal: 20,
-    paddingVertical: isSmall ? 6 : 16,
+    paddingVertical: isSmall ? 6 : 12,
   },
 });
