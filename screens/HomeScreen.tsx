@@ -1,5 +1,6 @@
-import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Trash2 } from 'lucide-react-native';
 import {
   useGameStore,
@@ -32,6 +33,14 @@ const TYPE_COLORS: Record<string, string> = {
   OPEN_QUESTION: '#5B21B6',
   ORDER_4:       '#134E4A',
 };
+
+const SOCIAL_LINKS = [
+  { name: 'youtube', url: 'https://www.youtube.com/@slusajsadovo', color: '#FF0000' },
+  { name: 'instagram', url: 'https://www.instagram.com/slusaj.sad.ovo/', color: '#E4405F' },
+  { name: 'tiktok', url: 'https://www.tiktok.com/@slusajsadovo', color: '#000000' },
+  { name: 'facebook', url: 'https://www.facebook.com/slusajsadovo/', color: '#1877F2' },
+  { name: 'spotify', url: 'https://shorturl.at/Eq53g', color: '#1DB954' },
+] as const;
 
 function formatDate(ts: number): string {
   const d = new Date(ts);
@@ -165,6 +174,25 @@ function HistoryCard({ result }: { result: CardResult }) {
   );
 }
 
+// ── Social links ───────────────────────────────────────────────────
+
+function SocialLinks() {
+  return (
+    <View style={styles.socialRow}>
+      {SOCIAL_LINKS.map(({ name, url, color }) => (
+        <TouchableOpacity
+          key={name}
+          style={[styles.socialBtn, { backgroundColor: color }]}
+          onPress={() => Linking.openURL(url).catch(() => {})}
+          activeOpacity={0.8}
+        >
+          <FontAwesome5 name={name} size={20} color="#fff" brand />
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+}
+
 // ── Screen ────────────────────────────────────────────────────────
 
 export default function HomeScreen() {
@@ -220,6 +248,11 @@ export default function HomeScreen() {
       <View style={[styles.floatingHeader, { top: HEADER_TOP }]}>
         <Text style={styles.screenTitle}>Istorija igara</Text>
       </View>
+
+      {/* Fixed footer - social links */}
+      <View style={styles.socialFooter}>
+        <SocialLinks />
+      </View>
     </View>
   );
 }
@@ -250,7 +283,7 @@ const styles = StyleSheet.create({
   },
 
   // List
-  list: { paddingHorizontal: 16, paddingBottom: 110 },
+  list: { paddingHorizontal: 16, paddingBottom: 180 },
   separator: { height: 12 },
 
   // Stats row
@@ -275,6 +308,30 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(239,68,68,0.25)',
   },
   clearBtnText: { fontSize: 12, fontWeight: '700', color: '#EF4444' },
+
+  // Social links
+  socialFooter: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
+  socialRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 12,
+  },
+  socialBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
   // Empty state
   emptyBox: {
