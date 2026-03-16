@@ -80,7 +80,7 @@ export default function OpenQuestionCardArea({
               disabled={!inputValue.trim()}
               activeOpacity={0.8}
             >
-              <Text style={styles.submitBtnTxt}>PROVJERI ODGOVOR</Text>
+              <Text style={styles.submitBtnTxt}>PROVERI ODGOVOR</Text>
             </TouchableOpacity>
           </View>
         )}

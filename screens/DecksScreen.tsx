@@ -112,8 +112,10 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
 export default function DecksScreen() {
   const [isReady, setIsReady] = useState(false);
   const listOpacity = useRef(new Animated.Value(0)).current;
-  const totalPlayed = useGameStore((s) => Object.keys(s.results).length);
-  const freeDecks = DECKS.filter((d) => d.isFree).length;
+  const results = useGameStore((s) => s.results);
+  const completedCount = Object.keys(results).length;
+  const totalCards = DECKS.reduce((sum, d) => sum + d.cardCount, 0);
+  const completionPercent = totalCards > 0 ? Math.round((completedCount / totalCards) * 100) : 0;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -149,7 +151,6 @@ export default function DecksScreen() {
             <View style={styles.skeletonTagline} />
             <View style={styles.skeletonStatsRow}>
               <View style={styles.skeletonStatPill} />
-              <View style={styles.skeletonStatPill} />
             </View>
             <View style={styles.skeletonSectionRow} />
           </View>
@@ -177,12 +178,8 @@ export default function DecksScreen() {
               <Text style={styles.tagline}>Izaberi špil i zaigraj</Text>
               <View style={styles.statsRow}>
                 <View style={styles.statPill}>
-                  <Text style={styles.statNumber}>{totalPlayed}</Text>
-                  <Text style={styles.statLabel}>odigrano</Text>
-                </View>
-                <View style={styles.statPill}>
-                  <Text style={styles.statNumber}>{freeDecks}</Text>
-                  <Text style={styles.statLabel}>špilova</Text>
+                  <Text style={styles.statNumber}>{completionPercent}%</Text>
+                  <Text style={styles.statLabel}>Pitanja završeno</Text>
                 </View>
               </View>
               <View style={styles.sectionRow}>
