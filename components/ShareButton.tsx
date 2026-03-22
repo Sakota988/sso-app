@@ -19,7 +19,7 @@ export default function ShareButton({ viewRef }: Props) {
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(uri, {
           mimeType: 'image/png',
-          dialogTitle: 'Podijeli rezultate',
+          dialogTitle: 'Podeli rezultate',
         });
       }
     } finally {
@@ -36,7 +36,7 @@ export default function ShareButton({ viewRef }: Props) {
     >
       <Share2 size={16} color="#fff" strokeWidth={2.5} />
       <Text style={styles.label}>
-        {sharing ? 'Generiše...' : 'Podijeli rezultate'}
+        {sharing ? 'Generiše...' : 'Podeli rezultate'}
       </Text>
     </TouchableOpacity>
   );

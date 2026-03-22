@@ -69,7 +69,7 @@ export default function WelcomeModal() {
               <View style={styles.step}>
                 <View style={styles.stepDot} />
                 <Text style={styles.stepText}>
-                  Želiš još pitanja? Kupi novi špil i pomozi nam da rastemo! 🙌
+                  Želiš još pitanja? Dolazi uskoro! 🙌
                 </Text>
               </View>
             </View>

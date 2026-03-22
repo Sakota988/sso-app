@@ -236,7 +236,7 @@ export default function HomeScreen() {
             <Text style={styles.emptyEmoji}>🎮</Text>
             <Text style={styles.emptyTitle}>Nema istorije</Text>
             <Text style={styles.emptySubtitle}>
-              Odigraj neku karticu i ovdje ćeš vidjeti rezultate.
+              Odigraj neku karticu i ovdje ćeš videti rezultate.
             </Text>
           </View>
         }
