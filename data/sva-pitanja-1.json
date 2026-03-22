@@ -1,6 +1,22 @@
 {
-  "deckId": "sva-pitanja-1",
+  "deckId": "deck-1",
   "cards": [
+    {
+      "cardId": "starter-oq-04",
+      "type": "OPEN_QUESTION",
+      "title": "Piramide",
+      "shortTitle": "Piramide",
+      "description": "Pogodi državu.",
+      "question": "Koja država ima najviše piramida na svetu?",
+      "acceptedAnswers": [
+        "Sudan",
+        "sudan"
+      ],
+      "answer": {
+        "title": "Sudan",
+        "description": "Sudan ima više od 200 piramida — više od Egipta."
+      }
+    },
     {
       "cardId": "starter-oq-05",
       "type": "OPEN_QUESTION",
@@ -20,366 +36,42 @@
       }
     },
     {
-      "cardId": "starter-ord-08",
-      "type": "ORDER_4",
-      "title": "NBA igrači",
-      "shortTitle": "NBA",
-      "description": "Poredaj od najvišeg do najnižeg.",
-      "question": "Poredjaj NBA igrače od najvišeg do najnižeg",
-      "items": [
-        "Divac",
-        "Jokić",
-        "Stojaković",
-        "Bogdanović"
-      ],
-      "correctOrder": [
-        "Divac",
-        "Jokić",
-        "Stojaković",
-        "Bogdanović"
-      ],
-      "answer": {
-        "title": "Divac → Jokić → Stojaković → Bogdanović",
-        "description": "Divac 216 cm, Jokić 211 cm, Stojaković 206 cm, Bogdanović 198 cm."
-      }
-    },
-    {
-      "cardId": "starter-k4-09",
-      "type": "KEEP_4_DROP_4",
-      "title": "Brendovi satova",
-      "shortTitle": "Satovi",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Tissot",
-        "Rolex",
-        "Audemars Piguet",
-        "Breitling",
-        "Cartier",
-        "Swatch",
-        "Seiko",
-        "Tag Heuer"
-      ]
-    },
-    {
-      "cardId": "starter-b5-09",
-      "type": "BLIND_5_RANK",
-      "title": "Najboljih burgera",
-      "shortTitle": "Burgeri",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Burger iz Lidla",
-        "Homemade burger",
-        "Burger sa benzinske pumpe",
-        "Burger iz školske kantine",
-        "Burger iz McDonald'sa"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najgori"
-      }
-    },
-    {
-      "cardId": "starter-bud-05",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršeno filmsko veče",
-      "shortTitle": "Filmsko veče",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
-      "categories": [
-        {
-          "categoryId": "film",
-          "title": "Film",
-          "options": [
-            {
-              "label": "Loš horor iz 90-ih",
-              "cost": 1
-            },
-            {
-              "label": "Random Netflix film",
-              "cost": 2
-            },
-            {
-              "label": "Dobra komedija",
-              "cost": 3
-            },
-            {
-              "label": "Kultni film",
-              "cost": 4
-            },
-            {
-              "label": "Tvoj omiljeni film svih vremena",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "grickalice",
-          "title": "Grickalice",
-          "options": [
-            {
-              "label": "Šaka kokica",
-              "cost": 1
-            },
-            {
-              "label": "Čips",
-              "cost": 2
-            },
-            {
-              "label": "Kokice + čokolada",
-              "cost": 3
-            },
-            {
-              "label": "Nachos + sos",
-              "cost": 4
-            },
-            {
-              "label": "Full snack sto",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "drustvo",
-          "title": "Društvo",
-          "options": [
-            {
-              "label": "Sam",
-              "cost": 1
-            },
-            {
-              "label": "Jedan drug",
-              "cost": 2
-            },
-            {
-              "label": "Dvoje prijatelja",
-              "cost": 3
-            },
-            {
-              "label": "Mala ekipa",
-              "cost": 4
-            },
-            {
-              "label": "Ekipa koja stalno pravi fore",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "mesto",
-          "title": "Mesto",
-          "options": [
-            {
-              "label": "Mali laptop",
-              "cost": 1
-            },
-            {
-              "label": "TV u sobi",
-              "cost": 2
-            },
-            {
-              "label": "Veliki TV",
-              "cost": 3
-            },
-            {
-              "label": "Projektor",
-              "cost": 4
-            },
-            {
-              "label": "Kućni bioskop",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-oq-09",
+      "cardId": "starter-oq-06",
       "type": "OPEN_QUESTION",
-      "title": "Vremenske zone",
-      "shortTitle": "Vremenske zone",
-      "description": "Koja država?",
-      "question": "Koja država ima najviše vremenskih zona?",
+      "title": "Otrovni sisar",
+      "shortTitle": "Otrovni sisar",
+      "description": "Koja životinja?",
+      "question": "Koja životinja je jedini otrovni sisar?",
       "acceptedAnswers": [
-        "Francuska",
-        "francuska"
+        "Spori Loris",
+        "Slow loris",
+        "Loris",
+        "loris"
       ],
       "answer": {
-        "title": "Francuska",
-        "description": "Francuska ima 12 vremenskih zona zbog prekomorskih teritorija."
+        "title": "Spori Loris (Slow loris)",
+        "description": "Spori loris je jedini poznati otrovni sisar."
       }
     },
     {
-      "cardId": "starter-ord-10",
-      "type": "ORDER_4",
-      "title": "Države po teritoriji",
-      "shortTitle": "Države",
-      "description": "Poredaj od najveće do najmanje.",
-      "question": "Poredjaj države po veličini teritorije od najveće do najmanje",
-      "items": [
-        "Srbija",
-        "Gruzija",
-        "Švajcarska",
-        "Makedonija"
-      ],
-      "correctOrder": [
-        "Srbija",
-        "Gruzija",
-        "Švajcarska",
-        "Makedonija"
+      "cardId": "starter-oq-07",
+      "type": "OPEN_QUESTION",
+      "title": "Sisar koji leti",
+      "shortTitle": "Leteći sisar",
+      "description": "Koji sisar leti?",
+      "question": "Koji jedini sisar može da leti?",
+      "acceptedAnswers": [
+        "Slepi miš",
+        "slepi miš",
+        "Slepi mis",
+        "slepi mis",
+        "Šišmiš",
+        "šišmiš"
       ],
       "answer": {
-        "title": "Srbija → Gruzija → Švajcarska → Makedonija",
-        "description": "Srbija ~88k km², Gruzija ~70k, Švajcarska ~41k, Makedonija ~26k km²."
+        "title": "Slepi miš",
+        "description": "Slepi miševi su jedini sisari koji mogu aktivno da lete."
       }
-    },
-    {
-      "cardId": "starter-k4-06",
-      "type": "KEEP_4_DROP_4",
-      "title": "Slatkiši",
-      "shortTitle": "Slatkiši",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Palačinke",
-        "Torta",
-        "Sladoled",
-        "Čokolada",
-        "Krofne",
-        "Baklava",
-        "Cheesecake",
-        "Tiramisu"
-      ]
-    },
-    {
-      "cardId": "starter-b5-04",
-      "type": "BLIND_5_RANK",
-      "title": "Najbolje kuhinje",
-      "shortTitle": "Kuhinje",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Italijanska",
-        "Meksička",
-        "Japanska",
-        "Mamina kuhinja",
-        "Tajlandska"
-      ],
-      "labels": {
-        "rank1": "Najbolja",
-        "rank5": "Najmanje dobra"
-      }
-    },
-    {
-      "cardId": "starter-bud-06",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršen vikend put",
-      "shortTitle": "Vikend put",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
-      "categories": [
-        {
-          "categoryId": "destinacija",
-          "title": "Destinacija",
-          "options": [
-            {
-              "label": "Obližnji grad",
-              "cost": 1
-            },
-            {
-              "label": "Planinsko selo",
-              "cost": 2
-            },
-            {
-              "label": "Veliki grad",
-              "cost": 3
-            },
-            {
-              "label": "More",
-              "cost": 4
-            },
-            {
-              "label": "Egzotična destinacija",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "prevoz",
-          "title": "Prevoz",
-          "options": [
-            {
-              "label": "Autobus bez klime",
-              "cost": 1
-            },
-            {
-              "label": "Voz",
-              "cost": 2
-            },
-            {
-              "label": "Deljenje auta",
-              "cost": 3
-            },
-            {
-              "label": "Sopstveni auto",
-              "cost": 4
-            },
-            {
-              "label": "Avion",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "smestaj",
-          "title": "Smeštaj",
-          "options": [
-            {
-              "label": "Hostel sa 10 ljudi",
-              "cost": 1
-            },
-            {
-              "label": "Jeftin motel",
-              "cost": 2
-            },
-            {
-              "label": "Airbnb",
-              "cost": 3
-            },
-            {
-              "label": "Lep hotel",
-              "cost": 4
-            },
-            {
-              "label": "Luksuzni resort",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "drustvo",
-          "title": "Društvo",
-          "options": [
-            {
-              "label": "Sam",
-              "cost": 1
-            },
-            {
-              "label": "Kolega",
-              "cost": 2
-            },
-            {
-              "label": "Dobri prijatelji",
-              "cost": 3
-            },
-            {
-              "label": "Najbolji prijatelj",
-              "cost": 4
-            },
-            {
-              "label": "Partner",
-              "cost": 5
-            }
-          ]
-        }
-      ]
     },
     {
       "cardId": "starter-oq-08",
@@ -422,6 +114,102 @@
       }
     },
     {
+      "cardId": "starter-ord-05",
+      "type": "ORDER_4",
+      "title": "Sportisti",
+      "shortTitle": "Sportisti",
+      "description": "Poredaj od najstarijeg do najmlađeg.",
+      "question": "Poredjaj sportiste od najstarijeg do najmlađeg",
+      "items": [
+        "Đoković",
+        "Bogdanović",
+        "Mitrović",
+        "Vlahović"
+      ],
+      "correctOrder": [
+        "Đoković",
+        "Mitrović",
+        "Bogdanović",
+        "Vlahović"
+      ],
+      "answer": {
+        "title": "Đoković (1987) → Mitrović (1993) → Bogdanović (1992) → Vlahović (2000)",
+        "description": "Đoković je najstariji, Vlahović najmlađi."
+      }
+    },
+    {
+      "cardId": "starter-ord-06",
+      "type": "ORDER_4",
+      "title": "Gradovi po populaciji",
+      "shortTitle": "Gradovi",
+      "description": "Poredaj od najmanjeg do najvećeg.",
+      "question": "Poredjaj gradove po populaciji od najmanjeg do najvećeg",
+      "items": [
+        "Sarajevo",
+        "Ljubljana",
+        "Zagreb",
+        "Beograd"
+      ],
+      "correctOrder": [
+        "Ljubljana",
+        "Sarajevo",
+        "Zagreb",
+        "Beograd"
+      ],
+      "answer": {
+        "title": "Ljubljana → Sarajevo → Zagreb → Beograd",
+        "description": "Beograd ima najveću populaciju, Ljubljana najmanju."
+      }
+    },
+    {
+      "cardId": "starter-ord-07",
+      "type": "ORDER_4",
+      "title": "Reke",
+      "shortTitle": "Reke",
+      "description": "Poredaj od najduže do najkraće.",
+      "question": "Poredjaj reke od najduže do najkraće",
+      "items": [
+        "Sava",
+        "Tisa",
+        "Drina",
+        "Velika Morava"
+      ],
+      "correctOrder": [
+        "Sava",
+        "Tisa",
+        "Drina",
+        "Velika Morava"
+      ],
+      "answer": {
+        "title": "Sava → Tisa → Drina → Velika Morava",
+        "description": "Sava ~990 km, Tisa ~966 km, Drina ~346 km, Velika Morava ~185 km."
+      }
+    },
+    {
+      "cardId": "starter-ord-08",
+      "type": "ORDER_4",
+      "title": "NBA igrači",
+      "shortTitle": "NBA",
+      "description": "Poredaj od najvišeg do najnižeg.",
+      "question": "Poredjaj NBA igrače od najvišeg do najnižeg",
+      "items": [
+        "Divac",
+        "Jokić",
+        "Stojaković",
+        "Bogdanović"
+      ],
+      "correctOrder": [
+        "Divac",
+        "Jokić",
+        "Stojaković",
+        "Bogdanović"
+      ],
+      "answer": {
+        "title": "Divac → Jokić → Stojaković → Bogdanović",
+        "description": "Divac 216 cm, Jokić 211 cm, Stojaković 206 cm, Bogdanović 198 cm."
+      }
+    },
+    {
       "cardId": "starter-k4-05",
       "type": "KEEP_4_DROP_4",
       "title": "Balkanska jela",
@@ -439,17 +227,122 @@
       ]
     },
     {
-      "cardId": "starter-b5-08",
+      "cardId": "starter-k4-06",
+      "type": "KEEP_4_DROP_4",
+      "title": "Slatkiši",
+      "shortTitle": "Slatkiši",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Palačinke",
+        "Torta",
+        "Sladoled",
+        "Čokolada",
+        "Krofne",
+        "Baklava",
+        "Cheesecake",
+        "Tiramisu"
+      ]
+    },
+    {
+      "cardId": "starter-k4-07",
+      "type": "KEEP_4_DROP_4",
+      "title": "Brza hrana",
+      "shortTitle": "Brza hrana",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Pizza",
+        "Burger",
+        "Hot dog",
+        "Pomfrit",
+        "Tortilja",
+        "Pohovana piletina",
+        "Sendvič",
+        "Tacos"
+      ]
+    },
+    {
+      "cardId": "starter-k4-08",
+      "type": "KEEP_4_DROP_4",
+      "title": "Kućni ljubimci",
+      "shortTitle": "Ljubimci",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Pas",
+        "Mačka",
+        "Papagaj",
+        "Zec",
+        "Hrčak",
+        "Akvarijumske ribice",
+        "Kornjača",
+        "Zmija"
+      ]
+    },
+    {
+      "cardId": "starter-b5-04",
       "type": "BLIND_5_RANK",
-      "title": "Najbolje fudbalske lige",
-      "shortTitle": "Lige",
+      "title": "Najbolje kuhinje",
+      "shortTitle": "Kuhinje",
       "description": "Rangiraj od 1 do 5.",
       "items": [
-        "Premier League",
-        "La Liga",
-        "Srpska Superliga",
-        "Indijska liga",
-        "Kazahstanska liga"
+        "Italijanska",
+        "Meksička",
+        "Japanska",
+        "Mamina kuhinja",
+        "Tajlandska"
+      ],
+      "labels": {
+        "rank1": "Najbolja",
+        "rank5": "Najmanje dobra"
+      }
+    },
+    {
+      "cardId": "starter-b5-05",
+      "type": "BLIND_5_RANK",
+      "title": "Najlepše evropske gradove",
+      "shortTitle": "Gradovi",
+      "description": "Rangiraj od 1 do 5.",
+      "items": [
+        "Tirana",
+        "Beč",
+        "Amsterdam",
+        "Niš",
+        "Prag"
+      ],
+      "labels": {
+        "rank1": "Najlepši",
+        "rank5": "Najmanje lep"
+      }
+    },
+    {
+      "cardId": "starter-b5-06",
+      "type": "BLIND_5_RANK",
+      "title": "Najbolje filmove svih vremena",
+      "shortTitle": "Filmovi",
+      "description": "Rangiraj od 1 do 5.",
+      "items": [
+        "The Godfather",
+        "Titanic",
+        "The Dark Knight",
+        "Pulp Fiction",
+        "Forrest Gump"
+      ],
+      "labels": {
+        "rank1": "Najbolji",
+        "rank5": "Najmanje dobar"
+      }
+    },
+    {
+      "cardId": "starter-b5-07",
+      "type": "BLIND_5_RANK",
+      "title": "Najbolje vrste pizza",
+      "shortTitle": "Pizza",
+      "description": "Rangiraj od 1 do 5.",
+      "items": [
+        "Pizza iz Napulja",
+        "Pizza iz Rima",
+        "Smrznuta pizza iz supermarketa",
+        "Pizza sa ananasom",
+        "Školska pizza iz menze"
       ],
       "labels": {
         "rank1": "Najbolja",
@@ -461,8 +354,8 @@
       "type": "BUDGETING_4x5",
       "title": "Napravi savršeno kampovanje",
       "shortTitle": "Kampovanje",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
+      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 20,
       "categories": [
         {
           "categoryId": "sator",
@@ -571,138 +464,35 @@
       ]
     },
     {
-      "cardId": "starter-oq-06",
-      "type": "OPEN_QUESTION",
-      "title": "Otrovni sisar",
-      "shortTitle": "Otrovni sisar",
-      "description": "Koja životinja?",
-      "question": "Koja životinja je jedini otrovni sisar?",
-      "acceptedAnswers": [
-        "Spori Loris",
-        "Slow loris",
-        "Loris",
-        "loris"
-      ],
-      "answer": {
-        "title": "Spori Loris (Slow loris)",
-        "description": "Spori loris je jedini poznati otrovni sisar."
-      }
-    },
-    {
-      "cardId": "starter-ord-12",
-      "type": "ORDER_4",
-      "title": "Hrana po kalorijama",
-      "shortTitle": "Kalorije",
-      "description": "Poredaj od najkaloričnije.",
-      "question": "Poredjaj hranu po broju kalorija na 100g od najkaloričnije",
-      "items": [
-        "Puter",
-        "Mlečna čokolada",
-        "Beli hleb",
-        "Jabuka"
-      ],
-      "correctOrder": [
-        "Puter",
-        "Mlečna čokolada",
-        "Beli hleb",
-        "Jabuka"
-      ],
-      "answer": {
-        "title": "Puter → Mlečna čokolada → Beli hleb → Jabuka",
-        "description": "Puter ~717, čokolada ~535, hleb ~265, jabuka ~52 kcal/100g."
-      }
-    },
-    {
-      "cardId": "starter-k4-12",
-      "type": "KEEP_4_DROP_4",
-      "title": "Alkoholna pića",
-      "shortTitle": "Alkohol",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Pivo",
-        "Vino",
-        "Rakija",
-        "Viski",
-        "Vodka",
-        "Tekila",
-        "Džin",
-        "Vinjak"
-      ]
-    },
-    {
-      "cardId": "starter-b5-13",
-      "type": "BLIND_5_RANK",
-      "title": "Najgora saobraćajna sredstva za putovanje u 10 ujutru",
-      "shortTitle": "Prevoz",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Skuter",
-        "Gradski autobus",
-        "Fiat Punto bez klime",
-        "Voz",
-        "Avion"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-bud-08",
+      "cardId": "starter-bud-05",
       "type": "BUDGETING_4x5",
-      "title": "Napravi savršen gaming dan",
-      "shortTitle": "Gaming dan",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
+      "title": "Napravi savršeno filmsko veče",
+      "shortTitle": "Filmsko veče",
+      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 20,
       "categories": [
         {
-          "categoryId": "igra",
-          "title": "Igra",
+          "categoryId": "film",
+          "title": "Film",
           "options": [
             {
-              "label": "Random mobilna igra",
+              "label": "Loš horor iz 90-ih",
               "cost": 1
             },
             {
-              "label": "Stara igra",
+              "label": "Random Netflix film",
               "cost": 2
             },
             {
-              "label": "Popularna online igra",
+              "label": "Dobra komedija",
               "cost": 3
             },
             {
-              "label": "AAA igra",
+              "label": "Kultni film",
               "cost": 4
             },
             {
-              "label": "Tvoja omiljena igra",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "setup",
-          "title": "Setup",
-          "options": [
-            {
-              "label": "Telefon",
-              "cost": 1
-            },
-            {
-              "label": "Laptop",
-              "cost": 2
-            },
-            {
-              "label": "Konzola",
-              "cost": 3
-            },
-            {
-              "label": "Gaming PC",
-              "cost": 4
-            },
-            {
-              "label": "Full gaming setup",
+              "label": "Tvoj omiljeni film svih vremena",
               "cost": 5
             }
           ]
@@ -712,7 +502,7 @@
           "title": "Grickalice",
           "options": [
             {
-              "label": "Kikiriki",
+              "label": "Šaka kokica",
               "cost": 1
             },
             {
@@ -720,810 +510,72 @@
               "cost": 2
             },
             {
-              "label": "Čips + sok",
+              "label": "Kokice + čokolada",
               "cost": 3
             },
             {
-              "label": "Pizza",
+              "label": "Nachos + sos",
               "cost": 4
             },
             {
-              "label": "Full gaming snack sto",
+              "label": "Full snack sto",
               "cost": 5
             }
           ]
         },
         {
-          "categoryId": "ekipa",
-          "title": "Ekipa",
+          "categoryId": "drustvo",
+          "title": "Društvo",
           "options": [
             {
               "label": "Sam",
               "cost": 1
             },
             {
-              "label": "Random online igrači",
+              "label": "Jedan drug",
               "cost": 2
             },
             {
-              "label": "Jedan prijatelj",
+              "label": "Dvoje prijatelja",
               "cost": 3
             },
             {
-              "label": "Ekipa prijatelja",
+              "label": "Mala ekipa",
               "cost": 4
             },
             {
-              "label": "Turnir sa ekipom",
+              "label": "Ekipa koja stalno pravi fore",
+              "cost": 5
+            }
+          ]
+        },
+        {
+          "categoryId": "mesto",
+          "title": "Mesto",
+          "options": [
+            {
+              "label": "Mali laptop",
+              "cost": 1
+            },
+            {
+              "label": "TV u sobi",
+              "cost": 2
+            },
+            {
+              "label": "Veliki TV",
+              "cost": 3
+            },
+            {
+              "label": "Projektor",
+              "cost": 4
+            },
+            {
+              "label": "Kućni bioskop",
               "cost": 5
             }
           ]
         }
       ]
-    },
-    {
-      "cardId": "starter-oq-10",
-      "type": "OPEN_QUESTION",
-      "title": "Najduža obala",
-      "shortTitle": "Obala",
-      "description": "Koja država?",
-      "question": "Koja država ima najdužu obalu na svetu?",
-      "acceptedAnswers": [
-        "Kanada",
-        "kanada"
-      ],
-      "answer": {
-        "title": "Kanada",
-        "description": "Kanada ima najdužu obalu na svetu."
-      }
-    },
-    {
-      "cardId": "starter-ord-13",
-      "type": "ORDER_4",
-      "title": "IMDB ocena",
-      "shortTitle": "IMDB",
-      "description": "Poredaj od najbolje ocenjenog.",
-      "question": "Poredjaj po IMDB oceni od najbolje ocenjenog",
-      "items": [
-        "Interstellar",
-        "Se7en",
-        "Gladiator",
-        "Isijavanje"
-      ],
-      "correctOrder": [
-        "Interstellar",
-        "Se7en",
-        "Gladiator",
-        "Isijavanje"
-      ],
-      "answer": {
-        "title": "Interstellar → Se7en → Gladiator → Isijavanje",
-        "description": "Interstellar 8.7, Se7en 8.6, Gladiator 8.5, Isijavanje 8.4."
-      }
-    },
-    {
-      "cardId": "starter-k4-13",
-      "type": "KEEP_4_DROP_4",
-      "title": "Fudbaleri",
-      "shortTitle": "Fudbaleri",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Cristiano Ronaldo",
-        "Neymar",
-        "Luka Modrić",
-        "Zlatan Ibrahimović",
-        "Lionel Messi",
-        "David Beckham",
-        "Adriano",
-        "Gennaro Gattuso"
-      ]
-    },
-    {
-      "cardId": "starter-b5-05",
-      "type": "BLIND_5_RANK",
-      "title": "Najlepše evropske gradove",
-      "shortTitle": "Gradovi",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Tirana",
-        "Beč",
-        "Amsterdam",
-        "Niš",
-        "Prag"
-      ],
-      "labels": {
-        "rank1": "Najlepši",
-        "rank5": "Najmanje lep"
-      }
-    },
-    {
-      "cardId": "starter-bud-07",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršen cheat meal",
-      "shortTitle": "Cheat meal",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
-      "categories": [
-        {
-          "categoryId": "jelo",
-          "title": "Glavno jelo",
-          "options": [
-            {
-              "label": "Sendvič",
-              "cost": 1
-            },
-            {
-              "label": "Burger iz fast fooda",
-              "cost": 2
-            },
-            {
-              "label": "Velika pizza",
-              "cost": 3
-            },
-            {
-              "label": "Ćevapi",
-              "cost": 4
-            },
-            {
-              "label": "Steak",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "pice",
-          "title": "Piće",
-          "options": [
-            {
-              "label": "Voda",
-              "cost": 1
-            },
-            {
-              "label": "Sok",
-              "cost": 2
-            },
-            {
-              "label": "Pivo",
-              "cost": 3
-            },
-            {
-              "label": "Koktel",
-              "cost": 4
-            },
-            {
-              "label": "Premium piće",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "desert",
-          "title": "Desert",
-          "options": [
-            {
-              "label": "Keks",
-              "cost": 1
-            },
-            {
-              "label": "Sladoled",
-              "cost": 2
-            },
-            {
-              "label": "Palačinke",
-              "cost": 3
-            },
-            {
-              "label": "Torta",
-              "cost": 4
-            },
-            {
-              "label": "Luksuzni desert",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "atmosfera",
-          "title": "Atmosfera",
-          "options": [
-            {
-              "label": "Sam kod kuće",
-              "cost": 1
-            },
-            {
-              "label": "TV + telefon",
-              "cost": 2
-            },
-            {
-              "label": "Dobar film",
-              "cost": 3
-            },
-            {
-              "label": "Društvo",
-              "cost": 4
-            },
-            {
-              "label": "Roštilj sa ekipom",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-oq-13",
-      "type": "OPEN_QUESTION",
-      "title": "Najveća ptica",
-      "shortTitle": "Ne leti",
-      "description": "Koja ptica?",
-      "question": "Koja je najveća ptica na svetu koja ne može da leti?",
-      "acceptedAnswers": [
-        "Noj",
-        "noj"
-      ],
-      "answer": {
-        "title": "Noj",
-        "description": "Noj je najveća živuća ptica koja ne može da leti."
-      }
-    },
-    {
-      "cardId": "starter-ord-05",
-      "type": "ORDER_4",
-      "title": "Sportisti",
-      "shortTitle": "Sportisti",
-      "description": "Poredaj od najstarijeg do najmlađeg.",
-      "question": "Poredjaj sportiste od najstarijeg do najmlađeg",
-      "items": [
-        "Đoković",
-        "Bogdanović",
-        "Mitrović",
-        "Vlahović"
-      ],
-      "correctOrder": [
-        "Đoković",
-        "Bogdanović",
-        "Mitrović",
-        "Vlahović"
-      ],
-      "answer": {
-        "title": "Đoković (1987) → Bogdanović (1992) → Mitrović (1993) → Vlahović (2000)",
-        "description": "Đoković je najstariji, Vlahović najmlađi."
-      }
-    },
-    {
-      "cardId": "starter-k4-11",
-      "type": "KEEP_4_DROP_4",
-      "title": "Sokovi",
-      "shortTitle": "Sokovi",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Coca-Cola",
-        "Sprite",
-        "Fanta",
-        "Sok od jabuke",
-        "Schweppes",
-        "Limunada",
-        "Kokta",
-        "Sok od kajsije"
-      ]
-    },
-    {
-      "cardId": "starter-b5-11",
-      "type": "BLIND_5_RANK",
-      "title": "Najboljih telefona",
-      "shortTitle": "Telefoni",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "iPhone Pro",
-        "Samsung Galaxy S",
-        "Telefon sa Aliexpressa",
-        "Stari Nokia na dugmad",
-        "Telefon sa napuklim ekranom"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najgori"
-      }
-    },
-    {
-      "cardId": "starter-bud-09",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršenu kućnu žurku",
-      "shortTitle": "Kućna žurka",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
-      "categories": [
-        {
-          "categoryId": "muzika",
-          "title": "Muzika",
-          "options": [
-            {
-              "label": "Radio",
-              "cost": 1
-            },
-            {
-              "label": "Spotify playlist",
-              "cost": 2
-            },
-            {
-              "label": "DJ iz društva",
-              "cost": 3
-            },
-            {
-              "label": "Dobra plejlista + zvučnici",
-              "cost": 4
-            },
-            {
-              "label": "Pravi DJ",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "pice",
-          "title": "Piće",
-          "options": [
-            {
-              "label": "Voda",
-              "cost": 1
-            },
-            {
-              "label": "Sokovi",
-              "cost": 2
-            },
-            {
-              "label": "Pivo",
-              "cost": 3
-            },
-            {
-              "label": "Alkohol mix",
-              "cost": 4
-            },
-            {
-              "label": "Kokteli",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "broj",
-          "title": "Broj ljudi",
-          "options": [
-            {
-              "label": "2 osobe",
-              "cost": 1
-            },
-            {
-              "label": "4 osobe",
-              "cost": 2
-            },
-            {
-              "label": "6 osoba",
-              "cost": 3
-            },
-            {
-              "label": "10 ljudi",
-              "cost": 4
-            },
-            {
-              "label": "Velika žurka",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "atmosfera",
-          "title": "Atmosfera",
-          "options": [
-            {
-              "label": "Sede svi",
-              "cost": 1
-            },
-            {
-              "label": "Lagani razgovori",
-              "cost": 2
-            },
-            {
-              "label": "Društvene igre",
-              "cost": 3
-            },
-            {
-              "label": "Masne fore",
-              "cost": 4
-            },
-            {
-              "label": "Ludilo do jutra",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-oq-11",
-      "type": "OPEN_QUESTION",
-      "title": "Bez reke, Crveno more",
-      "shortTitle": "Crveno more",
-      "description": "Koja država?",
-      "question": "Koja država nema reku a izlazi na Crveno more?",
-      "acceptedAnswers": [
-        "Saudijska Arabija",
-        "S. Arabija",
-        "Arabija",
-        "Saudijska"
-      ],
-      "answer": {
-        "title": "Saudijska Arabija",
-        "description": "Saudijska Arabija nema trajne reke a izlazi na Crveno more."
-      }
-    },
-    {
-      "cardId": "starter-ord-07",
-      "type": "ORDER_4",
-      "title": "Reke",
-      "shortTitle": "Reke",
-      "description": "Poredaj od najduže do najkraće.",
-      "question": "Poredjaj reke od najduže do najkraće",
-      "items": [
-        "Sava",
-        "Tisa",
-        "Drina",
-        "Velika Morava"
-      ],
-      "correctOrder": [
-        "Sava",
-        "Tisa",
-        "Drina",
-        "Velika Morava"
-      ],
-      "answer": {
-        "title": "Sava → Tisa → Drina → Velika Morava",
-        "description": "Sava ~990 km, Tisa ~966 km, Drina ~346 km, Velika Morava ~185 km."
-      }
-    },
-    {
-      "cardId": "starter-k4-10",
-      "type": "KEEP_4_DROP_4",
-      "title": "Povrće",
-      "shortTitle": "Povrće",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Paradajz",
-        "Krastavac",
-        "Paprika",
-        "Tikvice",
-        "Patlidžan",
-        "Luk",
-        "Krompir",
-        "Šargarepa"
-      ]
-    },
-    {
-      "cardId": "starter-b5-12",
-      "type": "BLIND_5_RANK",
-      "title": "Najboljih doručaka",
-      "shortTitle": "Doručak",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Kroasan i jogurt",
-        "ZuZu",
-        "Prazan sa sirom",
-        "Sendvič sa benzinske",
-        "Suva kifla"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najgori"
-      }
-    },
-    {
-      "cardId": "starter-oq-15",
-      "type": "OPEN_QUESTION",
-      "title": "Simbol Novog Zelanda",
-      "shortTitle": "Novi Zeland",
-      "description": "Koja životinja?",
-      "question": "Koja životinja je simbol Novog Zelanda?",
-      "acceptedAnswers": [
-        "Kivi",
-        "kivi"
-      ],
-      "answer": {
-        "title": "Kivi",
-        "description": "Kivi je nacionalni simbol Novog Zelanda."
-      }
-    },
-    {
-      "cardId": "starter-ord-11",
-      "type": "ORDER_4",
-      "title": "Reči po samoglasnicima",
-      "shortTitle": "Samoglasnici",
-      "description": "Poredaj od najvećeg do najmanjeg broja.",
-      "question": "Poredjaj reči po broju samoglasnika od najvećeg do najmanjeg",
-      "items": [
-        "Idealizacija",
-        "automobil",
-        "Planina",
-        "Vrh"
-      ],
-      "correctOrder": [
-        "Idealizacija",
-        "automobil",
-        "Planina",
-        "Vrh"
-      ],
-      "answer": {
-        "title": "Idealizacija → automobil → Planina → Vrh",
-        "description": "Idealizacija 8, automobil 5, Planina 4, Vrh 1 samoglasnik."
-      }
-    },
-    {
-      "cardId": "starter-k4-07",
-      "type": "KEEP_4_DROP_4",
-      "title": "Brza hrana",
-      "shortTitle": "Brza hrana",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Pizza",
-        "Burger",
-        "Hot dog",
-        "Pomfrit",
-        "Tortilja",
-        "Pohovana piletina",
-        "Sendvič",
-        "Tacos"
-      ]
-    },
-    {
-      "cardId": "starter-b5-06",
-      "type": "BLIND_5_RANK",
-      "title": "Najbolje filmove svih vremena",
-      "shortTitle": "Filmovi",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "The Godfather",
-        "Titanic",
-        "The Dark Knight",
-        "Pulp Fiction",
-        "Forrest Gump"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najmanje dobar"
-      }
-    },
-    {
-      "cardId": "starter-oq-07",
-      "type": "OPEN_QUESTION",
-      "title": "Sisar koji leti",
-      "shortTitle": "Leteći sisar",
-      "description": "Koji sisar leti?",
-      "question": "Koji jedini sisar može da leti?",
-      "acceptedAnswers": [
-        "Slepi miš",
-        "slepi miš",
-        "Slepi mis",
-        "slepi mis",
-        "Šišmiš",
-        "šišmiš"
-      ],
-      "answer": {
-        "title": "Slepi miš",
-        "description": "Slepi miševi su jedini sisari koji mogu aktivno da lete."
-      }
-    },
-    {
-      "cardId": "starter-ord-15",
-      "type": "ORDER_4",
-      "title": "Gradovi od Beograda",
-      "shortTitle": "Udaljenost",
-      "description": "Poredaj od najbližeg.",
-      "question": "Nabroj gradove po udaljenosti od Beograda od najbližeg",
-      "items": [
-        "Beč",
-        "Berlin",
-        "Pariz",
-        "London"
-      ],
-      "correctOrder": [
-        "Beč",
-        "Berlin",
-        "Pariz",
-        "London"
-      ],
-      "answer": {
-        "title": "Beč → Berlin → Pariz → London",
-        "description": "Beč ~580 km, Berlin ~950 km, Pariz ~1400 km, London ~1850 km od Beograda."
-      }
-    },
-    {
-      "cardId": "starter-k4-08",
-      "type": "KEEP_4_DROP_4",
-      "title": "Kućni ljubimci",
-      "shortTitle": "Ljubimci",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Pas",
-        "Mačka",
-        "Papagaj",
-        "Zec",
-        "Hrčak",
-        "Akvarijumske ribice",
-        "Kornjača",
-        "Zmija"
-      ]
-    },
-    {
-      "cardId": "starter-b5-10",
-      "type": "BLIND_5_RANK",
-      "title": "Najboljih automobila",
-      "shortTitle": "Auti",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Ferrari",
-        "Porsche",
-        "Dacia Logan",
-        "Fiat Multipla",
-        "Lada Niva"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najgori"
-      }
-    },
-    {
-      "cardId": "starter-oq-14",
-      "type": "OPEN_QUESTION",
-      "title": "Bivši SSSR",
-      "shortTitle": "Bez mora",
-      "description": "Koja država?",
-      "question": "Koja je najveća država na svetu bez izlaza na more a bila je deo Sovjetskog saveza?",
-      "acceptedAnswers": [
-        "Kazahstan",
-        "kazahstan"
-      ],
-      "answer": {
-        "title": "Kazahstan",
-        "description": "Kazahstan je najveća država bez izlaza na more i bila je deo SSSR-a."
-      }
-    },
-    {
-      "cardId": "starter-ord-14",
-      "type": "ORDER_4",
-      "title": "Serije po epizodama",
-      "shortTitle": "Serije",
-      "description": "Poredaj od najvećeg broja.",
-      "question": "Poredjaj serije po broju epizoda od najvećeg broja",
-      "items": [
-        "Mala Nevesta",
-        "Simpsonovi",
-        "Prijatelji",
-        "Igra prestola"
-      ],
-      "correctOrder": [
-        "Simpsonovi",
-        "Mala Nevesta",
-        "Prijatelji",
-        "Igra prestola"
-      ],
-      "answer": {
-        "title": "Simpsonovi → Mala Nevesta → Prijatelji → Igra prestola",
-        "description": "Simpsonovi 700+, Mala Nevesta 500+, Prijatelji 236, Igra prestola 73."
-      }
-    },
-    {
-      "cardId": "starter-k4-14",
-      "type": "KEEP_4_DROP_4",
-      "title": "NBA košarkaši",
-      "shortTitle": "NBA",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Nikola Jokić",
-        "Luka Dončić",
-        "Giannis Antetokounmpo",
-        "Stephen Curry",
-        "Michael Jordan",
-        "Shaquille O'Neal",
-        "LeBron James",
-        "Tracy McGrady"
-      ]
-    },
-    {
-      "cardId": "starter-b5-07",
-      "type": "BLIND_5_RANK",
-      "title": "Najbolje vrste pizza",
-      "shortTitle": "Pizza",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Pizza iz Napulja",
-        "Pizza iz Rima",
-        "Smrznuta pizza iz supermarketa",
-        "Pizza sa ananasom",
-        "Školska pizza iz menze"
-      ],
-      "labels": {
-        "rank1": "Najbolja",
-        "rank5": "Najgora"
-      }
-    },
-    {
-      "cardId": "starter-oq-04",
-      "type": "OPEN_QUESTION",
-      "title": "Piramide",
-      "shortTitle": "Piramide",
-      "description": "Pogodi državu.",
-      "question": "Koja država ima najviše piramida na svetu?",
-      "acceptedAnswers": [
-        "Sudan",
-        "sudan"
-      ],
-      "answer": {
-        "title": "Sudan",
-        "description": "Sudan ima više od 200 piramida — više od Egipta."
-      }
-    },
-    {
-      "cardId": "starter-ord-09",
-      "type": "ORDER_4",
-      "title": "Filmovi po trajanju",
-      "shortTitle": "Filmovi",
-      "description": "Poredaj od najkraćeg do najdužeg.",
-      "question": "Poredjaj filmove po trajanju od najkraćeg do najdužeg",
-      "items": [
-        "Matrix",
-        "Forrest Gump",
-        "Inception",
-        "Šindlerova lista"
-      ],
-      "correctOrder": [
-        "Matrix",
-        "Forrest Gump",
-        "Inception",
-        "Šindlerova lista"
-      ],
-      "answer": {
-        "title": "Matrix → Forrest Gump → Inception → Šindlerova lista",
-        "description": "Matrix ~136 min, Forrest Gump 142 min, Inception 148 min, Šindlerova lista 195 min."
-      }
-    },
-    {
-      "cardId": "starter-oq-12",
-      "type": "OPEN_QUESTION",
-      "title": "Najveća bez mora",
-      "shortTitle": "Bez mora",
-      "description": "Po populaciji.",
-      "question": "Najveća država na svetu po populaciji a nema izlaz na more?",
-      "acceptedAnswers": [
-        "Etiopija",
-        "etiopija"
-      ],
-      "answer": {
-        "title": "Etiopija",
-        "description": "Etiopija je najveća država bez izlaza na more po broju stanovnika."
-      }
-    },
-    {
-      "cardId": "starter-ord-06",
-      "type": "ORDER_4",
-      "title": "Gradovi po populaciji",
-      "shortTitle": "Gradovi",
-      "description": "Poredaj od najmanjeg do najvećeg.",
-      "question": "Poredjaj gradove po populaciji od najmanjeg do najvećeg",
-      "items": [
-        "Sarajevo",
-        "Ljubljana",
-        "Zagreb",
-        "Beograd"
-      ],
-      "correctOrder": [
-        "Ljubljana",
-        "Sarajevo",
-        "Zagreb",
-        "Beograd"
-      ],
-      "answer": {
-        "title": "Ljubljana → Sarajevo → Zagreb → Beograd",
-        "description": "Beograd ima najveću populaciju, Ljubljana najmanju."
-      }
     }
   ]
 }

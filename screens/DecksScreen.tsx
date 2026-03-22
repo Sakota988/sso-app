@@ -20,14 +20,16 @@ const CARD_SIZE = (width - 48) / 2;
 
 // ── Per-deck cover images (keyed by deckId) ───────────────────────
 const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'starter':      require('../assets/decks_backs/deck_4_back.png'),
-  'budzetiranje': require('../assets/decks_backs/deck_5_back.png'),
+  'deck-1': require('../assets/decks_backs/deck_4_back.png'),
+  'deck-2': require('../assets/decks_backs/deck_5_back.png'),
+  'deck-3': require('../assets/decks_backs/deck_1_back.png'),
+  'deck-4': require('../assets/decks_backs/deck_2_back.png'),
+  'deck-5': require('../assets/decks_backs/deck_3_back.png'),
 };
 
 // ── Fallback images by deck type ──────────────────────────────────
 const TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'mixed': require('../assets/decks_backs/deck_4_back.png'),
-  'budzet': require('../assets/decks_backs/deck_5_back.png'),
 };
 
 const FALLBACK_IMAGE = require('../assets/decks_backs/deck_1_back.png');

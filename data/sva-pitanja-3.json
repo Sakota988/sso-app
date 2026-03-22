@@ -1,6 +1,38 @@
 {
-  "deckId": "sva-pitanja-2",
+  "deckId": "deck-3",
   "cards": [
+    {
+      "cardId": "starter-oq-14",
+      "type": "OPEN_QUESTION",
+      "title": "Bivši SSSR",
+      "shortTitle": "Bez mora",
+      "description": "Koja država?",
+      "question": "Koja je najveća država na svetu bez izlaza na more a bila je deo Sovjetskog saveza?",
+      "acceptedAnswers": [
+        "Kazahstan",
+        "kazahstan"
+      ],
+      "answer": {
+        "title": "Kazahstan",
+        "description": "Kazahstan je najveća država bez izlaza na more i bila je deo SSSR-a."
+      }
+    },
+    {
+      "cardId": "starter-oq-15",
+      "type": "OPEN_QUESTION",
+      "title": "Simbol Novog Zelanda",
+      "shortTitle": "Novi Zeland",
+      "description": "Koja životinja?",
+      "question": "Koja životinja je simbol Novog Zelanda?",
+      "acceptedAnswers": [
+        "Kivi",
+        "kivi"
+      ],
+      "answer": {
+        "title": "Kivi",
+        "description": "Kivi je nacionalni simbol Novog Zelanda."
+      }
+    },
     {
       "cardId": "starter-oq-16",
       "type": "OPEN_QUESTION",
@@ -52,175 +84,51 @@
       }
     },
     {
-      "cardId": "starter-oq-19",
-      "type": "OPEN_QUESTION",
-      "title": "Najduži jezik",
-      "shortTitle": "Jezik",
-      "description": "Koja životinja?",
-      "question": "Koja životinja ima najduži jezik u odnosu na telo?",
-      "acceptedAnswers": [
-        "Slepi miš",
-        "slepi miš",
-        "Slepi mis",
-        "Nektarski slepi miš"
+      "cardId": "starter-ord-14",
+      "type": "ORDER_4",
+      "title": "Serije po epizodama",
+      "shortTitle": "Serije",
+      "description": "Poredaj od najvećeg broja.",
+      "question": "Poredjaj serije po broju epizoda od najvećeg broja",
+      "items": [
+        "Mala Nevesta",
+        "Simpsonovi",
+        "Prijatelji",
+        "Igra prestola"
+      ],
+      "correctOrder": [
+        "Simpsonovi",
+        "Mala Nevesta",
+        "Prijatelji",
+        "Igra prestola"
       ],
       "answer": {
-        "title": "Slepi miš (nektarski)",
-        "description": "Nektarski slepi miševi imaju izuzetno dugačak jezik u odnosu na veličinu tela."
+        "title": "Simpsonovi → Mala Nevesta → Prijatelji → Igra prestola",
+        "description": "Simpsonovi 700+, Mala Nevesta 500+, Prijatelji 236, Igra prestola 73."
       }
     },
     {
-      "cardId": "starter-oq-20",
-      "type": "OPEN_QUESTION",
-      "title": "Granica Koreja i Rusija",
-      "shortTitle": "Granice",
-      "description": "Koja država?",
-      "question": "Koja je jedina država koja ima granicu i sa Severnom Korejom i sa Rusijom?",
-      "acceptedAnswers": [
-        "Kina",
-        "kina"
+      "cardId": "starter-ord-15",
+      "type": "ORDER_4",
+      "title": "Gradovi od Beograda",
+      "shortTitle": "Udaljenost",
+      "description": "Poredaj od najbližeg.",
+      "question": "Nabroj gradove po udaljenosti od Beograda od najbližeg",
+      "items": [
+        "Beč",
+        "Berlin",
+        "Pariz",
+        "London"
+      ],
+      "correctOrder": [
+        "Beč",
+        "Berlin",
+        "Pariz",
+        "London"
       ],
       "answer": {
-        "title": "Kina",
-        "description": "Kina graniči i sa Severnom Korejom i sa Rusijom."
-      }
-    },
-    {
-      "cardId": "starter-oq-21",
-      "type": "OPEN_QUESTION",
-      "title": "Najviši glavni grad",
-      "shortTitle": "Glavni grad",
-      "description": "Preko 3600 m.",
-      "question": "Koji je glavni grad koji je ujedno i najviši glavni grad na svetu (preko 3600 m)?",
-      "acceptedAnswers": [
-        "La Paz",
-        "La Paz, Bolivija",
-        "la paz"
-      ],
-      "answer": {
-        "title": "La Paz",
-        "description": "La Paz u Boliviji je na nadmorskoj visini od preko 3600 m."
-      }
-    },
-    {
-      "cardId": "starter-oq-22",
-      "type": "OPEN_QUESTION",
-      "title": "Najveće oči",
-      "shortTitle": "Oči",
-      "description": "Među sisarima.",
-      "question": "Koja životinja ima najveće oči u odnosu na veličinu tela među sisarima?",
-      "acceptedAnswers": [
-        "Tarsier",
-        "tarsier",
-        "Tarsijer",
-        "tarsijer"
-      ],
-      "answer": {
-        "title": "Tarsier",
-        "description": "Tarsijer ima najveće oči u odnosu na veličinu tela među sisarima."
-      }
-    },
-    {
-      "cardId": "starter-oq-23",
-      "type": "OPEN_QUESTION",
-      "title": "Legalizacija hrišćanstva",
-      "shortTitle": "Rimski car",
-      "description": "Koji car?",
-      "question": "Koji rimski car je legalizovao hrišćanstvo?",
-      "acceptedAnswers": [
-        "Konstantin",
-        "Konstantin Veliki",
-        "konstantin"
-      ],
-      "answer": {
-        "title": "Konstantin Veliki",
-        "description": "Konstantin Veliki je 313. godine Ediktom iz Milana legalizovao hrišćanstvo."
-      }
-    },
-    {
-      "cardId": "starter-oq-24",
-      "type": "OPEN_QUESTION",
-      "title": "Toblerone logo",
-      "shortTitle": "Toblerone",
-      "description": "Koja životinja?",
-      "question": "Koja životinja se nalazi skrivena na Toblerone logu?",
-      "acceptedAnswers": [
-        "Medved",
-        "medved",
-        "Medvjed"
-      ],
-      "answer": {
-        "title": "Medved",
-        "description": "U Toblerone logu (planina Matterhorn) skriven je silueta medveda — simbol Berna."
-      }
-    },
-    {
-      "cardId": "starter-oq-25",
-      "type": "OPEN_QUESTION",
-      "title": "Čokolada",
-      "shortTitle": "Čokolada",
-      "description": "Koja država?",
-      "question": "Koja država konzumira najviše čokolade po stanovniku na svetu?",
-      "acceptedAnswers": [
-        "Švajcarska",
-        "Svajcarska",
-        "Švicarska",
-        "svajcarska"
-      ],
-      "answer": {
-        "title": "Švajcarska",
-        "description": "Švajcarska ima najveću potrošnju čokolade po stanovniku."
-      }
-    },
-    {
-      "cardId": "starter-oq-26",
-      "type": "OPEN_QUESTION",
-      "title": "Najprodavaniji auto",
-      "shortTitle": "Auto",
-      "description": "Koji auto?",
-      "question": "Koji je najprodavaniji auto svih vremena?",
-      "acceptedAnswers": [
-        "Toyota Corolla",
-        "Corolla",
-        "corolla"
-      ],
-      "answer": {
-        "title": "Toyota Corolla",
-        "description": "Toyota Corolla je najprodavaniji automobil u istoriji."
-      }
-    },
-    {
-      "cardId": "starter-oq-27",
-      "type": "OPEN_QUESTION",
-      "title": "Otisci prstiju",
-      "shortTitle": "Blizanci",
-      "description": "Da ili ne?",
-      "question": "Da li identični blizanci imaju iste otiske prstiju?",
-      "acceptedAnswers": [
-        "Ne",
-        "ne"
-      ],
-      "answer": {
-        "title": "Ne",
-        "description": "Identični blizanci nemaju iste otiske prstiju — formiraju se u majčinoj utrobi pod uticajem faktora okoline."
-      }
-    },
-    {
-      "cardId": "starter-oq-28",
-      "type": "OPEN_QUESTION",
-      "title": "Hippopotomonstrosesquippedaliophobi",
-      "shortTitle": "Fobija",
-      "description": "Čega je strah?",
-      "question": "Čega je ovo strah (Hippopotomonstrosesquippedaliophobi)?",
-      "acceptedAnswers": [
-        "Od dugih reči",
-        "duge reči",
-        "dugih reci",
-        "duge reci"
-      ],
-      "answer": {
-        "title": "Od dugih reči",
-        "description": "Hippopotomonstrosesquippedaliophobi je strah od dugih reči — ironično, sama reč je veoma duga!"
+        "title": "Beč → Berlin → Pariz → London",
+        "description": "Beč ~580 km, Berlin ~950 km, Pariz ~1400 km, London ~1850 km od Beograda."
       }
     },
     {
@@ -296,244 +204,38 @@
       }
     },
     {
-      "cardId": "starter-ord-19",
-      "type": "ORDER_4",
-      "title": "Putnički pasoši",
-      "shortTitle": "Pasoši",
-      "description": "Poredaj od najjačeg do najslabijeg.",
-      "question": "Poredjaj pasoše zemalja po jačini od najjačeg do najslabijeg",
-      "items": [
-        "Japan",
-        "Nemačka",
-        "US",
-        "Indija"
-      ],
-      "correctOrder": [
-        "Japan",
-        "Nemačka",
-        "US",
-        "Indija"
-      ],
-      "answer": {
-        "title": "Japan → Nemačka → US → Indija",
-        "description": "Japan i Nemačka imaju među najjačim pasošima, Indija slabiji."
-      }
+      "cardId": "starter-k4-13",
+      "type": "KEEP_4_DROP_4",
+      "title": "Fudbaleri",
+      "shortTitle": "Fudbaleri",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Cristiano Ronaldo",
+        "Neymar",
+        "Luka Modrić",
+        "Zlatan Ibrahimović",
+        "Lionel Messi",
+        "David Beckham",
+        "Adriano",
+        "Gennaro Gattuso"
+      ]
     },
     {
-      "cardId": "starter-ord-20",
-      "type": "ORDER_4",
-      "title": "Države po površini",
-      "shortTitle": "Površina",
-      "description": "Poredaj od najveće.",
-      "question": "Poredjaj države po površini od najveće",
-      "items": [
-        "Francuska",
-        "Španija",
-        "Nemačka",
-        "Italija"
-      ],
-      "correctOrder": [
-        "Francuska",
-        "Španija",
-        "Italija",
-        "Nemačka"
-      ],
-      "answer": {
-        "title": "Francuska → Španija → Italija → Nemačka",
-        "description": "Francuska ~644k km², Španija ~506k, Italija ~301k, Nemačka ~357k km²."
-      }
-    },
-    {
-      "cardId": "starter-ord-21",
-      "type": "ORDER_4",
-      "title": "Životinje po brzini",
-      "shortTitle": "Brzina",
-      "description": "Poredaj od najbrže.",
-      "question": "Poredjaj životinje po brzini od najbrže",
-      "items": [
-        "Gepard",
-        "Konj",
-        "Lav",
-        "Slon"
-      ],
-      "correctOrder": [
-        "Gepard",
-        "Konj",
-        "Lav",
-        "Slon"
-      ],
-      "answer": {
-        "title": "Gepard → Konj → Lav → Slon",
-        "description": "Gepard do 120 km/h, konj ~88, lav ~80, slon ~40 km/h."
-      }
-    },
-    {
-      "cardId": "starter-ord-22",
-      "type": "ORDER_4",
-      "title": "Platforme po korisnicima",
-      "shortTitle": "Platforme",
-      "description": "Poredaj od najmanje.",
-      "question": "Poredjaj platforme po broju korisnika od najmanje",
-      "items": [
-        "TikTok",
-        "YouTube",
-        "Instagram",
-        "Facebook"
-      ],
-      "correctOrder": [
-        "TikTok",
-        "Instagram",
-        "YouTube",
-        "Facebook"
-      ],
-      "answer": {
-        "title": "TikTok → Instagram → YouTube → Facebook",
-        "description": "Facebook ima najviše korisnika, TikTok najmanje od ove četiri."
-      }
-    },
-    {
-      "cardId": "starter-ord-23",
-      "type": "ORDER_4",
-      "title": "Životinje po IQ",
-      "shortTitle": "IQ",
-      "description": "Poredaj od najvećeg do najmanjeg.",
-      "question": "Poredjaj životinje po IQ od najvećeg do najmanjeg",
-      "items": [
-        "Šimpanza",
-        "Slon",
-        "Oktopod",
-        "Svinja"
-      ],
-      "correctOrder": [
-        "Šimpanza",
-        "Slon",
-        "Svinja",
-        "Oktopod"
-      ],
-      "answer": {
-        "title": "Šimpanza → Slon → Svinja → Oktopod",
-        "description": "Šimpanze imaju najviši IQ među životinjama."
-      }
-    },
-    {
-      "cardId": "starter-ord-24",
-      "type": "ORDER_4",
-      "title": "Kompanije po osnivanju",
-      "shortTitle": "Kompanije",
-      "description": "Poredaj od najstarije.",
-      "question": "Poredjaj kompanije po osnivanju od najstarije",
-      "items": [
-        "Microsoft",
-        "Netflix",
-        "Google",
-        "Facebook"
-      ],
-      "correctOrder": [
-        "Microsoft",
-        "Netflix",
-        "Google",
-        "Facebook"
-      ],
-      "answer": {
-        "title": "Microsoft → Netflix → Google → Facebook",
-        "description": "Microsoft 1975, Netflix 1997, Google 1998, Facebook 2004."
-      }
-    },
-    {
-      "cardId": "starter-ord-25",
-      "type": "ORDER_4",
-      "title": "Filmovi po godini",
-      "shortTitle": "Filmovi",
-      "description": "Poredaj po godini izlaska.",
-      "question": "Poredjaj filmove po godini izlaska",
-      "items": [
-        "Jurassic Park",
-        "Titanic",
-        "The Matrix",
-        "Avatar"
-      ],
-      "correctOrder": [
-        "Jurassic Park",
-        "Titanic",
-        "The Matrix",
-        "Avatar"
-      ],
-      "answer": {
-        "title": "Jurassic Park → Titanic → The Matrix → Avatar",
-        "description": "Jurassic Park 1993, Titanic 1997, Matrix 1999, Avatar 2009."
-      }
-    },
-    {
-      "cardId": "starter-ord-26",
-      "type": "ORDER_4",
-      "title": "Izumi od najstarijeg",
-      "shortTitle": "Izumi",
-      "description": "Poredaj od najstarijeg.",
-      "question": "Poredjaj ove izume od najstarijeg",
-      "items": [
-        "telefon",
-        "televizija",
-        "internet",
-        "smartphone"
-      ],
-      "correctOrder": [
-        "telefon",
-        "televizija",
-        "internet",
-        "smartphone"
-      ],
-      "answer": {
-        "title": "Telefon → Televizija → Internet → Smartphone",
-        "description": "Telefon 1876, TV 1920-e, internet 1960-e, smartphone 1990-e."
-      }
-    },
-    {
-      "cardId": "starter-ord-27",
-      "type": "ORDER_4",
-      "title": "Kofein",
-      "shortTitle": "Kofein",
-      "description": "Poredaj od najmanje.",
-      "question": "Poredjaj po količini kofeina od najmanje",
-      "items": [
-        "Zeleni čaj",
-        "Coca-Cola",
-        "Crni čaj",
-        "Espreso"
-      ],
-      "correctOrder": [
-        "Zeleni čaj",
-        "Coca-Cola",
-        "Crni čaj",
-        "Espreso"
-      ],
-      "answer": {
-        "title": "Zeleni čaj → Coca-Cola → Crni čaj → Espreso",
-        "description": "Zeleni čaj ~25 mg, Cola ~34 mg, crni čaj ~47 mg, espreso ~64 mg po šolji."
-      }
-    },
-    {
-      "cardId": "starter-ord-28",
-      "type": "ORDER_4",
-      "title": "Organi po težini",
-      "shortTitle": "Organi",
-      "description": "Poredaj od najtežeg.",
-      "question": "Poredjaj organe po težini od najtežeg",
-      "items": [
-        "Jetra",
-        "Pluća",
-        "Srce",
-        "Bubreg"
-      ],
-      "correctOrder": [
-        "Jetra",
-        "Pluća",
-        "Srce",
-        "Bubreg"
-      ],
-      "answer": {
-        "title": "Jetra → Pluća → Srce → Bubreg",
-        "description": "Jetra ~1.5 kg, pluća ~1 kg, srce ~300 g, bubreg ~150 g."
-      }
+      "cardId": "starter-k4-14",
+      "type": "KEEP_4_DROP_4",
+      "title": "NBA košarkaši",
+      "shortTitle": "NBA",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Nikola Jokić",
+        "Luka Dončić",
+        "Giannis Antetokounmpo",
+        "Stephen Curry",
+        "Michael Jordan",
+        "Shaquille O'Neal",
+        "LeBron James",
+        "Tracy McGrady"
+      ]
     },
     {
       "cardId": "starter-k4-15",
@@ -570,140 +272,40 @@
       ]
     },
     {
-      "cardId": "starter-k4-17",
-      "type": "KEEP_4_DROP_4",
-      "title": "Video igre",
-      "shortTitle": "Igre",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Minecraft",
-        "GTA",
-        "Fortnite",
-        "League of Legends",
-        "Counter-Strike",
-        "Call of Duty",
-        "FIFA",
-        "NBA 2K"
-      ]
+      "cardId": "starter-b5-12",
+      "type": "BLIND_5_RANK",
+      "title": "Najboljih doručaka",
+      "shortTitle": "Doručak",
+      "description": "Rangiraj od 1 do 5.",
+      "items": [
+        "Kroasan i jogurt",
+        "ZuZu",
+        "Prazan sa sirom",
+        "Sendvič sa benzinske",
+        "Suva kifla"
+      ],
+      "labels": {
+        "rank1": "Najbolji",
+        "rank5": "Najgori"
+      }
     },
     {
-      "cardId": "starter-k4-18",
-      "type": "KEEP_4_DROP_4",
-      "title": "Superheroji",
-      "shortTitle": "Superheroji",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Spider-Man",
-        "Batman",
-        "Superman",
-        "Iron Man",
-        "Hulk",
-        "Captain America",
-        "Thor",
-        "Doctor Strange"
-      ]
-    },
-    {
-      "cardId": "starter-k4-19",
-      "type": "KEEP_4_DROP_4",
-      "title": "Sportski brendovi",
-      "shortTitle": "Brendovi",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Nike",
-        "Adidas",
-        "Puma",
-        "Reebok",
-        "Under Armour",
-        "New Balance",
-        "Asics",
-        "Converse"
-      ]
-    },
-    {
-      "cardId": "starter-k4-20",
-      "type": "KEEP_4_DROP_4",
-      "title": "Instrumenti",
-      "shortTitle": "Instrumenti",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Gitara",
-        "Klavir",
-        "Bubnjevi",
-        "Violina",
-        "Truba",
-        "Saksofon",
-        "Flauta",
-        "Harmonika"
-      ]
-    },
-    {
-      "cardId": "starter-k4-21",
-      "type": "KEEP_4_DROP_4",
-      "title": "Kućni aparati",
-      "shortTitle": "Aparati",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Frižider",
-        "Mašina za veš",
-        "Mašina za sudove",
-        "Mikrotalasna",
-        "Rerna",
-        "Usisivač",
-        "Blender",
-        "Toster"
-      ]
-    },
-    {
-      "cardId": "starter-k4-22",
-      "type": "KEEP_4_DROP_4",
-      "title": "Vrste sireva",
-      "shortTitle": "Sirevi",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Gouda",
-        "Cheddar",
-        "Mozzarella",
-        "Parmesan",
-        "Brie",
-        "Camembert",
-        "Feta",
-        "Tvrdi koziji sir"
-      ]
-    },
-    {
-      "cardId": "starter-k4-23",
-      "type": "KEEP_4_DROP_4",
-      "title": "Vrste čokolade",
-      "shortTitle": "Čokolada",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Mlečna čokolada",
-        "Tamna čokolada",
-        "Bela čokolada",
-        "Praline",
-        "Čokolada sa lešnikom",
-        "Čokolada sa karamelom",
-        "Čokolada sa bademom",
-        "Čokolada sa mentom"
-      ]
-    },
-    {
-      "cardId": "starter-k4-24",
-      "type": "KEEP_4_DROP_4",
-      "title": "Društvene igre",
-      "shortTitle": "Igre",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Šah",
-        "Dame",
-        "Monopoly",
-        "Scrabble",
-        "Risk",
-        "Cluedo",
-        "Uno",
-        "Jenga"
-      ]
+      "cardId": "starter-b5-13",
+      "type": "BLIND_5_RANK",
+      "title": "Najgora saobraćajna sredstva za putovanje u 10 ujutru",
+      "shortTitle": "Prevoz",
+      "description": "Rangiraj od najgoreg.",
+      "items": [
+        "Skuter",
+        "Gradski autobus",
+        "Fiat Punto bez klime",
+        "Voz",
+        "Avion"
+      ],
+      "labels": {
+        "rank1": "Najgore",
+        "rank5": "Najmanje loše"
+      }
     },
     {
       "cardId": "starter-b5-14",
@@ -742,179 +344,149 @@
       }
     },
     {
-      "cardId": "starter-b5-16",
-      "type": "BLIND_5_RANK",
-      "title": "Najgore iskustvo u restoranu",
-      "shortTitle": "Restoran",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Trovanje hranom",
-        "Hladna hrana",
-        "Dugo čekanje",
-        "Pogrešna narudžbina",
-        "Savršena večera"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-17",
-      "type": "BLIND_5_RANK",
-      "title": "Najgori auto za duga putovanja",
-      "shortTitle": "Auto",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Fiat 500",
-        "Smart",
-        "VW Golf",
-        "BMW serija 5",
-        "Mercedes S-class"
-      ],
-      "labels": {
-        "rank1": "Najgori",
-        "rank5": "Najmanje loš"
-      }
-    },
-    {
-      "cardId": "starter-b5-18",
-      "type": "BLIND_5_RANK",
-      "title": "Najgore mesto za sedenje u avionu",
-      "shortTitle": "Avion",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Sedište bez naslona",
-        "Srednje sedište u srednjem redu",
-        "Sedište pored toaleta",
-        "Sedište pored prolaza",
-        "Sedište pored prozora"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-19",
-      "type": "BLIND_5_RANK",
-      "title": "Najgori tip komšije",
-      "shortTitle": "Komšija",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Bučni komšija",
-        "Komšija sa psom koji laje",
-        "Komšija koji stalno renovira",
-        "Tiha porodica",
-        "Stariji bračni par"
-      ],
-      "labels": {
-        "rank1": "Najgori",
-        "rank5": "Najmanje loš"
-      }
-    },
-    {
-      "cardId": "starter-b5-20",
-      "type": "BLIND_5_RANK",
-      "title": "Najgore mesto u bioskopu",
-      "shortTitle": "Bioskop",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Prvi red",
-        "Sredina prvog reda",
-        "Poslednji red",
-        "Sredina sale",
-        "VIP sedišta"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-21",
-      "type": "BLIND_5_RANK",
-      "title": "Najgore radno mesto",
-      "shortTitle": "Posao",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Rudnik",
-        "Fabrika noćna smena",
-        "Kancelarija bez prozora",
-        "Coworking space",
-        "Kancelarija sa pogledom"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-22",
-      "type": "BLIND_5_RANK",
-      "title": "Najgori fudbalski promašaj",
-      "shortTitle": "Promašaj",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Miss prazan gol",
-        "Autogol u finalu",
-        "Penal preko gola",
-        "Promašaj 1 na 1",
-        "Loš centaršut"
-      ],
-      "labels": {
-        "rank1": "Najgori",
-        "rank5": "Najmanje loš"
-      }
-    },
-    {
-      "cardId": "starter-b5-23",
-      "type": "BLIND_5_RANK",
-      "title": "Najgore WiFi iskustvo",
-      "shortTitle": "WiFi",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Nema interneta",
-        "Veoma spor internet",
-        "Internet koji stalno puca",
-        "Slab signal",
-        "Brz internet"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najbolje"
-      }
-    },
-    {
-      "cardId": "starter-bud-10",
+      "cardId": "starter-bud-08",
       "type": "BUDGETING_4x5",
-      "title": "Napravi savršen letnji dan",
-      "shortTitle": "Letnji dan",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 15,
+      "title": "Napravi savršen gaming dan",
+      "shortTitle": "Gaming dan",
+      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 20,
       "categories": [
         {
-          "categoryId": "lokacija",
-          "title": "Lokacija",
+          "categoryId": "igra",
+          "title": "Igra",
           "options": [
             {
-              "label": "Balkon",
+              "label": "Random mobilna igra",
               "cost": 1
             },
             {
-              "label": "Lokalni park",
+              "label": "Stara igra",
               "cost": 2
             },
             {
-              "label": "Bazen",
+              "label": "Popularna online igra",
               "cost": 3
             },
             {
-              "label": "Reka",
+              "label": "AAA igra",
               "cost": 4
             },
             {
-              "label": "More",
+              "label": "Tvoja omiljena igra",
+              "cost": 5
+            }
+          ]
+        },
+        {
+          "categoryId": "setup",
+          "title": "Setup",
+          "options": [
+            {
+              "label": "Telefon",
+              "cost": 1
+            },
+            {
+              "label": "Laptop",
+              "cost": 2
+            },
+            {
+              "label": "Konzola",
+              "cost": 3
+            },
+            {
+              "label": "Gaming PC",
+              "cost": 4
+            },
+            {
+              "label": "Full gaming setup",
+              "cost": 5
+            }
+          ]
+        },
+        {
+          "categoryId": "grickalice",
+          "title": "Grickalice",
+          "options": [
+            {
+              "label": "Kikiriki",
+              "cost": 1
+            },
+            {
+              "label": "Čips",
+              "cost": 2
+            },
+            {
+              "label": "Čips + sok",
+              "cost": 3
+            },
+            {
+              "label": "Pizza",
+              "cost": 4
+            },
+            {
+              "label": "Full gaming snack sto",
+              "cost": 5
+            }
+          ]
+        },
+        {
+          "categoryId": "ekipa",
+          "title": "Ekipa",
+          "options": [
+            {
+              "label": "Sam",
+              "cost": 1
+            },
+            {
+              "label": "Random online igrači",
+              "cost": 2
+            },
+            {
+              "label": "Jedan prijatelj",
+              "cost": 3
+            },
+            {
+              "label": "Ekipa prijatelja",
+              "cost": 4
+            },
+            {
+              "label": "Turnir sa ekipom",
+              "cost": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cardId": "starter-bud-09",
+      "type": "BUDGETING_4x5",
+      "title": "Napravi savršenu kućnu žurku",
+      "shortTitle": "Kućna žurka",
+      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 20,
+      "categories": [
+        {
+          "categoryId": "muzika",
+          "title": "Muzika",
+          "options": [
+            {
+              "label": "Radio",
+              "cost": 1
+            },
+            {
+              "label": "Spotify playlist",
+              "cost": 2
+            },
+            {
+              "label": "DJ iz društva",
+              "cost": 3
+            },
+            {
+              "label": "Dobra plejlista + zvučnici",
+              "cost": 4
+            },
+            {
+              "label": "Pravi DJ",
               "cost": 5
             }
           ]
@@ -928,7 +500,7 @@
               "cost": 1
             },
             {
-              "label": "Sok",
+              "label": "Sokovi",
               "cost": 2
             },
             {
@@ -936,125 +508,37 @@
               "cost": 3
             },
             {
-              "label": "Koktel",
+              "label": "Alkohol mix",
               "cost": 4
             },
             {
-              "label": "Koktel bar",
+              "label": "Kokteli",
               "cost": 5
             }
           ]
         },
         {
-          "categoryId": "hrana",
-          "title": "Hrana",
+          "categoryId": "broj",
+          "title": "Broj ljudi",
           "options": [
             {
-              "label": "Sendvič",
+              "label": "2 osobe",
               "cost": 1
             },
             {
-              "label": "Pekara",
+              "label": "4 osobe",
               "cost": 2
             },
             {
-              "label": "Burger",
+              "label": "6 osoba",
               "cost": 3
             },
             {
-              "label": "Roštilj",
+              "label": "10 ljudi",
               "cost": 4
             },
             {
-              "label": "Restoran",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "drustvo",
-          "title": "Društvo",
-          "options": [
-            {
-              "label": "Sam",
-              "cost": 1
-            },
-            {
-              "label": "Jedan drug",
-              "cost": 2
-            },
-            {
-              "label": "Par prijatelja",
-              "cost": 3
-            },
-            {
-              "label": "Ekipa",
-              "cost": 4
-            },
-            {
-              "label": "Ekipa + muzika",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-bud-11",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršen prvi dejt",
-      "shortTitle": "Prvi dejt",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
-      "categories": [
-        {
-          "categoryId": "mesto",
-          "title": "Mesto",
-          "options": [
-            {
-              "label": "Kafić",
-              "cost": 1
-            },
-            {
-              "label": "Šetnja",
-              "cost": 2
-            },
-            {
-              "label": "Restoran",
-              "cost": 3
-            },
-            {
-              "label": "Romantična večera",
-              "cost": 4
-            },
-            {
-              "label": "Putovanje",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "aktivnost",
-          "title": "Aktivnost",
-          "options": [
-            {
-              "label": "Razgovor",
-              "cost": 1
-            },
-            {
-              "label": "Kafa",
-              "cost": 2
-            },
-            {
-              "label": "Film",
-              "cost": 3
-            },
-            {
-              "label": "Avantura",
-              "cost": 4
-            },
-            {
-              "label": "Nešto nezaboravno",
+              "label": "Velika žurka",
               "cost": 5
             }
           ]
@@ -1064,391 +548,23 @@
           "title": "Atmosfera",
           "options": [
             {
-              "label": "Neprijatna tišina",
+              "label": "Sede svi",
               "cost": 1
             },
             {
-              "label": "Malo awkward",
+              "label": "Lagani razgovori",
               "cost": 2
             },
             {
-              "label": "Dobar razgovor",
+              "label": "Društvene igre",
               "cost": 3
             },
             {
-              "label": "Hemija",
+              "label": "Masne fore",
               "cost": 4
             },
             {
-              "label": "Sparks",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "zavrsetak",
-          "title": "Završetak večeri",
-          "options": [
-            {
-              "label": "Samo ćao",
-              "cost": 1
-            },
-            {
-              "label": "Zagrljaj",
-              "cost": 2
-            },
-            {
-              "label": "Poljubac u obraz",
-              "cost": 3
-            },
-            {
-              "label": "Poljubac",
-              "cost": 4
-            },
-            {
-              "label": "Plan za drugi dejt",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-bud-12",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršen auto",
-      "shortTitle": "Auto",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
-      "categories": [
-        {
-          "categoryId": "brend",
-          "title": "Brend",
-          "options": [
-            {
-              "label": "Fiat",
-              "cost": 1
-            },
-            {
-              "label": "Volkswagen",
-              "cost": 2
-            },
-            {
-              "label": "BMW",
-              "cost": 3
-            },
-            {
-              "label": "Porsche",
-              "cost": 4
-            },
-            {
-              "label": "Ferrari",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "motor",
-          "title": "Motor",
-          "options": [
-            {
-              "label": "90 hp",
-              "cost": 1
-            },
-            {
-              "label": "150 hp",
-              "cost": 2
-            },
-            {
-              "label": "250 hp",
-              "cost": 3
-            },
-            {
-              "label": "400 hp",
-              "cost": 4
-            },
-            {
-              "label": "800 hp",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "tip",
-          "title": "Tip auta",
-          "options": [
-            {
-              "label": "Mali gradski auto",
-              "cost": 1
-            },
-            {
-              "label": "Hatchback",
-              "cost": 2
-            },
-            {
-              "label": "SUV",
-              "cost": 3
-            },
-            {
-              "label": "Sportski auto",
-              "cost": 4
-            },
-            {
-              "label": "Supercar",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "enterijer",
-          "title": "Enterijer",
-          "options": [
-            {
-              "label": "Plastika",
-              "cost": 1
-            },
-            {
-              "label": "Standard",
-              "cost": 2
-            },
-            {
-              "label": "Koža",
-              "cost": 3
-            },
-            {
-              "label": "Luksuzni enterijer",
-              "cost": 4
-            },
-            {
-              "label": "Ultra luksuz",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-bud-13",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršenu devojku",
-      "shortTitle": "Savršena devojka",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
-      "categories": [
-        {
-          "categoryId": "stil",
-          "title": "Stil",
-          "options": [
-            {
-              "label": "Sportski",
-              "cost": 1
-            },
-            {
-              "label": "Casual",
-              "cost": 2
-            },
-            {
-              "label": "Elegantni",
-              "cost": 3
-            },
-            {
-              "label": "Glam",
-              "cost": 4
-            },
-            {
-              "label": "Model stil",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "osobine",
-          "title": "Osobine",
-          "options": [
-            {
-              "label": "Tiha",
-              "cost": 1
-            },
-            {
-              "label": "Sramežljiva",
-              "cost": 2
-            },
-            {
-              "label": "Društvena",
-              "cost": 3
-            },
-            {
-              "label": "Harizmatična",
-              "cost": 4
-            },
-            {
-              "label": "Magnet za pažnju",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "hobi",
-          "title": "Hobi",
-          "options": [
-            {
-              "label": "Netflix",
-              "cost": 1
-            },
-            {
-              "label": "Teretana",
-              "cost": 2
-            },
-            {
-              "label": "Putovanja",
-              "cost": 3
-            },
-            {
-              "label": "Avanture",
-              "cost": 4
-            },
-            {
-              "label": "Sve pomalo",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "humor",
-          "title": "Humor",
-          "options": [
-            {
-              "label": "Bez humora",
-              "cost": 1
-            },
-            {
-              "label": "Suv humor",
-              "cost": 2
-            },
-            {
-              "label": "Dobar humor",
-              "cost": 3
-            },
-            {
-              "label": "Baš smešna",
-              "cost": 4
-            },
-            {
-              "label": "Urnebesna",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "cardId": "starter-bud-14",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršenog dečka",
-      "shortTitle": "Savršen dečko",
-      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
-      "categories": [
-        {
-          "categoryId": "stil",
-          "title": "Stil",
-          "options": [
-            {
-              "label": "Trenerka",
-              "cost": 1
-            },
-            {
-              "label": "Casual",
-              "cost": 2
-            },
-            {
-              "label": "Smart casual",
-              "cost": 3
-            },
-            {
-              "label": "Elegantni",
-              "cost": 4
-            },
-            {
-              "label": "Boss stil",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "karakter",
-          "title": "Karakter",
-          "options": [
-            {
-              "label": "Povučeni",
-              "cost": 1
-            },
-            {
-              "label": "Smireni",
-              "cost": 2
-            },
-            {
-              "label": "Društveni",
-              "cost": 3
-            },
-            {
-              "label": "Harizmatični",
-              "cost": 4
-            },
-            {
-              "label": "Alfa energija",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "hobi",
-          "title": "Hobi",
-          "options": [
-            {
-              "label": "Video igre",
-              "cost": 1
-            },
-            {
-              "label": "Teretana",
-              "cost": 2
-            },
-            {
-              "label": "Sport",
-              "cost": 3
-            },
-            {
-              "label": "Putovanja",
-              "cost": 4
-            },
-            {
-              "label": "Avanture",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "humor",
-          "title": "Humor",
-          "options": [
-            {
-              "label": "Suv humor",
-              "cost": 1
-            },
-            {
-              "label": "Sarkazam",
-              "cost": 2
-            },
-            {
-              "label": "Dobar humor",
-              "cost": 3
-            },
-            {
-              "label": "Baš smešan",
-              "cost": 4
-            },
-            {
-              "label": "Komičar",
+              "label": "Ludilo do jutra",
               "cost": 5
             }
           ]
