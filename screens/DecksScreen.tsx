@@ -299,11 +299,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     minWidth: 80,
     alignItems: 'center',
-    shadowColor: '#C46A28',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 3,
   },
   statNumber: {
     fontSize: 22,
@@ -341,7 +336,6 @@ const styles = StyleSheet.create({
     height: CARD_SIZE,
     borderRadius: 18,
     overflow: 'hidden',
-    elevation: 6,
   },
   cardLocked: {
     opacity: 0.6,

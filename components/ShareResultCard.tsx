@@ -287,11 +287,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 24,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 12,
   },
 
   // Header

@@ -92,11 +92,6 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     overflow: 'hidden',
     backgroundColor: '#fff',
-    shadowColor: '#C46A28',
-    shadowOffset: { width: 0, height: 12 },
-    shadowOpacity: 0.3,
-    shadowRadius: 24,
-    elevation: 16,
   },
   logoBanner: {
     alignItems: 'center',

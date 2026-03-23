@@ -52,11 +52,6 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 30,
     paddingHorizontal: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 16,
-    elevation: 24,
   },
   tab: {
     flex: 1,

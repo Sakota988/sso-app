@@ -302,11 +302,6 @@ const styles = StyleSheet.create({
     paddingTop: isSmall ? 12 : 18,
     paddingHorizontal: 20,
     paddingBottom: isSmall ? 16 : 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.07,
-    shadowRadius: 12,
-    elevation: 10,
     height: PANEL_H,
   },
   panelRow: {

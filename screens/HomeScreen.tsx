@@ -349,11 +349,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.88)',
     borderRadius: 20,
     padding: 16,
-    shadowColor: '#C46A28',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
   },
   historyCardHeader: {
     flexDirection: 'row',

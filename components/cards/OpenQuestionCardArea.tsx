@@ -173,11 +173,6 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderColor: '#1A1A1A',
     padding: isSmall ? 14 : 18,
-    shadowColor: '#1A1A1A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
     gap: isSmall ? 12 : 16,
   },
   cardWrong: {
