@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useDeckNav } from '../contexts/DeckNavContext';
 import { useGameStore } from '../store/gameStore';
 import WelcomeModal from '../components/WelcomeModal';
@@ -134,12 +133,7 @@ export default function DecksScreen() {
   return (
     <View style={styles.root}>
       <WelcomeModal />
-      <LinearGradient
-        colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']}
-        style={StyleSheet.absoluteFillObject}
-        start={{ x: 0.1, y: 0 }}
-        end={{ x: 0.9, y: 1 }}
-      />
+      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFD4A3' }]} />
 
       <View style={[styles.circle, { width: 240, height: 240, top: -80, right: -70 }]} />
       <View style={[styles.circle, { width: 180, height: 180, bottom: 160, left: -70 }]} />
@@ -347,10 +341,6 @@ const styles = StyleSheet.create({
     height: CARD_SIZE,
     borderRadius: 18,
     overflow: 'hidden',
-    shadowColor: '#C46A28',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.2,
-    shadowRadius: 12,
     elevation: 6,
   },
   cardLocked: {

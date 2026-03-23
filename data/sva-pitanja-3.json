@@ -18,72 +18,6 @@
       }
     },
     {
-      "cardId": "starter-oq-15",
-      "type": "OPEN_QUESTION",
-      "title": "Simbol Novog Zelanda",
-      "shortTitle": "Novi Zeland",
-      "description": "Koja životinja?",
-      "question": "Koja životinja je simbol Novog Zelanda?",
-      "acceptedAnswers": [
-        "Kivi",
-        "kivi"
-      ],
-      "answer": {
-        "title": "Kivi",
-        "description": "Kivi je nacionalni simbol Novog Zelanda."
-      }
-    },
-    {
-      "cardId": "starter-oq-16",
-      "type": "OPEN_QUESTION",
-      "title": "Mundijal",
-      "shortTitle": "Mundijal",
-      "description": "Koji fudbaler?",
-      "question": "Koji jedini fudbaler ima osvojena Mundijala kao igrač?",
-      "acceptedAnswers": [
-        "Pelé",
-        "Pele",
-        "pele"
-      ],
-      "answer": {
-        "title": "Pelé",
-        "description": "Pelé je jedini fudbaler sa tri osvojena Svetska prvenstva (1958, 1962, 1970)."
-      }
-    },
-    {
-      "cardId": "starter-oq-17",
-      "type": "OPEN_QUESTION",
-      "title": "Madagaskar",
-      "shortTitle": "Madagaskar",
-      "description": "Koja životinja?",
-      "question": "Koja životinja živi samo na Madagaskaru i ima prugasti rep i velike oči?",
-      "acceptedAnswers": [
-        "Lemur",
-        "lemur"
-      ],
-      "answer": {
-        "title": "Lemur",
-        "description": "Lemuri žive samo na Madagaskaru."
-      }
-    },
-    {
-      "cardId": "starter-oq-18",
-      "type": "OPEN_QUESTION",
-      "title": "Najdublje jezero",
-      "shortTitle": "Jezero",
-      "description": "Koje jezero?",
-      "question": "Koje je najdublje jezero na svetu?",
-      "acceptedAnswers": [
-        "Bajkalsko jezero",
-        "Bajkal",
-        "bajkal"
-      ],
-      "answer": {
-        "title": "Bajkalsko jezero",
-        "description": "Bajkalsko jezero je najdublje jezero na svetu (1642 m)."
-      }
-    },
-    {
       "cardId": "starter-ord-14",
       "type": "ORDER_4",
       "title": "Serije po epizodama",
@@ -105,6 +39,111 @@
       "answer": {
         "title": "Simpsonovi → Mala Nevesta → Prijatelji → Igra prestola",
         "description": "Simpsonovi 700+, Mala Nevesta 500+, Prijatelji 236, Igra prestola 73."
+      }
+    },
+    {
+      "cardId": "starter-k4-13",
+      "type": "KEEP_4_DROP_4",
+      "title": "Fudbaleri",
+      "shortTitle": "Fudbaleri",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Cristiano Ronaldo",
+        "Neymar",
+        "Luka Modrić",
+        "Zlatan Ibrahimović",
+        "Lionel Messi",
+        "David Beckham",
+        "Adriano",
+        "Gennaro Gattuso"
+      ]
+    },
+    {
+      "cardId": "starter-b5-12",
+      "type": "BLIND_5_RANK",
+      "title": "Najboljih doručaka",
+      "shortTitle": "Doručak",
+      "description": "Rangiraj od 1 do 5.",
+      "items": [
+        "Kroasan i jogurt",
+        "ZuZu",
+        "Prazan sa sirom",
+        "Sendvič sa benzinske",
+        "Suva kifla"
+      ],
+      "labels": {
+        "rank1": "Najbolji",
+        "rank5": "Najgori"
+      }
+    },
+    {
+      "cardId": "starter-bud-08",
+      "type": "BUDGETING_4x5",
+      "title": "Napravi savršen gaming dan",
+      "shortTitle": "Gaming dan",
+      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 15,
+      "categories": [
+        {
+          "categoryId": "igra",
+          "title": "Igra",
+          "options": [
+            { "label": "Random mobilna igra", "cost": 1 },
+            { "label": "Stara igra", "cost": 2 },
+            { "label": "Popularna online igra", "cost": 3 },
+            { "label": "AAA igra", "cost": 4 },
+            { "label": "Tvoja omiljena igra", "cost": 5 }
+          ]
+        },
+        {
+          "categoryId": "setup",
+          "title": "Setup",
+          "options": [
+            { "label": "Telefon", "cost": 1 },
+            { "label": "Laptop", "cost": 2 },
+            { "label": "Konzola", "cost": 3 },
+            { "label": "Gaming PC", "cost": 4 },
+            { "label": "Full gaming setup", "cost": 5 }
+          ]
+        },
+        {
+          "categoryId": "grickalice",
+          "title": "Grickalice",
+          "options": [
+            { "label": "Kikiriki", "cost": 1 },
+            { "label": "Čips", "cost": 2 },
+            { "label": "Čips + sok", "cost": 3 },
+            { "label": "Pizza", "cost": 4 },
+            { "label": "Full gaming snack sto", "cost": 5 }
+          ]
+        },
+        {
+          "categoryId": "ekipa",
+          "title": "Ekipa",
+          "options": [
+            { "label": "Sam", "cost": 1 },
+            { "label": "Random online igrači", "cost": 2 },
+            { "label": "Jedan prijatelj", "cost": 3 },
+            { "label": "Ekipa prijatelja", "cost": 4 },
+            { "label": "Turnir sa ekipom", "cost": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "cardId": "starter-oq-15",
+      "type": "OPEN_QUESTION",
+      "title": "Simbol Novog Zelanda",
+      "shortTitle": "Novi Zeland",
+      "description": "Koja životinja?",
+      "question": "Koja životinja je simbol Novog Zelanda?",
+      "acceptedAnswers": [
+        "Kivi",
+        "kivi"
+      ],
+      "answer": {
+        "title": "Kivi",
+        "description": "Kivi je nacionalni simbol Novog Zelanda."
       }
     },
     {
@@ -132,6 +171,58 @@
       }
     },
     {
+      "cardId": "starter-k4-14",
+      "type": "KEEP_4_DROP_4",
+      "title": "NBA košarkaši",
+      "shortTitle": "NBA",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Nikola Jokić",
+        "Luka Dončić",
+        "Giannis Antetokounmpo",
+        "Stephen Curry",
+        "Michael Jordan",
+        "Shaquille O'Neal",
+        "LeBron James",
+        "Tracy McGrady"
+      ]
+    },
+    {
+      "cardId": "starter-b5-13",
+      "type": "BLIND_5_RANK",
+      "title": "Najgora saobraćajna sredstva za putovanje u 10 ujutru",
+      "shortTitle": "Prevoz",
+      "description": "Rangiraj od najgoreg.",
+      "items": [
+        "Skuter",
+        "Gradski autobus",
+        "Fiat Punto bez klime",
+        "Voz",
+        "Avion"
+      ],
+      "labels": {
+        "rank1": "Najgore",
+        "rank5": "Najmanje loše"
+      }
+    },
+    {
+      "cardId": "starter-oq-16",
+      "type": "OPEN_QUESTION",
+      "title": "Mundijal",
+      "shortTitle": "Mundijal",
+      "description": "Koji fudbaler?",
+      "question": "Koji jedini fudbaler ima osvojena Mundijala kao igrač?",
+      "acceptedAnswers": [
+        "Pelé",
+        "Pele",
+        "pele"
+      ],
+      "answer": {
+        "title": "Pelé",
+        "description": "Pelé je jedini fudbaler sa tri osvojena Svetska prvenstva (1958, 1962, 1970)."
+      }
+    },
+    {
       "cardId": "starter-ord-16",
       "type": "ORDER_4",
       "title": "Proteini",
@@ -153,6 +244,57 @@
       "answer": {
         "title": "Parmezan → Soja → Piletina → Jaja",
         "description": "Parmezan ~35%, soja ~36%, piletina ~31%, jaja ~13% proteina."
+      }
+    },
+    {
+      "cardId": "starter-k4-15",
+      "type": "KEEP_4_DROP_4",
+      "title": "Gradovi gde bi živeo/la",
+      "shortTitle": "Gradovi",
+      "description": "Zadrži 4.",
+      "traits": [
+        "Pariz",
+        "Rim",
+        "Berlin",
+        "Beograd",
+        "Madrid",
+        "Amsterdam",
+        "Budimpešta",
+        "Istanbul"
+      ]
+    },
+    {
+      "cardId": "starter-b5-14",
+      "type": "BLIND_5_RANK",
+      "title": "Najgora mesta za odmor",
+      "shortTitle": "Odmor",
+      "description": "Rangiraj od najgoreg.",
+      "items": [
+        "Industrijska zona",
+        "Gradilište",
+        "Pored autoputa",
+        "Predgrađe grada",
+        "Mali planinski grad"
+      ],
+      "labels": {
+        "rank1": "Najgore",
+        "rank5": "Najmanje loše"
+      }
+    },
+    {
+      "cardId": "starter-oq-17",
+      "type": "OPEN_QUESTION",
+      "title": "Madagaskar",
+      "shortTitle": "Madagaskar",
+      "description": "Koja životinja?",
+      "question": "Koja životinja živi samo na Madagaskaru i ima prugasti rep i velike oči?",
+      "acceptedAnswers": [
+        "Lemur",
+        "lemur"
+      ],
+      "answer": {
+        "title": "Lemur",
+        "description": "Lemuri žive samo na Madagaskaru."
       }
     },
     {
@@ -180,6 +322,58 @@
       }
     },
     {
+      "cardId": "starter-k4-16",
+      "type": "KEEP_4_DROP_4",
+      "title": "Auto brendovi",
+      "shortTitle": "Auti",
+      "description": "Zadrži 4.",
+      "traits": [
+        "BMW",
+        "Audi",
+        "Mercedes",
+        "Škoda",
+        "Toyota",
+        "BYD",
+        "Porsche",
+        "Honda"
+      ]
+    },
+    {
+      "cardId": "starter-b5-15",
+      "type": "BLIND_5_RANK",
+      "title": "Najgori sport za gledanje",
+      "shortTitle": "Sport",
+      "description": "Rangiraj od najgoreg.",
+      "items": [
+        "Curling",
+        "Golf",
+        "Baseball",
+        "Tenis",
+        "Fudbal"
+      ],
+      "labels": {
+        "rank1": "Najgori",
+        "rank5": "Najmanje loš"
+      }
+    },
+    {
+      "cardId": "starter-oq-18",
+      "type": "OPEN_QUESTION",
+      "title": "Najdublje jezero",
+      "shortTitle": "Jezero",
+      "description": "Koje jezero?",
+      "question": "Koje je najdublje jezero na svetu?",
+      "acceptedAnswers": [
+        "Bajkalsko jezero",
+        "Bajkal",
+        "bajkal"
+      ],
+      "answer": {
+        "title": "Bajkalsko jezero",
+        "description": "Bajkalsko jezero je najdublje jezero na svetu (1642 m)."
+      }
+    },
+    {
       "cardId": "starter-ord-18",
       "type": "ORDER_4",
       "title": "Sportovi po trajanju",
@@ -204,369 +398,55 @@
       }
     },
     {
-      "cardId": "starter-k4-13",
-      "type": "KEEP_4_DROP_4",
-      "title": "Fudbaleri",
-      "shortTitle": "Fudbaleri",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Cristiano Ronaldo",
-        "Neymar",
-        "Luka Modrić",
-        "Zlatan Ibrahimović",
-        "Lionel Messi",
-        "David Beckham",
-        "Adriano",
-        "Gennaro Gattuso"
-      ]
-    },
-    {
-      "cardId": "starter-k4-14",
-      "type": "KEEP_4_DROP_4",
-      "title": "NBA košarkaši",
-      "shortTitle": "NBA",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Nikola Jokić",
-        "Luka Dončić",
-        "Giannis Antetokounmpo",
-        "Stephen Curry",
-        "Michael Jordan",
-        "Shaquille O'Neal",
-        "LeBron James",
-        "Tracy McGrady"
-      ]
-    },
-    {
-      "cardId": "starter-k4-15",
-      "type": "KEEP_4_DROP_4",
-      "title": "Gradovi gde bi živeo/la",
-      "shortTitle": "Gradovi",
-      "description": "Zadrži 4.",
-      "traits": [
-        "Pariz",
-        "Rim",
-        "Berlin",
-        "Beograd",
-        "Madrid",
-        "Amsterdam",
-        "Budimpešta",
-        "Istanbul"
-      ]
-    },
-    {
-      "cardId": "starter-k4-16",
-      "type": "KEEP_4_DROP_4",
-      "title": "Auto brendovi",
-      "shortTitle": "Auti",
-      "description": "Zadrži 4.",
-      "traits": [
-        "BMW",
-        "Audi",
-        "Mercedes",
-        "Škoda",
-        "Toyota",
-        "BYD",
-        "Porsche",
-        "Honda"
-      ]
-    },
-    {
-      "cardId": "starter-b5-12",
-      "type": "BLIND_5_RANK",
-      "title": "Najboljih doručaka",
-      "shortTitle": "Doručak",
-      "description": "Rangiraj od 1 do 5.",
-      "items": [
-        "Kroasan i jogurt",
-        "ZuZu",
-        "Prazan sa sirom",
-        "Sendvič sa benzinske",
-        "Suva kifla"
-      ],
-      "labels": {
-        "rank1": "Najbolji",
-        "rank5": "Najgori"
-      }
-    },
-    {
-      "cardId": "starter-b5-13",
-      "type": "BLIND_5_RANK",
-      "title": "Najgora saobraćajna sredstva za putovanje u 10 ujutru",
-      "shortTitle": "Prevoz",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Skuter",
-        "Gradski autobus",
-        "Fiat Punto bez klime",
-        "Voz",
-        "Avion"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-14",
-      "type": "BLIND_5_RANK",
-      "title": "Najgora mesta za odmor",
-      "shortTitle": "Odmor",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Industrijska zona",
-        "Gradilište",
-        "Pored autoputa",
-        "Predgrađe grada",
-        "Mali planinski grad"
-      ],
-      "labels": {
-        "rank1": "Najgore",
-        "rank5": "Najmanje loše"
-      }
-    },
-    {
-      "cardId": "starter-b5-15",
-      "type": "BLIND_5_RANK",
-      "title": "Najgori sport za gledanje",
-      "shortTitle": "Sport",
-      "description": "Rangiraj od najgoreg.",
-      "items": [
-        "Curling",
-        "Golf",
-        "Baseball",
-        "Tenis",
-        "Fudbal"
-      ],
-      "labels": {
-        "rank1": "Najgori",
-        "rank5": "Najmanje loš"
-      }
-    },
-    {
-      "cardId": "starter-bud-08",
-      "type": "BUDGETING_4x5",
-      "title": "Napravi savršen gaming dan",
-      "shortTitle": "Gaming dan",
-      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
-      "categories": [
-        {
-          "categoryId": "igra",
-          "title": "Igra",
-          "options": [
-            {
-              "label": "Random mobilna igra",
-              "cost": 1
-            },
-            {
-              "label": "Stara igra",
-              "cost": 2
-            },
-            {
-              "label": "Popularna online igra",
-              "cost": 3
-            },
-            {
-              "label": "AAA igra",
-              "cost": 4
-            },
-            {
-              "label": "Tvoja omiljena igra",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "setup",
-          "title": "Setup",
-          "options": [
-            {
-              "label": "Telefon",
-              "cost": 1
-            },
-            {
-              "label": "Laptop",
-              "cost": 2
-            },
-            {
-              "label": "Konzola",
-              "cost": 3
-            },
-            {
-              "label": "Gaming PC",
-              "cost": 4
-            },
-            {
-              "label": "Full gaming setup",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "grickalice",
-          "title": "Grickalice",
-          "options": [
-            {
-              "label": "Kikiriki",
-              "cost": 1
-            },
-            {
-              "label": "Čips",
-              "cost": 2
-            },
-            {
-              "label": "Čips + sok",
-              "cost": 3
-            },
-            {
-              "label": "Pizza",
-              "cost": 4
-            },
-            {
-              "label": "Full gaming snack sto",
-              "cost": 5
-            }
-          ]
-        },
-        {
-          "categoryId": "ekipa",
-          "title": "Ekipa",
-          "options": [
-            {
-              "label": "Sam",
-              "cost": 1
-            },
-            {
-              "label": "Random online igrači",
-              "cost": 2
-            },
-            {
-              "label": "Jedan prijatelj",
-              "cost": 3
-            },
-            {
-              "label": "Ekipa prijatelja",
-              "cost": 4
-            },
-            {
-              "label": "Turnir sa ekipom",
-              "cost": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
       "cardId": "starter-bud-09",
       "type": "BUDGETING_4x5",
       "title": "Napravi savršenu kućnu žurku",
       "shortTitle": "Kućna žurka",
-      "description": "Imaš 20€. Izaberi po 1 opciju iz svake kategorije.",
-      "budgetTotal": 20,
+      "description": "Imaš 15€. Izaberi po 1 opciju iz svake kategorije.",
+      "budgetTotal": 15,
       "categories": [
         {
           "categoryId": "muzika",
           "title": "Muzika",
           "options": [
-            {
-              "label": "Radio",
-              "cost": 1
-            },
-            {
-              "label": "Spotify playlist",
-              "cost": 2
-            },
-            {
-              "label": "DJ iz društva",
-              "cost": 3
-            },
-            {
-              "label": "Dobra plejlista + zvučnici",
-              "cost": 4
-            },
-            {
-              "label": "Pravi DJ",
-              "cost": 5
-            }
+            { "label": "Radio", "cost": 1 },
+            { "label": "Spotify playlist", "cost": 2 },
+            { "label": "DJ iz društva", "cost": 3 },
+            { "label": "Dobra plejlista + zvučnici", "cost": 4 },
+            { "label": "Pravi DJ", "cost": 5 }
           ]
         },
         {
           "categoryId": "pice",
           "title": "Piće",
           "options": [
-            {
-              "label": "Voda",
-              "cost": 1
-            },
-            {
-              "label": "Sokovi",
-              "cost": 2
-            },
-            {
-              "label": "Pivo",
-              "cost": 3
-            },
-            {
-              "label": "Alkohol mix",
-              "cost": 4
-            },
-            {
-              "label": "Kokteli",
-              "cost": 5
-            }
+            { "label": "Voda", "cost": 1 },
+            { "label": "Sokovi", "cost": 2 },
+            { "label": "Pivo", "cost": 3 },
+            { "label": "Alkohol mix", "cost": 4 },
+            { "label": "Kokteli", "cost": 5 }
           ]
         },
         {
           "categoryId": "broj",
           "title": "Broj ljudi",
           "options": [
-            {
-              "label": "2 osobe",
-              "cost": 1
-            },
-            {
-              "label": "4 osobe",
-              "cost": 2
-            },
-            {
-              "label": "6 osoba",
-              "cost": 3
-            },
-            {
-              "label": "10 ljudi",
-              "cost": 4
-            },
-            {
-              "label": "Velika žurka",
-              "cost": 5
-            }
+            { "label": "2 osobe", "cost": 1 },
+            { "label": "4 osobe", "cost": 2 },
+            { "label": "6 osoba", "cost": 3 },
+            { "label": "10 ljudi", "cost": 4 },
+            { "label": "Velika žurka", "cost": 5 }
           ]
         },
         {
           "categoryId": "atmosfera",
           "title": "Atmosfera",
           "options": [
-            {
-              "label": "Sede svi",
-              "cost": 1
-            },
-            {
-              "label": "Lagani razgovori",
-              "cost": 2
-            },
-            {
-              "label": "Društvene igre",
-              "cost": 3
-            },
-            {
-              "label": "Masne fore",
-              "cost": 4
-            },
-            {
-              "label": "Ludilo do jutra",
-              "cost": 5
-            }
+            { "label": "Sede svi", "cost": 1 },
+            { "label": "Lagani razgovori", "cost": 2 },
+            { "label": "Društvene igre", "cost": 3 },
+            { "label": "Masne fore", "cost": 4 },
+            { "label": "Ludilo do jutra", "cost": 5 }
           ]
         }
       ]

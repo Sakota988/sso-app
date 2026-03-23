@@ -5,8 +5,6 @@
  */
 import { forwardRef } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-
 // ── Discriminated union for each game type ──────────────────────────────────
 
 export type Keep4Drop4Data = {
@@ -212,13 +210,8 @@ const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
     <View style={styles.offScreen} pointerEvents="none">
       <View ref={ref} style={styles.card} collapsable={false}>
 
-        {/* Header gradient band */}
-        <LinearGradient
-          colors={['#FF9A5C', '#FF6B1A']}
-          style={styles.header}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-        >
+        {/* Header band */}
+        <View style={[styles.header, { backgroundColor: '#FF6B1A' }]}>
           <View style={[styles.circle, { width: 90, height: 90, top: -30, right: -20 }]} />
           <View style={[styles.circle, { width: 60, height: 60, bottom: -20, left: 10 }]} />
           <Image
@@ -226,7 +219,7 @@ const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
             style={styles.logo}
             resizeMode="contain"
           />
-        </LinearGradient>
+        </View>
 
         {/* Card title */}
         <View style={styles.titleRow}>

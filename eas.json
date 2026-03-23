@@ -1,30 +1,26 @@
 {
-    "cli": {
-      "version": ">= 10.0.0"
+  "cli": {
+    "version": ">= 10.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
     },
-    "build": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal"
-      },
-      "preview": {
-        "distribution": "internal"
-      },
-      "production": {
-        "ios": {
-          "workflow": "managed"
-        },
-        "android": {
-          "workflow": "managed"
-        }
-      }
+    "preview": {
+      "distribution": "internal"
     },
-    "submit": {
+    "production": {}
+  },
+  "submit": {
+    "production": {
       "ios": {
         "appleId": "sakotanikola@gmail.com"
       },
       "android": {
-        "serviceAccountKeyPath": "google-play-service-account.json"
+        "serviceAccountKeyPath": "google-play-service-account.json",
+        "releaseStatus": "draft"
       }
     }
   }
+}

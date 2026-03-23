@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Linking, Pressable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import Constants from 'expo-constants';
 import { Settings, ExternalLink, Mail } from 'lucide-react-native';
 
 // Replace with your actual URLs before App Store submission
-const PRIVACY_POLICY_URL = 'https://example.com/privacy';
-const TERMS_URL = 'https://example.com/terms';
-const SUPPORT_EMAIL = 'mailto:support@example.com';
+const PRIVACY_POLICY_URL = 'https://slusajsadovo.com/privacy-policy/';
+const TERMS_URL = 'https://slusajsadovo.com/terms-of-use/';
+const SUPPORT_EMAIL = 'mailto:info@slusajsadovo.com';
 
 async function openUrl(url: string) {
   const canOpen = await Linking.canOpenURL(url);
@@ -33,10 +31,10 @@ function SettingsRow({
 }
 
 export default function SettingsScreen() {
-  const appVersion = Constants.expoConfig?.version ?? '1.0.0';
+  const appVersion = '1.0.0';
 
   return (
-    <LinearGradient colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']} style={styles.container}>
+    <View style={[styles.container, { backgroundColor: '#FFD4A3' }]}>
       <View style={styles.iconWrapper}>
         <Settings size={48} color="#FF9A5C" strokeWidth={1.5} />
       </View>
@@ -61,7 +59,7 @@ export default function SettingsScreen() {
       </View>
 
       <Text style={styles.version}>Verzija {appVersion}</Text>
-    </LinearGradient>
+    </View>
   );
 }
 

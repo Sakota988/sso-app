@@ -11,7 +11,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { CheckCircle } from 'lucide-react-native';
 import type { OpenQuestionCard } from '../../types/deck';
 import CardHeader from '../common/CardHeader';
@@ -126,12 +125,7 @@ export default function OpenQuestion({ card, onBack, onNext, deckId }: Props) {
         matched={phase === 'correct'}
         answerTitle={card.answer.title}
       />
-      <LinearGradient
-        colors={['#FF9A5C', '#FFCB96', '#FFF3E6']}
-        style={StyleSheet.absoluteFillObject}
-        start={{ x: 0.2, y: 0 }}
-        end={{ x: 0.8, y: 1 }}
-      />
+      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFCB96' }]} />
 
       <View style={[styles.bgCircle, { width: 260, height: 260, top: -90, right: -90 }]} />
       <View style={[styles.bgCircle, { width: 180, height: 180, top: 240, left: -70 }]} />

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { CheckCircle2, ExternalLink, XCircle } from 'lucide-react-native';
+import { CheckCircle2, ExternalLink, ThumbsUp, Trophy, XCircle } from 'lucide-react-native';
 import type { OpenQuestionAnswer } from '../../types/deck';
 import ShareButton from '../ShareButton';
 import DoneCardButtons from '../common/DoneCardButtons';
@@ -100,9 +100,12 @@ export default function Order4CardArea({
             contentContainerStyle={styles.resultCard}
             showsVerticalScrollIndicator={false}
           >
-            <Text style={styles.resultEmoji}>
-              {isPerfect ? '🏆' : score >= 2 ? '👍' : '😅'}
-            </Text>
+            {isPerfect
+              ? <Trophy size={isSmall ? 36 : 44} color="#FFD700" strokeWidth={1.8} />
+              : score >= 2
+                ? <ThumbsUp size={isSmall ? 36 : 44} color="#4ADE80" strokeWidth={1.8} />
+                : <XCircle size={isSmall ? 36 : 44} color="#FB923C" strokeWidth={1.8} />
+            }
             <Text style={styles.resultTitle}>
               {isPerfect ? 'Savršeno!' : score >= 2 ? 'Dobro!' : 'Skoro!'}
             </Text>
@@ -297,7 +300,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: isSmall ? 10 : 14,
   },
-  resultEmoji: { fontSize: isSmall ? 36 : 44 },
   resultTitle: {
     fontSize: isSmall ? 22 : 28,
     fontWeight: '900',

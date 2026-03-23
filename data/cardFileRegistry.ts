@@ -6,6 +6,8 @@ const REGISTRY: Record<string, DeckContent> = {
   'sva-pitanja-1.json':    require('./sva-pitanja-1.json'),
   'sva-pitanja-2.json':    require('./sva-pitanja-2.json'),
   'sva-pitanja-3.json':    require('./sva-pitanja-3.json'),
+  'sva-pitanja-4.json':    require('./sva-pitanja-4.json'),
+  'sva-pitanja-5.json':    require('./sva-pitanja-5.json'),
 };
 
 export function getCardFile(contentFile: string): DeckContent | null {

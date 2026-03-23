@@ -1,5 +1,5 @@
 import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Check, X } from 'lucide-react-native';
+import { Check, PartyPopper, X } from 'lucide-react-native';
 import ShareButton from '../ShareButton';
 import DoneCardButtons from '../common/DoneCardButtons';
 
@@ -55,7 +55,7 @@ export default function Keep4Drop4CardArea({
     <View style={styles.cardArea}>
       {isDone ? (
         <View style={[styles.doneCard, { width: cardWidth, height: CARD_H }]}>
-          <Text style={styles.doneEmoji}>🎉</Text>
+          <PartyPopper size={isSmall ? 36 : 44} color="#FFD700" strokeWidth={1.8} />
           <Text style={styles.doneTxt}>Gotovo!</Text>
           <Text style={styles.doneSubTxt}>
             Zadržao/la si {keptCount} osobine
@@ -225,7 +225,6 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     elevation: 10,
   },
-  doneEmoji: { fontSize: isSmall ? 36 : 48 },
   doneTxt: { fontSize: isSmall ? 22 : 28, fontWeight: '900', color: '#fff' },
   doneSubTxt: { fontSize: isSmall ? 12 : 14, color: 'rgba(255,255,255,0.7)', fontWeight: '600' },
 });

@@ -1,5 +1,4 @@
 import { Dimensions, FlatList, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Trash2 } from 'lucide-react-native';
 import {
@@ -203,12 +202,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.root}>
-      <LinearGradient
-        colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']}
-        style={StyleSheet.absoluteFillObject}
-        start={{ x: 0.1, y: 0 }}
-        end={{ x: 0.9, y: 1 }}
-      />
+      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFD4A3' }]} />
       <View style={[styles.bgCircle, { width: 220, height: 220, top: -80, right: -80 }]} />
       <View style={[styles.bgCircle, { width: 150, height: 150, bottom: 120, left: -60 }]} />
 

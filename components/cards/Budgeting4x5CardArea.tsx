@@ -1,4 +1,5 @@
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { PartyPopper } from 'lucide-react-native';
 import type { BudgetCategory } from '../../types/deck';
 import ShareButton from '../ShareButton';
 import DoneCardButtons from '../common/DoneCardButtons';
@@ -45,7 +46,7 @@ export default function Budgeting4x5CardArea({
     <View style={styles.cardArea}>
       {isDone ? (
         <View style={[styles.doneCard, { width: cardWidth }]}>
-          <Text style={styles.doneEmoji}>🎉</Text>
+          <PartyPopper size={isSmall ? 36 : 44} color="#FFD700" strokeWidth={1.8} />
           <Text style={styles.doneTxt}>Gotovo!</Text>
           <Text style={styles.doneSpent}>
             Potrošeno {spent} / {budgetTotal}
@@ -206,7 +207,6 @@ const styles = StyleSheet.create({
     elevation: 10,
     gap: 6,
   },
-  doneEmoji: { fontSize: isSmall ? 36 : 44 },
   doneTxt: { fontSize: isSmall ? 22 : 28, fontWeight: '900', color: '#fff' },
   doneSpent: {
     fontSize: 13,

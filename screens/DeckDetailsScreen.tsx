@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react-native';
 import type { DeckDisplay, CardItem } from '../types/deck';
 import { getCardFile } from '../data/cardFileRegistry';
@@ -178,12 +177,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
 
   return (
     <View style={styles.root}>
-      <LinearGradient
-        colors={['#FF9A5C', '#FFD4A3', '#FFF0E6']}
-        style={StyleSheet.absoluteFillObject}
-        start={{ x: 0.1, y: 0 }}
-        end={{ x: 0.9, y: 1 }}
-      />
+      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFD4A3' }]} />
 
       <TouchableOpacity style={styles.backBtn} onPress={onBack}>
         <ArrowLeft size={22} color="#1A1A1A" strokeWidth={2.5} />
@@ -318,10 +312,10 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     borderRadius: 14,
     overflow: 'hidden',
-    shadowColor: '#C46A28',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
+    // shadowColor: '#C46A28',
+    // shadowOffset: { width: 0, height: 4 },
+    // shadowOpacity: 0.18,
+    // shadowRadius: 8,
     elevation: 5,
   },
   cardItemImage: { width: '100%', height: '100%' },

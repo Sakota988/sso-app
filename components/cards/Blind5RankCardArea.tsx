@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Trophy } from 'lucide-react-native';
 import ShareButton from '../ShareButton';
 import DoneCardButtons from '../common/DoneCardButtons';
 
@@ -54,7 +55,7 @@ export default function Blind5RankCardArea({
     <View style={styles.cardArea}>
       {isDone ? (
         <View style={[styles.doneCard, { width: cardWidth }]}>
-          <Text style={styles.doneEmoji}>🏆</Text>
+          <Trophy size={isSmall ? 28 : 34} color="#FFD700" strokeWidth={1.8} />
           <Text style={styles.doneTxt}>Gotovo!</Text>
           <Text style={styles.doneSubTxt}>Tvoj ranking</Text>
 
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2.5,
     borderColor: '#1A1A1A',
-    padding: isSmall ? 14 : 18,
+    padding: isSmall ? 12 : 14,
     shadowColor: '#1A1A1A',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
@@ -139,28 +140,28 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: 'rgba(255,255,255,0.55)',
     letterSpacing: 1.8,
-    marginBottom: 8,
+    marginBottom: 6,
   },
   itemTitle: {
-    fontSize: isSmall ? 16 : 20,
+    fontSize: isSmall ? 15 : 17,
     fontWeight: '900',
     color: '#fff',
-    marginBottom: isSmall ? 14 : 18,
+    marginBottom: isSmall ? 10 : 12,
     letterSpacing: -0.3,
-    lineHeight: isSmall ? 22 : 28,
+    lineHeight: isSmall ? 20 : 24,
   },
   rankPrompt: {
     fontSize: 11,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.6)',
     letterSpacing: 0.8,
-    marginBottom: 12,
+    marginBottom: 8,
     textTransform: 'uppercase',
   },
   rankBtnRow: {
     flexDirection: 'row',
     gap: 8,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   rankBtn: {
     borderRadius: 14,
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.08)',
   },
   rankBtnText: {
-    fontSize: isSmall ? 18 : 22,
+    fontSize: isSmall ? 16 : 19,
     fontWeight: '900',
     color: '#fff',
   },
@@ -194,49 +195,48 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2.5,
     borderColor: '#1A1A1A',
-    padding: isSmall ? 16 : 24,
+    padding: isSmall ? 12 : 16,
     alignItems: 'center',
     shadowColor: '#1A1A1A',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 16,
     elevation: 10,
-    gap: 6,
+    gap: 4,
   },
-  doneEmoji: { fontSize: isSmall ? 36 : 44 },
-  doneTxt: { fontSize: isSmall ? 22 : 28, fontWeight: '900', color: '#fff' },
+  doneTxt: { fontSize: isSmall ? 18 : 22, fontWeight: '900', color: '#fff' },
   doneSubTxt: {
-    fontSize: 13,
+    fontSize: 12,
     color: 'rgba(255,255,255,0.6)',
     fontWeight: '600',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   doneSummary: {
     alignSelf: 'stretch',
-    gap: 8,
-    marginBottom: 8,
+    gap: 6,
+    marginBottom: 6,
   },
   doneSummaryRow: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    gap: 12,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    gap: 10,
   },
   doneRankBadge: {
-    width: 32,
-    height: 32,
-    borderRadius: 10,
+    width: 28,
+    height: 28,
+    borderRadius: 8,
     backgroundColor: '#FF6B1A',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  doneRankText: { fontSize: 15, fontWeight: '900', color: '#fff' },
+  doneRankText: { fontSize: 13, fontWeight: '900', color: '#fff' },
   doneItemText: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '700',
     color: '#fff',
   },

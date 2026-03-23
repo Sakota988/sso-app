@@ -8,8 +8,6 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
-
 const STORAGE_KEY = '@sso_welcome_seen';
 
 export default function WelcomeModal() {
@@ -35,12 +33,7 @@ export default function WelcomeModal() {
     >
       <View style={styles.overlay}>
         <View style={styles.sheet}>
-          <LinearGradient
-            colors={['#FF9A5C', '#FFD4A3']}
-            style={styles.logoBanner}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          >
+          <View style={[styles.logoBanner, { backgroundColor: '#FF9A5C' }]}>
             <View style={[styles.circle, { width: 120, height: 120, top: -40, right: -30 }]} />
             <View style={[styles.circle, { width: 80, height: 80, bottom: -20, left: -20 }]} />
             <Image
@@ -48,7 +41,7 @@ export default function WelcomeModal() {
               style={styles.logo}
               resizeMode="contain"
             />
-          </LinearGradient>
+          </View>
 
           <View style={styles.body}>
             <Text style={styles.title}>Dobrodošli u SSO!</Text>
@@ -75,14 +68,9 @@ export default function WelcomeModal() {
             </View>
 
             <TouchableOpacity style={styles.btn} onPress={handleClose} activeOpacity={0.82}>
-              <LinearGradient
-                colors={['#FF9A5C', '#FF6B1A']}
-                style={styles.btnGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-              >
+              <View style={[styles.btnGradient, { backgroundColor: '#FF6B1A' }]}>
                 <Text style={styles.btnText}>Hajde da igramo! 🎮</Text>
-              </LinearGradient>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -168,10 +156,11 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 16,
   },
   btnText: {
     fontSize: 16,
-    fontWeight: '900',
+    fontWeight: 'bold',
     color: '#fff',
     letterSpacing: 0.3,
   },
