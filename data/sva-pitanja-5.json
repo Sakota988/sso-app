@@ -11,11 +11,16 @@
       "acceptedAnswers": [
         "Medved",
         "medved",
-        "Medvjed"
+        "Medvjed",
+        "medvjed",
+        "Medjed",
+        "medjed",
+        "Medo",
+        "medo"
       ],
       "answer": {
         "title": "Medved",
-        "description": "U Toblerone logu (planina Matterhorn) skriven je silueta medveda — simbol Berna."
+        "description": "U Toblerone logu (planina Matterhorn) skrivena je silueta medveda — simbol Berna."
       }
     },
     {
@@ -142,11 +147,19 @@
         "Švajcarska",
         "Svajcarska",
         "Švicarska",
-        "svajcarska"
+        "svajcarska",
+        "Švicarska",
+        "švicarska",
+        "Švica",
+        "švica",
+        "Svajcarska",
+        "svajcarska",
+        "Svica",
+        "svica"
       ],
       "answer": {
         "title": "Švajcarska",
-        "description": "Švajcarska ima najveću potrošnju čokolade po stanovniku."
+        "description": "Švajcarska ima najveću potrošnju čokolade po stanovniku - oko 11kg godišnje."
       }
     },
     {
@@ -218,11 +231,15 @@
       "acceptedAnswers": [
         "Toyota Corolla",
         "Corolla",
-        "corolla"
+        "corolla",
+        "Corola",
+        "corola",
+        "Korola",
+        "korola"
       ],
       "answer": {
         "title": "Toyota Corolla",
-        "description": "Toyota Corolla je najprodavaniji automobil u istoriji."
+        "description": "Toyota Corolla je najprodavaniji automobil u istoriji - prodato je preko 50 miliona primeraka."
       }
     },
     {
@@ -233,16 +250,16 @@
       "description": "Poredaj od najstarijeg.",
       "question": "Poredjaj ove izume od najstarijeg",
       "items": [
-        "telefon",
-        "televizija",
-        "internet",
-        "smartphone"
+        "Televizija",
+        "Telefon",
+        "Smartphone",
+        "Internet"
       ],
       "correctOrder": [
-        "telefon",
-        "televizija",
-        "internet",
-        "smartphone"
+        "Telefon",
+        "Televizija",
+        "Internet",
+        "Smartphone"
       ],
       "answer": {
         "title": "Telefon → Televizija → Internet → Smartphone",
@@ -293,7 +310,9 @@
       "question": "Da li identični blizanci imaju iste otiske prstiju?",
       "acceptedAnswers": [
         "Ne",
-        "ne"
+        "ne",
+        "Jok",
+        "jok"
       ],
       "answer": {
         "title": "Ne",
@@ -310,18 +329,18 @@
       "items": [
         "Zeleni čaj",
         "Coca-Cola",
-        "Crni čaj",
-        "Espreso"
+        "Espreso",
+        "Crni čaj"
       ],
       "correctOrder": [
-        "Zeleni čaj",
         "Coca-Cola",
+        "Zeleni čaj",
         "Crni čaj",
         "Espreso"
       ],
       "answer": {
-        "title": "Zeleni čaj → Coca-Cola → Crni čaj → Espreso",
-        "description": "Zeleni čaj ~25 mg, Cola ~34 mg, crni čaj ~47 mg, espreso ~64 mg po šolji."
+        "title": "Coca-Cola → Zeleni čaj → Crni čaj → Espreso",
+        "description": "Coca-Cola ~30 mg, Zeleni čaj ~35 mg, Crni čaj ~47 mg, Espreso ~64 mg po šoljici iste zapremine."
       }
     },
     {
@@ -370,7 +389,21 @@
         "Od dugih reči",
         "duge reči",
         "dugih reci",
-        "duge reci"
+        "duge reci",
+        "Dugačkih reči",
+        "dugačkih reci",
+        "Dugačke reči",
+        "dugačke reci",
+        "Dugačkih reči",
+        "dugačkih reci",
+        "Dugačke reči",
+        "dugačke reci",
+        "Dugačkih reči",
+        "dugačkih reci",
+        "Dugih rijeci",
+        "dugih rijeci",
+        "Dugih riječi",
+        "dugih riječi"
       ],
       "answer": {
         "title": "Od dugih reči",
@@ -385,9 +418,9 @@
       "description": "Poredaj od najtežeg.",
       "question": "Poredjaj organe po težini od najtežeg",
       "items": [
-        "Jetra",
         "Pluća",
         "Srce",
+        "Jetra",
         "Bubreg"
       ],
       "correctOrder": [

@@ -9,14 +9,14 @@
       "description": "Koja životinja?",
       "question": "Koja životinja ima najduži jezik u odnosu na telo?",
       "acceptedAnswers": [
-        "Slepi miš",
-        "slepi miš",
-        "Slepi mis",
-        "Nektarski slepi miš"
+        "Kameleon",
+        "kameleon",
+        "Cameleon",
+        "cameleon"
       ],
       "answer": {
-        "title": "Slepi miš (nektarski)",
-        "description": "Nektarski slepi miševi imaju izuzetno dugačak jezik u odnosu na veličinu tela."
+        "title": "Kameleon",
+        "description": "Kameleoni imaju duplo duži jezik od dužine tela."
       }
     },
     {
@@ -27,20 +27,20 @@
       "description": "Poredaj od najjačeg do najslabijeg.",
       "question": "Poredjaj pasoše zemalja po jačini od najjačeg do najslabijeg",
       "items": [
+        "Malta",
         "Japan",
-        "Nemačka",
-        "US",
-        "Indija"
+        "Indija",
+        "USA"
       ],
       "correctOrder": [
         "Japan",
-        "Nemačka",
-        "US",
+        "Malta",
+        "USA",
         "Indija"
       ],
       "answer": {
-        "title": "Japan → Nemačka → US → Indija",
-        "description": "Japan i Nemačka imaju među najjačim pasošima, Indija slabiji."
+        "title": "Japan → Malta → USA → Indija",
+        "description": "Japan i Malta spadaju među zemlje sa najjačim pasošima"
       }
     },
     {
@@ -141,7 +141,11 @@
       "question": "Koja je jedina država koja ima granicu i sa Severnom Korejom i sa Rusijom?",
       "acceptedAnswers": [
         "Kina",
-        "kina"
+        "kina",
+        "Cina",
+        "cina",
+        "China",
+        "china"
       ],
       "answer": {
         "title": "Kina",
@@ -164,12 +168,12 @@
       "correctOrder": [
         "Francuska",
         "Španija",
-        "Italija",
-        "Nemačka"
+        "Nemačka",
+        "Italija"
       ],
       "answer": {
-        "title": "Francuska → Španija → Italija → Nemačka",
-        "description": "Francuska ~644k km², Španija ~506k, Italija ~301k, Nemačka ~357k km²."
+        "title": "Francuska → Španija → Nemačka → Italija",
+        "description": "Francuska ~644k km², Španija ~506k km², Nemačka ~357k km², Italija ~301k km²"
       }
     },
     {
@@ -294,7 +298,9 @@
         "Tarsier",
         "tarsier",
         "Tarsijer",
-        "tarsijer"
+        "tarsijer",
+        "Avetnjak",
+        "avetnjak"
       ],
       "answer": {
         "title": "Tarsier",
@@ -398,7 +404,7 @@
       ],
       "answer": {
         "title": "Šimpanza → Slon → Svinja → Oktopod",
-        "description": "Šimpanze imaju najviši IQ među životinjama."
+        "description": "Šimpanze imaju najviši IQ među kopnenim životinjama."
       }
     },
     {

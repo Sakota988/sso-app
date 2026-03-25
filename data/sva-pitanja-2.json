@@ -10,7 +10,9 @@
       "question": "Koja država ima najviše vremenskih zona?",
       "acceptedAnswers": [
         "Francuska",
-        "francuska"
+        "francuska",
+        "France",
+        "france"
       ],
       "answer": {
         "title": "Francuska",
@@ -139,11 +141,13 @@
       "question": "Koja država ima najdužu obalu na svetu?",
       "acceptedAnswers": [
         "Kanada",
-        "kanada"
+        "kanada",
+        "Canada",
+        "canada"
       ],
       "answer": {
         "title": "Kanada",
-        "description": "Kanada ima najdužu obalu na svetu."
+        "description": "Kanada ima najdužu obalu na svetu - preko 200.000 km."
       }
     },
     {
@@ -216,7 +220,15 @@
         "Saudijska Arabija",
         "S. Arabija",
         "Arabija",
-        "Saudijska"
+        "Saudijska",
+        "Saudi Arabia",
+        "saudi arabia",
+        "Kraljevina Saudijska Arabija",
+        "kraljevina saudi arabia",
+        "Kraljevina Saudijska",
+        "kraljevina saudi",
+        "Kraljevina Saudijska",
+        "kraljevina saudi"
       ],
       "answer": {
         "title": "Saudijska Arabija",

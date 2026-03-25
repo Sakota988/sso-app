@@ -15,11 +15,15 @@
     },
     "ios": {
       "supportsTablet": true,
-      "simulator": "iPhone 15 Pro"
+      "bundleIdentifier": "com.nikolasakota.slusajsadovo",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.nikolasakota.slusajsadovo",
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#111111"

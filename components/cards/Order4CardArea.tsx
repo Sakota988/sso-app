@@ -113,7 +113,7 @@ export default function Order4CardArea({
 
             <View style={styles.comparisonBlock}>
               <View style={styles.comparisonCol}>
-                <Text style={styles.comparisonHead}>TVOJ REDOSLIJED</Text>
+                <Text style={styles.comparisonHead}>TVOJ REDOSLED</Text>
                 {userOrder.map((item, i) => {
                   const correct = item === correctOrder[i];
                   return (
@@ -144,7 +144,7 @@ export default function Order4CardArea({
 
               {!isPerfect && (
                 <View style={styles.comparisonCol}>
-                  <Text style={styles.comparisonHead}>TAČAN REDOSLIJED</Text>
+                  <Text style={styles.comparisonHead}>TAČAN REDOSLED</Text>
                   {correctOrder.map((item, i) => (
                     <View key={item} style={[styles.compRow, styles.compRowCorrectFull]}>
                       <View style={[styles.compBadge, styles.compBadgeCorrect]}>

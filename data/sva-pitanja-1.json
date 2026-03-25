@@ -156,20 +156,20 @@
       "description": "Poredaj od najstarijeg do najmlađeg.",
       "question": "Poredjaj sportiste od najstarijeg do najmlađeg",
       "items": [
-        "Đoković",
-        "Bogdanović",
-        "Mitrović",
-        "Vlahović"
+        "B. Bogdanović",
+        "A. Mitrović",
+        "N.Đoković",
+        "D. Vlahović"
       ],
       "correctOrder": [
-        "Đoković",
-        "Mitrović",
-        "Bogdanović",
-        "Vlahović"
+        "N.Đoković",
+        "B. Bogdanović",
+        "A. Mitrović",
+        "D. Vlahović"
       ],
       "answer": {
-        "title": "Đoković (1987) → Mitrović (1993) → Bogdanović (1992) → Vlahović (2000)",
-        "description": "Đoković je najstariji, Vlahović najmlađi."
+        "title": "Đoković (1987) → Bogdanović (1992) → Mitrović (1993) →  Vlahović (2000)",
+        "description": "Đoković je najstariji (Kakvo iznenadjenje) dok je Vlahović najmlađi."
       }
     },
     {
@@ -213,16 +213,20 @@
       "title": "Otrovni sisar",
       "shortTitle": "Otrovni sisar",
       "description": "Koja životinja?",
-      "question": "Koja životinja je jedini otrovni sisar?",
+      "question": "Koja životinja je jedini otrovni primat?",
       "acceptedAnswers": [
         "Spori Loris",
         "Slow loris",
         "Loris",
-        "loris"
+        "loris",
+        "Slow loris",
+        "slow loris",
+        "Slow Loris",
+        "slow loris"
       ],
       "answer": {
         "title": "Spori Loris (Slow loris)",
-        "description": "Spori loris je jedini poznati otrovni sisar."
+        "description": "Spori loris je jedini poznati otrovni primat."
       }
     },
     {
@@ -297,7 +301,16 @@
         "Slepi mis",
         "slepi mis",
         "Šišmiš",
-        "šišmiš"
+        "šišmiš",
+        "Slepi miševi",
+        "Slijepi miš",
+        "slijepi miš",
+        "Slijepi miševi",
+        "slijepi miševi",
+        "Slijepi mis",
+        "slijepi mis",
+        "Slijepi misevi",
+        "slijepi misevi"
       ],
       "answer": {
         "title": "Slepi miš",

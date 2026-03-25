@@ -10,11 +10,21 @@
       "question": "Koja je najveća država na svetu bez izlaza na more a bila je deo Sovjetskog saveza?",
       "acceptedAnswers": [
         "Kazahstan",
-        "kazahstan"
+        "kazahstan",
+        "Kazakhstan",
+        "kazakhstan",
+        "Kazahstanska Republika",
+        "kazahstanska republika",
+        "Kazahstanska",
+        "kazahstanska",
+        "Kazahstanska Republika",
+        "kazahstanska republika",
+        "Kazahstanska",
+        "kazahstanska"
       ],
       "answer": {
         "title": "Kazahstan",
-        "description": "Kazahstan je najveća država bez izlaza na more i bila je deo SSSR-a."
+        "description": "Kazahstan je najveća država bez izlaza na more sa površinom od preko 2.700.000 km²."
       }
     },
     {
@@ -139,7 +149,9 @@
       "question": "Koja životinja je simbol Novog Zelanda?",
       "acceptedAnswers": [
         "Kivi",
-        "kivi"
+        "kivi",
+        "Kiwi",
+        "kiwi"
       ],
       "answer": {
         "title": "Kivi",
@@ -211,7 +223,7 @@
       "title": "Mundijal",
       "shortTitle": "Mundijal",
       "description": "Koji fudbaler?",
-      "question": "Koji jedini fudbaler ima osvojena Mundijala kao igrač?",
+      "question": "Koji jedini fudbaler ima osvojena 3 Mundijala kao igrač?",
       "acceptedAnswers": [
         "Pelé",
         "Pele",
@@ -366,7 +378,10 @@
       "acceptedAnswers": [
         "Bajkalsko jezero",
         "Bajkal",
-        "bajkal"
+        "bajkal",
+        "Lake Baikal",
+        "Baikal",
+        "baikal"
       ],
       "answer": {
         "title": "Bajkalsko jezero",
