@@ -9,8 +9,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { CheckCircle2 } from 'lucide-react-native';
 import { useDeckNav } from '../contexts/DeckNavContext';
 import { useGameStore } from '../store/gameStore';
+import { getCardFile } from '../data/cardFileRegistry';
 import WelcomeModal from '../components/WelcomeModal';
 import type { DeckDisplay, DeckMeta } from '../types/deck';
 
@@ -21,9 +23,9 @@ const CARD_SIZE = (width - 48) / 2;
 const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
   'deck-1': require('../assets/decks_backs/deck_4_back.png'),
   'deck-2': require('../assets/decks_backs/deck_5_back.png'),
-  'deck-3': require('../assets/decks_backs/deck_1_back.png'),
+  'deck-3': require('../assets/decks_backs/deck_6_back.png'),
   'deck-4': require('../assets/decks_backs/deck_2_back.png'),
-  'deck-5': require('../assets/decks_backs/deck_3_back.png'),
+  'deck-5': require('../assets/decks_backs/deck_7_back.png'),
 };
 
 // ── Fallback images by deck type ──────────────────────────────────
@@ -79,6 +81,9 @@ const DECKS: DeckDisplay[] = deckData.decks.map((d) => ({
 function DeckCard({ deck }: { deck: DeckDisplay }) {
   const { openDeck } = useDeckNav();
   const isFree = deck.isFree;
+  const results = useGameStore((s) => s.results);
+  const cardIds = getCardFile(deck.contentFile)?.cards.map((c) => c.cardId) ?? [];
+  const isCompleted = cardIds.length > 0 && cardIds.every((id) => !!results[id]);
 
   return (
     <TouchableOpacity
@@ -100,6 +105,12 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
           {isFree ? 'FREE' : '🔒 PRO'}
         </Text>
       </View>
+
+      {isCompleted && (
+        <View style={styles.completedBadge}>
+          <CheckCircle2 size={16} color="#fff" strokeWidth={2.5} />
+        </View>
+      )}
 
       {!isFree && (
         <View style={styles.lockedOverlay}>
@@ -388,9 +399,20 @@ const styles = StyleSheet.create({
     color: '#fff',
     letterSpacing: 1.5,
   },
+  completedBadge: {
+    position: 'absolute',
+    top: 18,
+    left: 28,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#10B981',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   badge: {
     position: 'absolute',
-    top: 8,
+    top: 18,
     right: 8,
     paddingHorizontal: 8,
     paddingVertical: 3,

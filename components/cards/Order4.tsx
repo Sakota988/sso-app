@@ -164,7 +164,7 @@ export default function Order4({ card, onBack, onNext, deckId }: Props) {
         {!isDone && (
           <View style={[styles.panel, { height: PANEL_H }]}>
             <Text style={styles.panelHead}>
-              {userOrder.length === 0 ? 'TAPNI DA POREĐAŠ' : 'TVOJ REDOSLIJED'}
+              {userOrder.length === 0 ? 'TAPNI DA POREĐAŠ' : 'TVOJ REDOSLED'}
             </Text>
             <ScrollView
               horizontal
