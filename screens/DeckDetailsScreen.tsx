@@ -6,12 +6,13 @@ import {
   FlatList,
   Image,
   InteractionManager,
+  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react-native';
+import { ArrowLeft, CheckCircle2, Trophy } from 'lucide-react-native';
 import type { DeckDisplay, CardItem } from '../types/deck';
 import { getCardFile } from '../data/cardFileRegistry';
 import CardScreen from './CardScreen';
@@ -112,6 +113,7 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const listOpacity = useRef(new Animated.Value(0)).current;
 
   const content = getCardFile(deck.contentFile);
@@ -161,17 +163,52 @@ export default function DeckDetailsScreen({ deck, onBack }: Props) {
           return;
         }
       }
-      setSelectedCard(null);
+      const allPlayed = cards.every((c) => !!results[c.cardId]);
+      if (allPlayed) {
+        setShowCompletionModal(true);
+      } else {
+        setSelectedCard(null);
+      }
     };
     return (
-      <CardScreen
-        card={selectedCard}
-        cardNumber={idx + 1}
-        totalCards={cards.length}
-        deckId={deck.deckId}
-        onBack={() => setSelectedCard(null)}
-        onNext={handleNext}
-      />
+      <>
+        <CardScreen
+          card={selectedCard}
+          cardNumber={idx + 1}
+          totalCards={cards.length}
+          deckId={deck.deckId}
+          onBack={() => setSelectedCard(null)}
+          onNext={handleNext}
+        />
+        <Modal
+          visible={showCompletionModal}
+          transparent
+          animationType="fade"
+          onRequestClose={() => {
+            setShowCompletionModal(false);
+            setSelectedCard(null);
+          }}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalCard}>
+              <View style={styles.modalIconCircle}>
+                <Trophy size={36} color="#FF8C42" strokeWidth={2} />
+              </View>
+              <Text style={styles.modalTitle}>Uspešno ste završili ceo spil!</Text>
+              <Text style={styles.modalSub}>Sve kartice su odigrane.</Text>
+              <TouchableOpacity
+                style={styles.modalBtn}
+                onPress={() => {
+                  setShowCompletionModal(false);
+                  setSelectedCard(null);
+                }}
+              >
+                <Text style={styles.modalBtnText}>Zatvori</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      </>
     );
   }
 
@@ -397,6 +434,61 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,240,230,0.7)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+  },
+  modalCard: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 24,
+    paddingVertical: 36,
+    paddingHorizontal: 28,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    elevation: 12,
+  },
+  modalIconCircle: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#FFF0E5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    textAlign: 'center',
+    marginBottom: 8,
+    lineHeight: 28,
+  },
+  modalSub: {
+    fontSize: 14,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 28,
+  },
+  modalBtn: {
+    backgroundColor: '#FF8C42',
+    paddingVertical: 14,
+    paddingHorizontal: 48,
+    borderRadius: 14,
+  },
+  modalBtnText: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#fff',
+    letterSpacing: 0.3,
   },
   footer: { position: 'absolute', bottom: 32, left: 20, right: 20 },
   playBtn: {
