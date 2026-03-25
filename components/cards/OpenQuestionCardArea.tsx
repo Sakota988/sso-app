@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: 16,
-    paddingTop: 100,
+    paddingTop: 30,
     paddingBottom: 16,
   },
   card: {
