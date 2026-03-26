@@ -35,20 +35,20 @@
       "description": "Poredaj od najvećeg broja.",
       "question": "Poredjaj serije po broju epizoda od najvećeg broja",
       "items": [
-        "Mala Nevesta",
         "Simpsonovi",
         "Prijatelji",
+        "Mala Nevesta",
         "Igra prestola"
       ],
       "correctOrder": [
-        "Simpsonovi",
         "Mala Nevesta",
+        "Simpsonovi",
         "Prijatelji",
         "Igra prestola"
       ],
       "answer": {
-        "title": "Simpsonovi → Mala Nevesta → Prijatelji → Igra prestola",
-        "description": "Simpsonovi 700+, Mala Nevesta 500+, Prijatelji 236, Igra prestola 73."
+        "title": "Mala Nevesta → Simpsonovi → Prijatelji → Igra prestola",
+        "description": "Mala Nevesta 2248, Simpsonovi 800+, Prijatelji 236, Igra prestola 73 epizode."
       }
     },
     {
@@ -164,11 +164,11 @@
       "title": "Gradovi od Beograda",
       "shortTitle": "Udaljenost",
       "description": "Poredaj od najbližeg.",
-      "question": "Nabroj gradove po udaljenosti od Beograda od najbližeg",
+      "question": "Nabroj gradove po udaljenosti od Beograda (vazdušnom linijom) od najbližeg",
       "items": [
-        "Beč",
         "Berlin",
         "Pariz",
+        "Beč",
         "London"
       ],
       "correctOrder": [
@@ -179,7 +179,7 @@
       ],
       "answer": {
         "title": "Beč → Berlin → Pariz → London",
-        "description": "Beč ~580 km, Berlin ~950 km, Pariz ~1400 km, London ~1850 km od Beograda."
+        "description": "Beč ~500 km, Berlin ~990 km, Pariz ~1440 km, London ~1710 km od Beograda."
       }
     },
     {
@@ -242,10 +242,10 @@
       "description": "Poredaj od najviše do najmanje %.",
       "question": "Nabroj po % proteina na 100g sledeće proizvode od najviše do najmanje",
       "items": [
-        "Soja",
-        "Parmezan",
         "Piletina",
-        "Jaja"
+        "Jaja",
+        "Soja",
+        "Parmezan"
       ],
       "correctOrder": [
         "Parmezan",
@@ -255,7 +255,7 @@
       ],
       "answer": {
         "title": "Parmezan → Soja → Piletina → Jaja",
-        "description": "Parmezan ~35%, soja ~36%, piletina ~31%, jaja ~13% proteina."
+        "description": "Parmezan ~38%, soja ~36%, piletina ~31%, jaja ~13% proteina."
       }
     },
     {
@@ -299,14 +299,14 @@
       "title": "Madagaskar",
       "shortTitle": "Madagaskar",
       "description": "Koja životinja?",
-      "question": "Koja životinja živi samo na Madagaskaru i ima prugasti rep i velike oči?",
+      "question": "Koja životinja živi na Madagaskaru i ima prugasti rep i velike oči?",
       "acceptedAnswers": [
         "Lemur",
         "lemur"
       ],
       "answer": {
         "title": "Lemur",
-        "description": "Lemuri žive samo na Madagaskaru."
+        "description": "Lemuri žive na Madagaskaru i karakteristični su po matrijarhatu kao društvenom uredjenju."
       }
     },
     {
@@ -324,13 +324,13 @@
       ],
       "correctOrder": [
         "Bejzbol",
-        "Fudbalski",
         "Ragbi",
+        "Fudbalski",
         "Košarkaški"
       ],
       "answer": {
-        "title": "Fudbalski → Ragbi → Bejzbol → Košarkaški",
-        "description": "Fudbalski ~7000 m², ragbi ~7000 m², bejzbol ~8300 m², košarka ~420 m²."
+        "title": "Bejzbol → Ragbi → Fudbalski → Košarkaški",
+        "description": "Bejzbol ~8300 m², Ragbi ~8000 m², Fudbalski ~7000 m², Košarka ~420 m²."
       }
     },
     {
@@ -396,20 +396,20 @@
       "description": "Poredaj od najdužeg.",
       "question": "Poredjaj sportove po dužini trajanja regularnog dela od najdužeg",
       "items": [
-        "Šah",
-        "Fudbal",
         "Boks",
+        "Fudbal",
+        "Bejzbol",
         "Sprint 100m"
       ],
       "correctOrder": [
-        "Šah",
+        "Bejzbol",
         "Fudbal",
         "Boks",
         "Sprint 100m"
       ],
       "answer": {
-        "title": "Šah → Fudbal → Boks → Sprint 100m",
-        "description": "Šah neograničeno, fudbal 90 min, boks 12 rundi, sprint ~10 sekundi."
+        "title": "Bejzbol → Fudbal → Boks → Sprint 100m",
+        "description": "Bejzbol ~150 min, Fudbal 90 min, Boks 12 rundi, Sprint ~10 sekundi."
       }
     },
     {

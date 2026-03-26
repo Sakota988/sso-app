@@ -235,7 +235,7 @@
       "title": "Gradovi po populaciji",
       "shortTitle": "Gradovi",
       "description": "Poredaj od najmanjeg do najvećeg.",
-      "question": "Poredjaj gradove po populaciji od najmanjeg do najvećeg",
+      "question": "Poredjaj gradove (šire područje) po populaciji od najmanjeg do najvećeg",
       "items": [
         "Sarajevo",
         "Ljubljana",
@@ -250,7 +250,7 @@
       ],
       "answer": {
         "title": "Ljubljana → Sarajevo → Zagreb → Beograd",
-        "description": "Beograd ima najveću populaciju, Ljubljana najmanju."
+        "description": "Beograd ima najveću populaciju po poslednjem popisu, Ljubljana najmanju."
       }
     },
     {
@@ -400,20 +400,20 @@
       "description": "Poredaj od najvišeg do najnižeg.",
       "question": "Poredjaj NBA igrače od najvišeg do najnižeg",
       "items": [
-        "Divac",
-        "Jokić",
-        "Stojaković",
-        "Bogdanović"
+        "N. Jokić",
+        "P. Stojaković",
+        "V. Divac",
+        "B. Bogdanović"
       ],
       "correctOrder": [
-        "Divac",
-        "Jokić",
-        "Stojaković",
-        "Bogdanović"
+        "V. Divac",
+        "N. Jokić",
+        "P. Stojaković",
+        "B. Bogdanović"
       ],
       "answer": {
-        "title": "Divac → Jokić → Stojaković → Bogdanović",
-        "description": "Divac 216 cm, Jokić 211 cm, Stojaković 206 cm, Bogdanović 198 cm."
+        "title": "V. Divac → N. Jokić → P. Stojaković → B. Bogdanović",
+        "description": "Divac 216 cm, Jokić 211 cm, Stojaković 208 cm, Bogdanović 198 cm."
       }
     },
     {

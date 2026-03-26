@@ -158,9 +158,9 @@
       "description": "Poredaj od najveće do najmanje.",
       "question": "Poredjaj države po veličini teritorije od najveće do najmanje",
       "items": [
-        "Srbija",
-        "Gruzija",
         "Švajcarska",
+        "Gruzija",
+        "Srbija",
         "Makedonija"
       ],
       "correctOrder": [
@@ -171,7 +171,7 @@
       ],
       "answer": {
         "title": "Srbija → Gruzija → Švajcarska → Makedonija",
-        "description": "Srbija ~88k km², Gruzija ~70k, Švajcarska ~41k, Makedonija ~26k km²."
+        "description": "Srbija ~88k km², Gruzija ~70k km², Švajcarska ~41k km², Makedonija ~26k km²."
       }
     },
     {
@@ -243,20 +243,20 @@
       "description": "Poredaj od najvećeg do najmanjeg broja.",
       "question": "Poredjaj reči po broju samoglasnika od najvećeg do najmanjeg",
       "items": [
-        "Idealizacija",
-        "automobil",
+        "Automobil",
         "Planina",
+        "Idealizacija",
         "Vrh"
       ],
       "correctOrder": [
         "Idealizacija",
-        "automobil",
+        "Automobil",
         "Planina",
         "Vrh"
       ],
       "answer": {
-        "title": "Idealizacija → automobil → Planina → Vrh",
-        "description": "Idealizacija 8, automobil 5, Planina 4, Vrh 1 samoglasnik."
+        "title": "Idealizacija → Automobil → Planina → Vrh",
+        "description": "Idealizacija 7, Automobil 5, Planina 3, Vrh 0 samoglasnik."
       }
     },
     {
