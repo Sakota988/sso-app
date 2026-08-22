@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Linking, Pressable } from 'react-native';
 import { Settings, ExternalLink, Mail } from 'lucide-react-native';
+import appJson from '../app.json';
 
 // Replace with your actual URLs before App Store submission
 const PRIVACY_POLICY_URL = 'https://slusajsadovo.com/privacy-policy/';
@@ -31,7 +32,8 @@ function SettingsRow({
 }
 
 export default function SettingsScreen() {
-  const appVersion = '1.0.0';
+  const appVersion = appJson.expo.version;
+  const buildNumber = appJson.expo.android.versionCode.toString();
 
   return (
     <View style={[styles.container, { backgroundColor: '#FFD4A3' }]}>
@@ -58,7 +60,7 @@ export default function SettingsScreen() {
         />
       </View>
 
-      <Text style={styles.version}>Verzija {appVersion}</Text>
+      <Text style={styles.version}>Verzija {appVersion} ({buildNumber})</Text>
     </View>
   );
 }
