@@ -47,12 +47,22 @@ export type Order4Data = {
   score: number;
 };
 
+export type TopXData = {
+  type: 'topx';
+  cardTitle: string;
+  question: string;
+  userOrder: string[];
+  answers: string[];
+  score: number;
+};
+
 export type ShareResultCardProps =
   | Keep4Drop4Data
   | Blind5RankData
   | Budgeting4x5Data
   | OpenQuestionData
-  | Order4Data;
+  | Order4Data
+  | TopXData;
 
 // ── Game tag labels ─────────────────────────────────────────────────────────
 
@@ -62,6 +72,7 @@ const GAME_TAG: Record<ShareResultCardProps['type'], string> = {
   budgeting4x5:  'BUDŽETIRANJE • 4x5',
   openquestion:  'OTVORENO PITANJE',
   order4:        'POREDAJ REDOM',
+  topx:          'TOP X',
 };
 
 // ── Per-type content renderers ──────────────────────────────────────────────
@@ -203,6 +214,48 @@ function Order4Content({
   );
 }
 
+function TopXContent({
+  question, userOrder, answers, score,
+}: Pick<TopXData, 'question' | 'userOrder' | 'answers' | 'score'>) {
+  const n = answers.length;
+  return (
+    <View style={styles.singleCol}>
+      <View style={[styles.oqQuestionBox, { backgroundColor: '#9D174D' }]}>
+        <Text style={styles.oqQuestionLabel}>PITANJE</Text>
+        <Text style={styles.oqQuestionText}>{question}</Text>
+      </View>
+      <View style={styles.ord4ScoreRow}>
+        <Text style={[styles.ord4ScoreLabel, { color: '#9D174D' }]}>REZULTAT</Text>
+        <Text style={[styles.ord4ScoreValue, { color: '#9D174D' }]}>
+          {score} / {n}
+        </Text>
+      </View>
+      <Text style={[styles.ord4ScoreLabel, { color: '#9D174D' }]}>TVOJ REDOSLED</Text>
+      {userOrder.map((item, i) => {
+        const correct = item === answers[i];
+        return (
+          <View key={`user-${item}`} style={[styles.ord4Row, correct ? styles.ord4RowCorrect : styles.ord4RowWrong]}>
+            <View style={[styles.ord4Badge, correct ? styles.ord4BadgeCorrect : styles.ord4BadgeWrong]}>
+              <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+            </View>
+            <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+            <Text style={styles.ord4Icon}>{correct ? '✓' : '✕'}</Text>
+          </View>
+        );
+      })}
+      <Text style={[styles.ord4ScoreLabel, { color: '#9D174D', marginTop: 4 }]}>TAČAN REDOSLED</Text>
+      {answers.map((item, i) => (
+        <View key={`ans-${item}`} style={[styles.ord4Row, styles.ord4RowCorrect]}>
+          <View style={[styles.ord4Badge, styles.ord4BadgeCorrect]}>
+            <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+          </View>
+          <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 // ── Main card ───────────────────────────────────────────────────────────────
 
 const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
@@ -255,6 +308,14 @@ const ShareResultCard = forwardRef<View, ShareResultCardProps>((props, ref) => {
               question={props.question}
               userOrder={props.userOrder}
               correctOrder={props.correctOrder}
+              score={props.score}
+            />
+          )}
+          {props.type === 'topx' && (
+            <TopXContent
+              question={props.question}
+              userOrder={props.userOrder}
+              answers={props.answers}
               score={props.score}
             />
           )}

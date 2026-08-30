@@ -9,6 +9,7 @@ import {
   type Budgeting4x5Result,
   type OpenQuestionResult,
   type Order4Result,
+  type TopXResult,
 } from '../store/gameStore';
 
 const { height } = Dimensions.get('window');
@@ -23,6 +24,7 @@ const TYPE_LABELS: Record<string, string> = {
   BUDGETING_4x5: 'Budžetiranje',
   OPEN_QUESTION: 'Otvoreno pitanje',
   ORDER_4:       'Poredaj redom',
+  TOP_X:         'Top X',
 };
 
 const TYPE_COLORS: Record<string, string> = {
@@ -31,6 +33,7 @@ const TYPE_COLORS: Record<string, string> = {
   BUDGETING_4x5: '#FF6B1A',
   OPEN_QUESTION: '#5B21B6',
   ORDER_4:       '#134E4A',
+  TOP_X:         '#9D174D',
 };
 
 const SOCIAL_LINKS = [
@@ -150,6 +153,46 @@ function Order4Summary({ result }: { result: Order4Result }) {
   );
 }
 
+function TopXSummary({ result }: { result: TopXResult }) {
+  const answers = result.answers ?? [];
+  const n = answers.length;
+  return (
+    <View style={styles.summarySection}>
+      <View style={styles.ord4ScoreRow}>
+        <Text style={styles.summaryLabel}>REZULTAT</Text>
+        <Text style={[styles.ord4ScoreValue, { color: '#9D174D' }]}>
+          {result.score} / {n}
+        </Text>
+      </View>
+      <Text style={styles.summaryLabel}>TVOJ REDOSLED</Text>
+      {result.userOrder.map((item, i) => {
+        const correct = item === answers[i];
+        return (
+          <View key={`user-${item}`} style={[styles.ord4Row, correct ? styles.ord4RowCorrect : styles.ord4RowWrong]}>
+            <View style={[styles.ord4Badge, correct ? styles.ord4BadgeCorrect : styles.ord4BadgeWrong]}>
+              <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+            </View>
+            <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+          </View>
+        );
+      })}
+      {answers.length > 0 && (
+        <>
+          <Text style={[styles.summaryLabel, { marginTop: 6 }]}>TAČAN REDOSLED</Text>
+          {answers.map((item, i) => (
+            <View key={`ans-${item}`} style={[styles.ord4Row, styles.ord4RowCorrect]}>
+              <View style={[styles.ord4Badge, styles.ord4BadgeCorrect]}>
+                <Text style={styles.ord4BadgeText}>{i + 1}</Text>
+              </View>
+              <Text style={styles.ord4ItemText} numberOfLines={1}>{item}</Text>
+            </View>
+          ))}
+        </>
+      )}
+    </View>
+  );
+}
+
 // ── History card ──────────────────────────────────────────────────
 
 function HistoryCard({ result }: { result: CardResult }) {
@@ -169,6 +212,7 @@ function HistoryCard({ result }: { result: CardResult }) {
       {result.type === 'BUDGETING_4x5' && <Budgeting4x5Summary result={result} />}
       {result.type === 'OPEN_QUESTION' && <OpenQuestionSummary result={result} />}
       {result.type === 'ORDER_4'      && <Order4Summary      result={result} />}
+      {result.type === 'TOP_X'       && <TopXSummary       result={result} />}
     </View>
   );
 }

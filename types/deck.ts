@@ -90,7 +90,18 @@ export type Order4Card = {
   };
 };
 
-export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card | OpenQuestionCard | Order4Card;
+export type TopXCard = {
+  cardId: string;
+  type: 'TOP_X';
+  title: string;
+  shortTitle: string;
+  description: string;
+  question: string;
+  options: string[];
+  answers: string[];
+};
+
+export type CardItem = Keep4Drop4Card | Blind5RankCard | Budgeting4x5Card | OpenQuestionCard | Order4Card | TopXCard;
 
 export type DeckContent = {
   deckId: string;

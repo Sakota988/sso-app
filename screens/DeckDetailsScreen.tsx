@@ -31,6 +31,7 @@ const CARD_TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'BUDGETING_4x5':  require('../assets/card_backs/budzet_back.png'),
   'OPEN_QUESTION':  require('../assets/card_backs/pitalica_back.png'),
   'ORDER_4':        require('../assets/card_backs/pravi_raspored_back.png'),
+  'TOP_X':          require('../assets/card_backs/pravi_raspored_back.png'),
 };
 
 const CARD_FALLBACK_IMAGE = require('../assets/card_backs/zadrzi_back.png');

@@ -5,6 +5,7 @@ import Blind5Rank from '../components/cards/Blind5Rank';
 import Budgeting4x5 from '../components/cards/Budgeting4x5';
 import OpenQuestion from '../components/cards/OpenQuestion';
 import Order4 from '../components/cards/Order4';
+import TopX from '../components/cards/TopX';
 import RefreshableScrollView from '../components/common/RefreshableScrollView';
 
 type Props = {
@@ -113,6 +114,19 @@ export default function CardScreen({
         totalCards={totalCards}
         deckId={deckId}
       />,
+    );
+  }
+
+  if (card.type === 'TOP_X') {
+    return (
+      <TopX
+        card={card}
+        onBack={onBack}
+        onNext={onNext}
+        cardNumber={cardNumber}
+        totalCards={totalCards}
+        deckId={deckId}
+      />
     );
   }
 
