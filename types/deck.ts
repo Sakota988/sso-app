@@ -1,4 +1,6 @@
-// ── Deck manifest ────────────────────────────────────────────────
+import type { ImageSourcePropType } from 'react-native';
+
+// ── Deck manifest (from API) ─────────────────────────────────────
 export type DeckMeta = {
   deckId: string;
   title: string;
@@ -6,12 +8,17 @@ export type DeckMeta = {
   isFree: boolean;
   productId: string | null;
   cardCount: number;
-  contentFile: string;
+  coverImageUrl: string | null;
+  updatedAt: string;
 };
 
-// Deck enriched with local assets for display
+// Deck enriched for display (remote URI or local require fallback)
 export type DeckDisplay = DeckMeta & {
-  image: ReturnType<typeof require>;
+  coverSource: ImageSourcePropType;
+};
+
+export type DeckWithCards = DeckMeta & {
+  cards: CardItem[];
 };
 
 // ── Card types ────────────────────────────────────────────────────

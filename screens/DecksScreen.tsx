@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
-  FlatList,
   Image,
   StyleSheet,
   Text,
@@ -11,29 +10,15 @@ import {
 } from 'react-native';
 import { CheckCircle2 } from 'lucide-react-native';
 import { useDeckNav } from '../contexts/DeckNavContext';
+import { loadDecks, refreshDecks } from '../lib/api/loadDecks';
 import { useGameStore } from '../store/gameStore';
-import { getCardFile } from '../data/cardFileRegistry';
 import WelcomeModal from '../components/WelcomeModal';
-import type { DeckDisplay, DeckMeta } from '../types/deck';
+import RefreshableFlatList from '../components/common/RefreshableFlatList';
+import RefreshableScrollView from '../components/common/RefreshableScrollView';
+import type { DeckDisplay } from '../types/deck';
 
-const { width } = Dimensions.get('window');
+const { width, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const CARD_SIZE = (width - 48) / 2;
-
-// ── Per-deck cover images (keyed by deckId) ───────────────────────
-const DECK_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'deck-1': require('../assets/decks_backs/deck_4_back.png'),
-  'deck-2': require('../assets/decks_backs/deck_5_back.png'),
-  'deck-3': require('../assets/decks_backs/deck_6_back.png'),
-  'deck-4': require('../assets/decks_backs/deck_2_back.png'),
-  'deck-5': require('../assets/decks_backs/deck_7_back.png'),
-};
-
-// ── Fallback images by deck type ──────────────────────────────────
-const TYPE_IMAGES: Record<string, ReturnType<typeof require>> = {
-  'mixed': require('../assets/decks_backs/deck_4_back.png'),
-};
-
-const FALLBACK_IMAGE = require('../assets/decks_backs/deck_1_back.png');
 
 // ── Skeleton ─────────────────────────────────────────────────────
 function SkeletonCard() {
@@ -69,21 +54,13 @@ function SkeletonRow() {
   );
 }
 
-// ── Load decks from JSON ──────────────────────────────────────────
-const deckData: { decks: DeckMeta[] } = require('../data/decks.json');
-
-const DECKS: DeckDisplay[] = deckData.decks.map((d) => ({
-  ...d,
-  image: DECK_IMAGES[d.deckId] ?? TYPE_IMAGES[(d as any).type] ?? FALLBACK_IMAGE,
-}));
-
 // ── Components ────────────────────────────────────────────────────
 function DeckCard({ deck }: { deck: DeckDisplay }) {
   const { openDeck } = useDeckNav();
   const isFree = deck.isFree;
   const results = useGameStore((s) => s.results);
-  const cardIds = getCardFile(deck.contentFile)?.cards.map((c) => c.cardId) ?? [];
-  const isCompleted = cardIds.length > 0 && cardIds.every((id) => !!results[id]);
+  const playedInDeck = Object.values(results).filter((r) => r.deckId === deck.deckId).length;
+  const isCompleted = deck.cardCount > 0 && playedInDeck >= deck.cardCount;
 
   return (
     <TouchableOpacity
@@ -91,7 +68,7 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
       activeOpacity={isFree ? 0.82 : 1}
       onPress={() => { if (isFree) openDeck(deck); }}
     >
-      <Image source={deck.image} style={styles.cardImage} resizeMode="contain" />
+      <Image source={deck.coverSource} style={styles.cardImage} resizeMode="contain" />
       <View style={styles.cardTitleWrap}>
         <Text style={styles.cardTitle} numberOfLines={2}>{deck.title}</Text>
       </View>
@@ -122,36 +99,55 @@ function DeckCard({ deck }: { deck: DeckDisplay }) {
 }
 
 export default function DecksScreen() {
-  const [isReady, setIsReady] = useState(false);
-  const listOpacity = useRef(new Animated.Value(0)).current;
+  const [decks, setDecks] = useState<DeckDisplay[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [fromCache, setFromCache] = useState(false);
   const results = useGameStore((s) => s.results);
   const completedCount = Object.keys(results).length;
-  const totalCards = DECKS.reduce((sum, d) => sum + d.cardCount, 0);
+  const totalCards = decks.reduce((sum, d) => sum + d.cardCount, 0);
   const completionPercent = totalCards > 0 ? Math.round((completedCount / totalCards) * 100) : 0;
 
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await loadDecks();
+      setDecks(result.decks);
+      setFromCache(result.fromCache);
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      setError(e instanceof Error ? e.message : 'Greška pri učitavanju');
+    }
+  }, []);
+
+  const refreshCatalogSilently = useCallback(async () => {
+    try {
+      const result = await refreshDecks();
+      setDecks(result.decks);
+      setFromCache(result.fromCache);
+      setError(null);
+    } catch {
+      // Keep current list visible on refresh failure.
+    }
+  }, []);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsReady(true);
-      Animated.timing(listOpacity, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [listOpacity]);
+    void load();
+  }, [load]);
 
   return (
     <View style={styles.root}>
       <WelcomeModal />
-      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFD4A3' }]} />
+      <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#FFD4A3' }]} pointerEvents="none" />
 
-      <View style={[styles.circle, { width: 240, height: 240, top: -80, right: -70 }]} />
-      <View style={[styles.circle, { width: 180, height: 180, bottom: 160, left: -70 }]} />
-      <View style={[styles.circle, { width: 120, height: 120, top: 280, right: -30 }]} />
-      <View style={[styles.circle, { width: 90,  height: 90,  top: 140, left: 16 }]} />
+      <View pointerEvents="none" style={[styles.circle, { width: 240, height: 240, top: -80, right: -70 }]} />
+      <View pointerEvents="none" style={[styles.circle, { width: 180, height: 180, bottom: 160, left: -70 }]} />
+      <View pointerEvents="none" style={[styles.circle, { width: 120, height: 120, top: 280, right: -30 }]} />
+      <View pointerEvents="none" style={[styles.circle, { width: 90,  height: 90,  top: 140, left: 16 }]} />
 
-      {!isReady && (
+      {loading && (
         <View style={styles.skeletonContainer}>
           <View style={styles.skeletonHeader}>
             <View style={styles.skeletonLogo} />
@@ -167,37 +163,58 @@ export default function DecksScreen() {
         </View>
       )}
 
-      <Animated.View style={[styles.listWrapper, { opacity: listOpacity }]}>
-        <FlatList
-          data={DECKS}
-          keyExtractor={(d) => d.deckId}
-          numColumns={2}
-          columnWrapperStyle={styles.row}
-          contentContainerStyle={styles.list}
-          showsVerticalScrollIndicator={false}
-          ListHeaderComponent={
-            <View style={styles.header}>
-              <Image
-                source={require('../assets/logo.png')}
-                style={styles.logo}
-                resizeMode="contain"
-              />
-              <Text style={styles.tagline}>Izaberi špil i zaigraj</Text>
-              <View style={styles.statsRow}>
-                <View style={styles.statPill}>
-                  <Text style={styles.statNumber}>{completionPercent}%</Text>
-                  <Text style={styles.statLabel}>Pitanja završeno</Text>
+      {!loading && error && (
+        <RefreshableScrollView
+          dedupeKey="catalog"
+          onRefreshData={refreshCatalogSilently}
+        >
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+            <TouchableOpacity style={styles.retryBtn} onPress={() => void load()}>
+              <Text style={styles.retryBtnText}>Pokušaj ponovo</Text>
+            </TouchableOpacity>
+          </View>
+        </RefreshableScrollView>
+      )}
+
+      {!loading && !error && (
+        <View style={styles.listWrapper}>
+          <RefreshableFlatList
+            dedupeKey="catalog"
+            onRefreshData={refreshCatalogSilently}
+            data={decks}
+            keyExtractor={(d) => d.deckId}
+            numColumns={2}
+            columnWrapperStyle={styles.row}
+            contentContainerStyle={[styles.list, { minHeight: SCREEN_HEIGHT + 1 }]}
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              <View style={styles.header}>
+                <Image
+                  source={require('../assets/logo.png')}
+                  style={styles.logo}
+                  resizeMode="contain"
+                />
+                <Text style={styles.tagline}>Izaberi špil i zaigraj</Text>
+                {fromCache && (
+                  <Text style={styles.cacheHint}>Offline — prikazani sačuvani podaci</Text>
+                )}
+                <View style={styles.statsRow}>
+                  <View style={styles.statPill}>
+                    <Text style={styles.statNumber}>{completionPercent}%</Text>
+                    <Text style={styles.statLabel}>Pitanja završeno</Text>
+                  </View>
+                </View>
+                <View style={styles.sectionRow}>
+                  <Text style={styles.sectionTitle}>Špilovi</Text>
+                  <Text style={styles.sectionCount}>{decks.length} dostupno</Text>
                 </View>
               </View>
-              <View style={styles.sectionRow}>
-                <Text style={styles.sectionTitle}>Špilovi</Text>
-                <Text style={styles.sectionCount}>{DECKS.length} dostupno</Text>
-              </View>
-            </View>
-          }
-          renderItem={({ item }) => <DeckCard deck={item} />}
-        />
-      </Animated.View>
+            }
+            renderItem={({ item }) => <DeckCard deck={item} />}
+          />
+        </View>
+      )}
     </View>
   );
 }
@@ -205,7 +222,37 @@ export default function DecksScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   listWrapper: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+  },
+  errorText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#374151',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  retryBtn: {
+    backgroundColor: '#FF8C42',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 12,
+  },
+  retryBtnText: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#fff',
+  },
+  cacheHint: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#92400E',
+    marginBottom: 8,
   },
   skeletonContainer: {
     flex: 1,
@@ -393,12 +440,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   lockedIcon: { fontSize: 32 },
-  lockedText: {
-    fontSize: 13,
-    fontWeight: '900',
-    color: '#fff',
-    letterSpacing: 1.5,
-  },
   completedBadge: {
     position: 'absolute',
     top: 18,
